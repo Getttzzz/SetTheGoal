@@ -1,25 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="shapeAppearanceSmallComponent">@style/GetzShareAppearance.SmallComponent</item>
+        <!--        <item name="shapeAppearanceSmallComponent">@style/GetzShareAppearance.SmallComponent</item>-->
         <item name="shapeAppearanceMediumComponent">@style/GetzShareAppearance.MediumComponent
         </item>
     </style>
 
-    <style name="GetzShareAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">cut</item>
-        <item name="cornerSize">6dp</item>
-    </style>
+    <!--    <style name="GetzShareAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">-->
+    <!--        <item name="cornerFamily">cut</item>-->
+    <!--        <item name="cornerSize">10dp</item>-->
+    <!--    </style>-->
 
     <style name="GetzShareAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">cut</item>
-        <item name="cornerSize">26dp</item>
+        <item name="cornerSize">10dp</item>
     </style>
 
 </resources>
