@@ -7,6 +7,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.getz.setthegoal.R
+import com.getz.setthegoal.ui.custom.ExpandableTextView
 import com.getz.setthegoal.ui.goals.pager.GoalsPagerAdapter
 import com.getz.setthegoal.ui.utils.setSingleClickListener
 import com.google.android.material.shape.CutCornerTreatment
@@ -19,6 +20,25 @@ class GoalsFragment : Fragment(R.layout.fragment_goals) {
         super.onViewCreated(view, savedInstanceState)
         setupGoodQuoteCard()
         setupPager()
+
+        tvQuoteContent.addOnExpandListener(object : ExpandableTextView.OnExpandListener {
+            override fun onStartExpand(view: ExpandableTextView) {
+                ivArrow.isEnabled = false
+            }
+
+            override fun onStartCollapse(view: ExpandableTextView) {
+                ivArrow.isEnabled = true
+            }
+
+            override fun onEndExpand(view: ExpandableTextView) = Unit
+
+            override fun onEndCollapse(view: ExpandableTextView) = Unit
+
+            override fun onDrewInLayout(isEllipsize: Boolean, realLineCount: Int) {
+                cardMotivation.setSingleClickListener { tvQuoteContent.toggle() }
+            }
+        })
+
         llFamily.setSingleClickListener {
             vpGoals.setCurrentItem(GoalsPagerAdapter.FAMILY_TAB_POSITION, true)
         }
