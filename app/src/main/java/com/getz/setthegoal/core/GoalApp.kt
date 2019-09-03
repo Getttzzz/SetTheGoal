@@ -1,4 +1,4 @@
-package com.getz.setthegoal
+package com.getz.setthegoal.core
 
 import android.app.Application
 

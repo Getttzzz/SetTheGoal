@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SetTheGoal</string>
+    <string name="for_family">For family</string>
+    <string name="for_myself">For myself</string>
 </resources>
