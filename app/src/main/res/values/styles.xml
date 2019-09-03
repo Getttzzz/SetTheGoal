@@ -7,15 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <!--        <item name="shapeAppearanceSmallComponent">@style/GetzShareAppearance.SmallComponent</item>-->
         <item name="shapeAppearanceMediumComponent">@style/GetzShareAppearance.MediumComponent
         </item>
     </style>
-
-    <!--    <style name="GetzShareAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">-->
-    <!--        <item name="cornerFamily">cut</item>-->
-    <!--        <item name="cornerSize">10dp</item>-->
-    <!--    </style>-->
 
     <style name="GetzShareAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">cut</item>
