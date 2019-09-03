@@ -109,15 +109,18 @@
 
                 <ImageView
                     android:id="@+id/ivFamily"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:background="@drawable/selector_goals_for_family" />
 
                 <TextView
                     android:id="@+id/tvFamily"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/for_family" />
+                    android:layout_marginTop="-4dp"
+                    android:text="@string/for_family"
+                    android:textColor="@color/colorSecondaryDark"
+                    android:textSize="11sp" />
 
             </LinearLayout>
 
@@ -135,15 +138,18 @@
 
                 <ImageView
                     android:id="@+id/ivMyself"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:background="@drawable/selector_goals_for_myself" />
 
                 <TextView
                     android:id="@+id/tvMyself"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/for_myself" />
+                    android:layout_marginTop="-4dp"
+                    android:text="@string/for_myself"
+                    android:textColor="@color/colorSecondaryDark"
+                    android:textSize="11sp" />
 
             </LinearLayout>
 
