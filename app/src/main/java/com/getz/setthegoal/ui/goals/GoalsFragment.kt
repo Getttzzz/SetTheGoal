@@ -63,67 +63,36 @@ class GoalsFragment : Fragment(R.layout.fragment_goals) {
     private fun selectBottomElement(position: Int) {
         when (position) {
             GoalsPagerAdapter.FAMILY_TAB_POSITION -> {
-                val familyAnimator = ValueAnimator.ofFloat(1.0f, 1.2f)
-                    .apply {
-                        duration = 300
-                        interpolator = AccelerateDecelerateInterpolator()
-                        addUpdateListener {
-                            val animatedVal = it.animatedValue as Float
-                            ivFamily.scaleX = animatedVal
-                            ivFamily.scaleY = animatedVal
-                        }
-                    }
-                familyAnimator.start()
-
-                val myselfAnimator = ValueAnimator.ofFloat(1.2f, 1.0f)
-                    .apply {
-                        duration = 300
-                        interpolator = AccelerateDecelerateInterpolator()
-                        addUpdateListener {
-                            val animatedVal = it.animatedValue as Float
-                            ivMyself.scaleX = animatedVal
-                            ivMyself.scaleY = animatedVal
-                        }
-                    }
-                myselfAnimator.start()
-
+                startScaleAnimation(ivFamily, 1.0f, 1.15f, 250)
+                startScaleAnimation(ivMyself, 1.15f, 1.0f, 250)
                 ivFamily.isEnabled = true
                 ivMyself.isEnabled = false
                 tvFamily.setTextColor(resources.getColor(R.color.colorAccent))
                 tvMyself.setTextColor(resources.getColor(R.color.colorSecondaryDark))
             }
             GoalsPagerAdapter.MYSELF_TAB_POSITION -> {
-
-                val familyAnimator = ValueAnimator.ofFloat(1.2f, 1.0f)
-                    .apply {
-                        duration = 300
-                        interpolator = AccelerateDecelerateInterpolator()
-                        addUpdateListener {
-                            val animatedVal = it.animatedValue as Float
-                            ivFamily.scaleX = animatedVal
-                            ivFamily.scaleY = animatedVal
-                        }
-                    }
-                familyAnimator.start()
-
-                val myselfAnimator = ValueAnimator.ofFloat(1.0f, 1.2f)
-                    .apply {
-                        duration = 300
-                        interpolator = AccelerateDecelerateInterpolator()
-                        addUpdateListener {
-                            val animatedVal = it.animatedValue as Float
-                            ivMyself.scaleX = animatedVal
-                            ivMyself.scaleY = animatedVal
-                        }
-                    }
-                myselfAnimator.start()
-
+                startScaleAnimation(ivFamily, 1.15f, 1.0f, 250)
+                startScaleAnimation(ivMyself, 1.0f, 1.15f, 250)
                 ivFamily.isEnabled = false
                 ivMyself.isEnabled = true
                 tvFamily.setTextColor(resources.getColor(R.color.colorSecondaryDark))
                 tvMyself.setTextColor(resources.getColor(R.color.colorAccent))
             }
         }
+    }
+
+    private fun startScaleAnimation(view: View, startVal: Float, endVal: Float, durationVal: Long) {
+        val animator = ValueAnimator.ofFloat(startVal, startVal)
+            .apply {
+                duration = durationVal
+                interpolator = AccelerateDecelerateInterpolator()
+                addUpdateListener {
+                    val animatedVal = it.animatedValue as Float
+                    view.scaleX = animatedVal
+                    view.scaleY = animatedVal
+                }
+            }
+        animator.start()
     }
 
     private fun setupGoodQuoteCard() {
