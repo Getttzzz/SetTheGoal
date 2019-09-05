@@ -1,4 +1,4 @@
-package com.getz.setthegoal.ui.goals.pager
+package com.getz.setthegoal.ui.goals
 
 import com.getz.setthegoal.ui.BaseFragment
 import com.getz.setthegoal.R

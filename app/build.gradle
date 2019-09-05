@@ -24,6 +24,9 @@ android {
 
 def new_material_components = '1.1.0-alpha09'
 def kodein = '6.3.3'
+def retrofit = '2.6.1'
+def okhttp = '3.14.1'
+def gson = '2.8.5'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -37,6 +40,13 @@ dependencies {
     implementation "org.kodein.di:kodein-di-generic-jvm:$kodein"
     implementation "org.kodein.di:kodein-di-framework-android-x:$kodein"
 
+    //Network
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    implementation "com.google.code.gson:gson:$gson"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

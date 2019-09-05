@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.ui.custom.ExpandableTextView
-import com.getz.setthegoal.ui.goals.pager.GoalsPagerAdapter
 import com.getz.setthegoal.ui.utils.setSingleClickListener
 import com.google.android.material.shape.CutCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -20,7 +19,17 @@ class GoalsFragment : Fragment(R.layout.fragment_goals) {
         super.onViewCreated(view, savedInstanceState)
         setupGoodQuoteCard()
         setupPager()
+        setupExpandableListener()
 
+        llFamily.setSingleClickListener {
+            vpGoals.setCurrentItem(GoalsPagerAdapter.FAMILY_TAB_POSITION, true)
+        }
+        llMyself.setSingleClickListener {
+            vpGoals.setCurrentItem(GoalsPagerAdapter.MYSELF_TAB_POSITION, true)
+        }
+    }
+
+    private fun setupExpandableListener() {
         tvQuoteContent.addOnExpandListener(object : ExpandableTextView.OnExpandListener {
             override fun onStartExpand(view: ExpandableTextView) {
                 ivArrow.isEnabled = false
@@ -38,13 +47,6 @@ class GoalsFragment : Fragment(R.layout.fragment_goals) {
                 cardMotivation.setSingleClickListener { tvQuoteContent.toggle() }
             }
         })
-
-        llFamily.setSingleClickListener {
-            vpGoals.setCurrentItem(GoalsPagerAdapter.FAMILY_TAB_POSITION, true)
-        }
-        llMyself.setSingleClickListener {
-            vpGoals.setCurrentItem(GoalsPagerAdapter.MYSELF_TAB_POSITION, true)
-        }
     }
 
     private fun setupPager() {
@@ -82,7 +84,7 @@ class GoalsFragment : Fragment(R.layout.fragment_goals) {
     }
 
     private fun startScaleAnimation(view: View, startVal: Float, endVal: Float, durationVal: Long) {
-        val animator = ValueAnimator.ofFloat(startVal, startVal)
+        val animator = ValueAnimator.ofFloat(startVal, endVal)
             .apply {
                 duration = durationVal
                 interpolator = AccelerateDecelerateInterpolator()

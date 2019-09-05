@@ -1,4 +1,4 @@
-package com.getz.setthegoal.ui.goals.pager
+package com.getz.setthegoal.ui.goals
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
