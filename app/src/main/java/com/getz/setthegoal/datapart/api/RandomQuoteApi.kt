@@ -1,4 +1,4 @@
-package com.getz.setthegoal.core.network
+package com.getz.setthegoal.datapart.api
 
 import retrofit2.Response
 import retrofit2.http.GET

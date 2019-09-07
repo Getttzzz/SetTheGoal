@@ -1,7 +1,7 @@
 package com.getz.setthegoal
 
 import android.app.Application
-import com.getz.setthegoal.data.di.networkModule
+import com.getz.setthegoal.dependencyinjection.networkModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule

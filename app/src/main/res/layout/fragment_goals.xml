@@ -54,7 +54,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.getz.setthegoal.presentation.ui.custom.ExpandableTextView
+                <com.getz.setthegoal.presentationpart.customview.ExpandableTextView
                     android:id="@+id/tvQuoteContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

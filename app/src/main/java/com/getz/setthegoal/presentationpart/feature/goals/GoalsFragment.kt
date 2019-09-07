@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentation.ui.goals
+package com.getz.setthegoal.presentationpart.feature.goals
 
 import android.animation.ValueAnimator
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.getz.setthegoal.R
-import com.getz.setthegoal.presentation.ui.custom.ExpandableTextView
-import com.getz.setthegoal.presentation.ui.utils.setSingleClickListener
+import com.getz.setthegoal.presentationpart.customview.ExpandableTextView
+import com.getz.setthegoal.presentationpart.utils.setSingleClickListener
 import com.google.android.material.shape.CutCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
 import kotlinx.android.synthetic.main.fragment_goals.*

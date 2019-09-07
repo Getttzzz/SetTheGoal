@@ -1,11 +1,11 @@
-package com.getz.setthegoal.presentation.ui
+package com.getz.setthegoal.presentationpart.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.getz.setthegoal.R
-import com.getz.setthegoal.presentation.ui.goals.GoalsFragment
+import com.getz.setthegoal.presentationpart.feature.goals.GoalsFragment
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class ForeverAloneActivity : AppCompatActivity(R.layout.activity_forever_alone) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

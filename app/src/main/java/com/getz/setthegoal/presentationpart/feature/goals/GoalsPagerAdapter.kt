@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentation.ui.goals
+package com.getz.setthegoal.presentationpart.feature.goals
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

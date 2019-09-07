@@ -1,6 +1,6 @@
-package com.getz.setthegoal.data.di
+package com.getz.setthegoal.dependencyinjection
 
-import com.getz.setthegoal.core.network.RandomQuoteApi
+import com.getz.setthegoal.datapart.api.RandomQuoteApi
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
