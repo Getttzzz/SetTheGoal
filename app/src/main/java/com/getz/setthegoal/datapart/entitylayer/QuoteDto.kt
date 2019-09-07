@@ -1,4 +1,4 @@
-package com.getz.setthegoal.domainpart.entitylayer.dto
+package com.getz.setthegoal.datapart.entitylayer
 
 import com.google.gson.annotations.SerializedName
 

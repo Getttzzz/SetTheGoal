@@ -4,16 +4,16 @@ import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.getz.setthegoal.R
+import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.customview.ExpandableTextView
 import com.getz.setthegoal.presentationpart.utils.setSingleClickListener
 import com.google.android.material.shape.CutCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
 import kotlinx.android.synthetic.main.fragment_goals.*
 
-class GoalsFragment : Fragment(R.layout.fragment_goals) {
+class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
