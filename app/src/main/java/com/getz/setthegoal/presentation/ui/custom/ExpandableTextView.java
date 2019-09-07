@@ -1,4 +1,4 @@
-package com.getz.setthegoal.ui.custom;
+package com.getz.setthegoal.presentation.ui.custom;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

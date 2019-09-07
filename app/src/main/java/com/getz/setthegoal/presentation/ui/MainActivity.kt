@@ -1,9 +1,9 @@
-package com.getz.setthegoal.ui
+package com.getz.setthegoal.presentation.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.getz.setthegoal.R
-import com.getz.setthegoal.ui.goals.GoalsFragment
+import com.getz.setthegoal.presentation.ui.goals.GoalsFragment
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 

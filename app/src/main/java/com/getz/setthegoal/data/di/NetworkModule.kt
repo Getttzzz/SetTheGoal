@@ -1,18 +1,41 @@
-package com.getz.setthegoal.core.network
+package com.getz.setthegoal.data.di
 
+import com.getz.setthegoal.core.network.RandomQuoteApi
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.singleton
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+val networkModule = Kodein.Module(ModulesNames.NETWORK_MODULE) {
+    bind<RestClient>() with singleton {
+        RestClient()
+    }
+}
+
 class RestClient {
+
+    var randomQuoteApi: RandomQuoteApi
+
+    init {
+        randomQuoteApi = constructApi(RANDOM_QUOTE_BASE_URL, RandomQuoteApi::class.java)
+    }
+
+    companion object {
+        const val RANDOM_QUOTE_BASE_URL = "https://api.forismatic.com/api/1.0/"
+    }
 
     private fun <API> constructApi(endpoint: String, clazzApi: Class<API>) =
         Retrofit.Builder()
             .client(getOkHttpClient(packInterceptors(getLoggingInterceptor())))
-//            .addCallAdapterFactory() todo add coroutines
+            //todo add GSONPConverterFactory for a random quote request
+            .addConverterFactory(GsonConverterFactory.create(getGson()))
+            .baseUrl(endpoint)
             .build()
             .create(clazzApi)
 

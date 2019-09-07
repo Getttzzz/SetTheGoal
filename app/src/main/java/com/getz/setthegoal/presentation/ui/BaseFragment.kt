@@ -1,4 +1,4 @@
-package com.getz.setthegoal.ui
+package com.getz.setthegoal.presentation.ui
 
 import android.os.Bundle
 import android.view.View
