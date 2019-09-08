@@ -1,4 +1,4 @@
-package com.getz.setthegoal.dependencyinjection
+package com.getz.setthegoal.di
 
 object ModulesNames {
     const val NETWORK_MODULE = "NETWORK_MODULE"

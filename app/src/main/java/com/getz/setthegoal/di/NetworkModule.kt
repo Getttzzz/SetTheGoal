@@ -1,4 +1,4 @@
-package com.getz.setthegoal.dependencyinjection
+package com.getz.setthegoal.di
 
 import com.getz.setthegoal.datapart.api.RandomQuoteApi
 import com.google.gson.GsonBuilder

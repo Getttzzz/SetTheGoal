@@ -1,4 +1,4 @@
-package com.getz.setthegoal.dependencyinjection
+package com.getz.setthegoal.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
