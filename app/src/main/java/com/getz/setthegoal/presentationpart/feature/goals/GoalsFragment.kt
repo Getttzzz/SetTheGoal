@@ -4,16 +4,27 @@ import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.customview.ExpandableTextView
-import com.getz.setthegoal.presentationpart.utils.setSingleClickListener
+import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import com.google.android.material.shape.CutCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
 import kotlinx.android.synthetic.main.fragment_goals.*
+import org.kodein.di.direct
+import org.kodein.di.generic.instance
 
 class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
+
+    lateinit var vm: GoalsViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        println("GETZ.GoalsFragment.onCreate ---> try to init vm")
+        vm = ViewModelProviders.of(this, direct.instance()).get(GoalsViewModel::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

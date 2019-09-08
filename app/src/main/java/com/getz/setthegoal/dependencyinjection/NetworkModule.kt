@@ -13,9 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val networkModule = Kodein.Module(ModulesNames.NETWORK_MODULE) {
-    bind<RestClient>() with singleton {
-        RestClient()
-    }
+    bind<RestClient>() with singleton { RestClient() }
 }
 
 class RestClient {

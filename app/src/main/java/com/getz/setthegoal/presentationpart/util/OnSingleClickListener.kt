@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentationpart.utils
+package com.getz.setthegoal.presentationpart.util
 
 import android.os.SystemClock
 import android.view.View
