@@ -14,6 +14,8 @@ class QuoteRemoteDataSource(
             jsonp = "parseQuote",
             lang = lang
         )
+        println("GETZ.QuoteRemoteDataSource.getQuoteAsync ---> isSuccessful=${quote.isSuccessful}")
+        println("GETZ.QuoteRemoteDataSource.getQuoteAsync ---> body=${quote.body()}")
 //        onResult(quote)
     }
 }
