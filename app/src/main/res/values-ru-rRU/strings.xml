@@ -6,4 +6,5 @@
     <string name="good_quote">Цитата дня</string>
     <string name="mini_motivation">Иногда приходится делать сложные, занудные, но необходимые задачи, которые могут не нравится сами по себе, но обретают смысл, когда становятся инструментом достижения большой цели.</string>
     <string name="quote_with_author">%1$s\n\nАвтор %2$s</string>
+    <string name="getting_motivation">\nПолучение мотивации…</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.getz.setthegoal.presentationpart.feature.goals
 
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -36,10 +35,11 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         setupExpandableListener()
         setupLD()
 
+        ivNewIdea.setSingleClickListener { vm.loadRandomQuote(Locale.getDefault()) }
+
         vm.loadRandomQuote(Locale.getDefault())
     }
 
-    @SuppressLint("SetTextI18n")
     private fun setupLD() {
         vm.quoteLD.observe(this, Observer { quote ->
             tvQuoteContent.text =
