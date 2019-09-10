@@ -12,8 +12,10 @@ class QuoteRepository(
     private val remoteDS: IQuoteDataSource
 ) : BaseRepository(), IQuoteRepository {
 
-    override suspend fun getRandomQuoteAsync(onResult: suspend (Quote) -> Unit) {
-        //todo get data from remote
-
+    override suspend fun getRandomQuoteAsync(lang: String, onResult: suspend (Quote) -> Unit) {
+        remoteDS.getQuoteAsync(lang) { quoteDto ->
+            val quote = toDomainMapper.transform(quoteDto)
+            onResult(quote)
+        }
     }
 }

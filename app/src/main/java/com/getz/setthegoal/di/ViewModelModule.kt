@@ -7,6 +7,7 @@ import org.kodein.di.Kodein
 import org.kodein.di.TT
 import org.kodein.di.direct
 import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
@@ -14,7 +15,7 @@ val viewModelModule = Kodein.Module(ModulesNames.VIEW_MODEL_MODULE) {
     import(factoryModule)
 
     bind<GoalsViewModel>(tag = GoalsViewModel::class.java.simpleName) with provider {
-        GoalsViewModel()
+        GoalsViewModel(instance())
     }
 }
 

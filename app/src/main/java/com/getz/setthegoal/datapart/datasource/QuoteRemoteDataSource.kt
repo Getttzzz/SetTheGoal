@@ -8,14 +8,15 @@ class QuoteRemoteDataSource(
 ) : IQuoteDataSource {
 
     override suspend fun getQuoteAsync(lang: String, onResult: suspend (QuoteDto) -> Unit) {
+        println("GETTTZZZ.QuoteRemoteDataSource.getQuoteAsync ---> api.getQuote")
         val quote = api.getQuote(
             method = "getQuote",
             format = "jsonp",
             jsonp = "parseQuote",
             lang = lang
         )
-        println("GETZ.QuoteRemoteDataSource.getQuoteAsync ---> isSuccessful=${quote.isSuccessful}")
-        println("GETZ.QuoteRemoteDataSource.getQuoteAsync ---> body=${quote.body()}")
+        println("GETTTZZZ.QuoteRemoteDataSource.getQuoteAsync ---> isSuccessful=${quote.isSuccessful}")
+        println("GETTTZZZ.QuoteRemoteDataSource.getQuoteAsync ---> body=${quote.body()}")
 //        onResult(quote)
     }
 }

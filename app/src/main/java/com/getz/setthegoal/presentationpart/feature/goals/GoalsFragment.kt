@@ -4,6 +4,7 @@ import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.getz.setthegoal.R
@@ -22,7 +23,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("GETZ.GoalsFragment.onCreate ---> try to init vm")
+        println("GETTTZZZ.GoalsFragment.onCreate ---> try to init vm")
         vm = ViewModelProviders.of(this, direct.instance()).get(GoalsViewModel::class.java)
     }
 
@@ -31,6 +32,13 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         setupGoodQuoteCard()
         setupPager()
         setupExpandableListener()
+
+        vm.quoteLD.observe(this, Observer {
+            println("GETTTZZZ.GoalsFragment.onViewCreated ---> quote=$it")
+        })
+
+        println("GETTTZZZ.GoalsFragment.onViewCreated ---> vm.loadRandomQuote(en)")
+        vm.loadRandomQuote("en")
 
         llFamily.setSingleClickListener {
             vpGoals.setCurrentItem(GoalsPagerAdapter.FAMILY_TAB_POSITION, true)
@@ -67,7 +75,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
             override fun onPageScrollStateChanged(state: Int) = Unit
             override fun onPageScrolled(pos: Int, posOffset: Float, posOffsetPixels: Int) = Unit
             override fun onPageSelected(position: Int) {
-                println("GETZ.GoalsFragment.onPageSelected ---> selected page=$position")
+                println("GETTTZZZ.GoalsFragment.onPageSelected ---> selected page=$position")
                 selectBottomElement(position)
             }
         })

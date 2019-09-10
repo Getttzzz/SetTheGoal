@@ -1,6 +1,7 @@
 package com.getz.setthegoal.di
 
 import com.getz.setthegoal.datapart.api.RandomQuoteApi
+import com.getz.setthegoal.datapart.core.GsonPConverterFactory
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -35,7 +36,7 @@ private fun getRetrofit(endpoint: String) =
     Retrofit.Builder()
         .client(getOkHttpClient(packInterceptors(getLoggingInterceptor())))
         //todo add GSONPConverterFactory for a random quote request
-        .addConverterFactory(GsonConverterFactory.create(getGson()))
+        .addConverterFactory(GsonPConverterFactory(getGson()))
         .baseUrl(endpoint)
         .build()
 

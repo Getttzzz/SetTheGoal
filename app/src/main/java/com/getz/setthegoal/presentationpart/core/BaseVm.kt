@@ -27,8 +27,14 @@ abstract class BaseVm : ViewModel(), CoroutineScope {
                 }
 
     override fun onCleared() {
+        println("GETTTZZZ.BaseVm.onCleared ---> ")
         coroutineContext.cancelChildren()
         super.onCleared()
+    }
+
+    fun processError(error: Throwable) {
+        println("GETTTZZZ.BaseVm.processError ---> error=$error")
+        errorHandler.handleError(error)
     }
 
     fun showError(errorText: String) {

@@ -1,6 +1,6 @@
 package com.getz.setthegoal.domainpart.core
 
-interface INetworkUseCase<in Request, out Response> : IUseCase {
+interface IRequestableUseCase<in Request, out Response> : IUseCase {
     suspend operator fun invoke(
         request: Request,
         onError: (Throwable) -> Unit,

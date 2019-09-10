@@ -3,16 +3,20 @@ package com.getz.setthegoal.datapart.interactorlayer
 import com.getz.setthegoal.datapart.core.BaseUseCase
 import com.getz.setthegoal.domainpart.entitylayer.Quote
 import com.getz.setthegoal.domainpart.interactorlayer.IGetQuoteUseCase
+import com.getz.setthegoal.domainpart.repositorylayer.IQuoteRepository
 
-//todo add repo
 class GetQuoteUseCase(
-
+    private val repository: IQuoteRepository
 ) : BaseUseCase(), IGetQuoteUseCase {
     override suspend fun invoke(
-        request: Unit,
+        request: String,
         onError: (Throwable) -> Unit,
         onResult: suspend (Quote) -> Unit
     ) = withDefault(onError) {
-        //repo.getQuote
+
+        repository.getRandomQuoteAsync(request) { quote ->
+            onResult(quote)
+        }
+
     }
 }
