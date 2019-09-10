@@ -23,7 +23,6 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("GETTTZZZ.GoalsFragment.onCreate ---> try to init vm")
         vm = ViewModelProviders.of(this, direct.instance()).get(GoalsViewModel::class.java)
     }
 
@@ -33,8 +32,9 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         setupPager()
         setupExpandableListener()
 
-        vm.quoteLD.observe(this, Observer {
-            println("GETTTZZZ.GoalsFragment.onViewCreated ---> quote=$it")
+        vm.quoteLD.observe(this, Observer { quote ->
+            println("GETTTZZZ.GoalsFragment.onViewCreated ---> quote=$quote")
+            tvQuoteContent.text = quote.quoteText
         })
 
         println("GETTTZZZ.GoalsFragment.onViewCreated ---> vm.loadRandomQuote(en)")

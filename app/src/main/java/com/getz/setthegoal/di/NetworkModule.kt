@@ -1,7 +1,6 @@
 package com.getz.setthegoal.di
 
 import com.getz.setthegoal.datapart.api.RandomQuoteApi
-import com.getz.setthegoal.datapart.core.GsonPConverterFactory
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -13,7 +12,6 @@ import org.kodein.di.generic.singleton
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-
 
 const val RANDOM_QUOTE_BASE_URL = "https://api.forismatic.com/api/1.0/"
 const val LOGGING_INTERCEPTOR = "LOGGING_INTERCEPTOR"
@@ -35,8 +33,7 @@ private val interceptorModule = Kodein.Module(ModulesNames.INTERCEPTOR_MODULE) {
 private fun getRetrofit(endpoint: String) =
     Retrofit.Builder()
         .client(getOkHttpClient(packInterceptors(getLoggingInterceptor())))
-        //todo add GSONPConverterFactory for a random quote request
-        .addConverterFactory(GsonPConverterFactory(getGson()))
+        .addConverterFactory(GsonConverterFactory.create(getGson()))
         .baseUrl(endpoint)
         .build()
 
@@ -60,4 +57,5 @@ private fun getOkHttpClient(interceptors: List<Interceptor>) =
 
 private fun packInterceptors(vararg interceptors: Interceptor) = listOf(*interceptors)
 
-private inline fun <reified API> createApi(retrofit: Retrofit) = retrofit.create(API::class.java)
+private inline fun <reified API> createApi(retrofit: Retrofit) =
+    retrofit.create(API::class.java) as API

@@ -12,10 +12,6 @@ class GoalsViewModel(
 
     val quoteLD = MutableLiveData<Quote>()
 
-    init {
-        println("GETTTZZZ.GoalsViewModel ---> init")
-    }
-
     fun loadRandomQuote(lang: String) = launch {
         println("GETTTZZZ.GoalsViewModel.loadRandomQuote ---> getQuoteUseCase.invoke")
         getQuoteUseCase.invoke(lang, ::processError) { quote ->

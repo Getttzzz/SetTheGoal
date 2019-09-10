@@ -13,10 +13,8 @@ class GetQuoteUseCase(
         onError: (Throwable) -> Unit,
         onResult: suspend (Quote) -> Unit
     ) = withDefault(onError) {
-
         repository.getRandomQuoteAsync(request) { quote ->
-            onResult(quote)
+            withUI(onError) { onResult(quote) }
         }
-
     }
 }

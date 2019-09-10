@@ -11,12 +11,10 @@ class QuoteRemoteDataSource(
         println("GETTTZZZ.QuoteRemoteDataSource.getQuoteAsync ---> api.getQuote")
         val quote = api.getQuote(
             method = "getQuote",
-            format = "jsonp",
-            jsonp = "parseQuote",
+            format = "json",
             lang = lang
         )
-        println("GETTTZZZ.QuoteRemoteDataSource.getQuoteAsync ---> isSuccessful=${quote.isSuccessful}")
-        println("GETTTZZZ.QuoteRemoteDataSource.getQuoteAsync ---> body=${quote.body()}")
-//        onResult(quote)
+        println("GETTTZZZ.QuoteRemoteDataSource.getQuoteAsync ---> body=${quote}")
+        onResult(quote)
     }
 }
