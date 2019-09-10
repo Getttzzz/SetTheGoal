@@ -17,6 +17,7 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import kotlinx.android.synthetic.main.fragment_goals.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
+import java.util.Locale
 
 class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
 
@@ -35,13 +36,14 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         setupExpandableListener()
         setupLD()
 
-        vm.loadRandomQuote("en")
+        vm.loadRandomQuote(Locale.getDefault())
     }
 
     @SuppressLint("SetTextI18n")
     private fun setupLD() {
         vm.quoteLD.observe(this, Observer { quote ->
-            tvQuoteContent.text = "${quote.quoteText}\n\nAuthor ${quote.quoteAuthor}"
+            tvQuoteContent.text =
+                getString(R.string.quote_with_author, quote.quoteText, quote.quoteAuthor)
         })
     }
 

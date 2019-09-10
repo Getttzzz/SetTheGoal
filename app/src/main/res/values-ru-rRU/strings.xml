@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SetTheGoal</string>
+    <string name="for_family">Для семьи</string>
+    <string name="for_myself">Для себя</string>
+    <string name="good_quote">Цитата дня</string>
+    <string name="mini_motivation">Иногда приходится делать сложные, занудные, но необходимые задачи, которые могут не нравится сами по себе, но обретают смысл, когда становятся инструментом достижения большой цели.</string>
+    <string name="quote_with_author">%1$s\n\nАвтор %2$s</string>
+</resources>
