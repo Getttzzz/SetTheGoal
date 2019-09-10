@@ -1,6 +1,7 @@
 package com.getz.setthegoal.presentationpart.feature.goals
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -30,22 +31,18 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         super.onViewCreated(view, savedInstanceState)
         setupGoodQuoteCard()
         setupPager()
+        setupBottomAppBar()
         setupExpandableListener()
+        setupLD()
 
-        vm.quoteLD.observe(this, Observer { quote ->
-            println("GETTTZZZ.GoalsFragment.onViewCreated ---> quote=$quote")
-            tvQuoteContent.text = quote.quoteText
-        })
-
-        println("GETTTZZZ.GoalsFragment.onViewCreated ---> vm.loadRandomQuote(en)")
         vm.loadRandomQuote("en")
+    }
 
-        llFamily.setSingleClickListener {
-            vpGoals.setCurrentItem(GoalsPagerAdapter.FAMILY_TAB_POSITION, true)
-        }
-        llMyself.setSingleClickListener {
-            vpGoals.setCurrentItem(GoalsPagerAdapter.MYSELF_TAB_POSITION, true)
-        }
+    @SuppressLint("SetTextI18n")
+    private fun setupLD() {
+        vm.quoteLD.observe(this, Observer { quote ->
+            tvQuoteContent.text = "${quote.quoteText}\n\nAuthor ${quote.quoteAuthor}"
+        })
     }
 
     private fun setupExpandableListener() {
@@ -79,6 +76,15 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
                 selectBottomElement(position)
             }
         })
+    }
+
+    private fun setupBottomAppBar() {
+        llFamily.setSingleClickListener {
+            vpGoals.setCurrentItem(GoalsPagerAdapter.FAMILY_TAB_POSITION, true)
+        }
+        llMyself.setSingleClickListener {
+            vpGoals.setCurrentItem(GoalsPagerAdapter.MYSELF_TAB_POSITION, true)
+        }
     }
 
     private fun selectBottomElement(position: Int) {
