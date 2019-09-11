@@ -6,4 +6,6 @@
     <string name="good_quote">Good quote</string>
     <string name="quote_with_author">%1$s\n\nAuthor %2$s</string>
     <string name="getting_motivation">\nGetting motivation…</string>
+    <string name="create_a_goal_for_family">Create a goal for family</string>
+    <string name="create_my_goal">Create my goal</string>
 </resources>
