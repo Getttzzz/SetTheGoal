@@ -1,6 +1,7 @@
 package com.getz.setthegoal.presentationpart.feature.goals
 
 import android.animation.ValueAnimator
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -21,6 +22,12 @@ import java.util.Locale
 class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
 
     lateinit var vm: GoalsViewModel
+    lateinit var bridge: GoalsBridge
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        bridge = context as GoalsBridge
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +43,19 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         setupLD()
 
         ivNewIdea.setSingleClickListener { vm.loadRandomQuote(Locale.getDefault()) }
-
+        fabAddNewGoal.setSingleClickListener { bridge.openCreateGoalScreen() }
         vm.loadRandomQuote(Locale.getDefault())
     }
+
+//    override fun onStart() {
+//        super.onStart()
+//        blurLayout.startBlur()
+//    }
+
+//    override fun onStop() {
+//        blurLayout.pauseBlur()
+//        super.onStop()
+//    }
 
     private fun setupLD() {
         vm.quoteLD.observe(this, Observer { quote ->
