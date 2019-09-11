@@ -1,5 +1,5 @@
 package com.getz.setthegoal.presentationpart.feature.goals
 
 interface GoalsBridge {
-    fun openCreateGoalScreen()
+    fun openCreateGoalScreen(isForFamily: Boolean)
 }
