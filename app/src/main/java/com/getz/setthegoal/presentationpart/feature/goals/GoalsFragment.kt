@@ -12,8 +12,6 @@ import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.customview.ExpandableTextView
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
-import com.google.android.material.shape.CutCornerTreatment
-import com.google.android.material.shape.ShapeAppearanceModel
 import kotlinx.android.synthetic.main.fragment_goals.*
 import kotlinx.android.synthetic.main.layout_floating_buttons.*
 import org.kodein.di.direct
@@ -45,7 +43,6 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupGoodQuoteCard()
         setupPager()
         setupBottomAppBar()
         setupExpandableListener()
@@ -80,7 +77,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
                 fabCreateForMyself.hide()
                 fabCreateForFamily.hide()
                 tvCreateForMyself.visibility = View.GONE
-                tvCreateForFamily.visibility = View.GONE
+                mcvCreateForFamily.visibility = View.GONE
                 false
             } else {
                 //show two fab buttons
@@ -88,7 +85,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
                 fabCreateForMyself.show()
                 fabCreateForFamily.show()
                 tvCreateForMyself.visibility = View.VISIBLE
-                tvCreateForFamily.visibility = View.VISIBLE
+                mcvCreateForFamily.visibility = View.VISIBLE
                 true
             }
         }
@@ -152,14 +149,5 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
                 tvMyself.setTextColor(resources.getColor(R.color.colorSecondaryDark))
             }
         }
-    }
-
-    private fun setupGoodQuoteCard() {
-        val shape = ShapeAppearanceModel()
-        val cutCorner =
-            CutCornerTreatment(resources.getDimensionPixelSize(R.dimen.cornerCutSize).toFloat())
-        val standardCorner = CutCornerTreatment(0f)
-        shape.setCornerTreatments(standardCorner, standardCorner, cutCorner, cutCorner)
-        cardMotivation.shapeAppearanceModel = shape
     }
 }

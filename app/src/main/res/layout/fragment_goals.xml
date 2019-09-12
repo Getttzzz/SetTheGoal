@@ -20,6 +20,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardMotivation"
+            app:shapeAppearance="@style/StyleGoodQuoteCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="10dp"
@@ -46,7 +47,7 @@
                     android:id="@+id/ivArrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="19dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/selector_down_up_arrows"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -86,9 +87,10 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvAvatar"
                     android:layout_width="30dp"
+                    android:visibility="gone"
                     android:layout_height="30dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="12dp"
                     android:backgroundTint="@color/colorSecondaryLight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -121,20 +123,19 @@
         app:fabCradleRoundedCornerRadius="2dp"
         app:fabCradleVerticalOffset="0dp" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_gravity="bottom">
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mcvFamily"
             android:layout_width="wrap_content"
             android:layout_height="80dp"
             android:layout_marginTop="16dp"
-            app:cardElevation="10dp"
             android:backgroundTint="@color/colorAccent"
+            app:cardElevation="10dp"
+            app:shapeAppearance="@style/StyleBottomCardView"
             app:layout_constraintEnd_toStartOf="@id/guidelineMiddle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -169,8 +170,9 @@
             android:layout_width="wrap_content"
             android:layout_height="80dp"
             android:layout_marginTop="16dp"
-            app:cardElevation="10dp"
             android:backgroundTint="@color/colorAccent"
+            app:cardElevation="10dp"
+            app:shapeAppearance="@style/StyleBottomCardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guidelineMiddle"
             app:layout_constraintTop_toTopOf="parent">
@@ -215,8 +217,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
-        app:backgroundTint="@color/colorAccent"
-        app:elevation="10dp"
+        app:elevation="8dp"
         app:layout_anchor="@id/bottomBar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

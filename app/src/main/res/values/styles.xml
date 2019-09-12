@@ -1,19 +1,75 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!--colorPrimary uses for: ToolBar, buttons, bottomBar (accent color)-->
+        <!--and tab layout (selected tab)-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="shapeAppearanceMediumComponent">@style/GetzShareAppearance.MediumComponent
-        </item>
+        <!--colorSecondary uses for: FAB (standard, small, with text), radiobutton, checkbox.-->
+        <item name="colorSecondary">@color/colorAccent</item>
+        <!--colorBackground uses behind scrollable components and is used for background of window (activity)-->
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <!--colorSurface uses for background of: card view, chips, drawer, text field, -->
+        <!--bottom nav bar, switch(disabled state), BottomAppBar, TabLayout, SnackBar (textColor)-->
+        <item name="colorSurface">@color/colorSurface</item>
+        <!--colorError uses for background of error state in a InputText (EditText)-->
+        <item name="colorError">@color/colorError</item>
+        <!--"On" colors define how text, icons and strokes are colored in relation to the surface-->
+        <!--on which they appear.-->
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorOnError">@color/colorOnError</item>
     </style>
 
-    <style name="GetzShareAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <style name="ThemeGoodQuoteCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearance">@style/StyleGoodQuoteCardView</item>
+    </style>
+
+    <style name="StyleGoodQuoteCardView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerFamilyTopLeft">cut</item>
+        <item name="cornerFamilyBottomRight">cut</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+    </style>
+
+    <style name="StyleBottomCardView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerFamilyTopLeft">cut</item>
+        <item name="cornerFamilyBottomRight">cut</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="StyleLabelCardView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerFamilyTopLeft">cut</item>
+        <item name="cornerFamilyBottomRight">cut</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="StyleCreateGoalCardView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">cut</item>
-        <item name="cornerSize">10dp</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="StyleCreateGoalEditText" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">16dp</item>
     </style>
 
 </resources>
