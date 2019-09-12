@@ -5,4 +5,5 @@ import com.getz.setthegoal.presentationpart.core.BaseFragment
 
 class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
     //todo add parsing bundle isForFamily
+
 }

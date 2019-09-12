@@ -107,13 +107,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <io.alterac.blurkit.BlurLayout
-        android:id="@+id/blurLayout"
-        app:blk_fps="0"
-        app:blk_blurRadius="10"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"

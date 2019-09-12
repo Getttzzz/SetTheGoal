@@ -55,23 +55,17 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         setupFabMenu()
 
         ivNewIdea.setSingleClickListener { vm.loadRandomQuote(Locale.getDefault()) }
-        fabCreateForMyself.setSingleClickListener { bridge.openCreateGoalScreen(false) }
-        fabCreateForFamily.setSingleClickListener { bridge.openCreateGoalScreen(true) }
+        fabCreateForMyself.setSingleClickListener {
+            fabAddNewGoal.performClick()
+            bridge.openCreateGoalScreen(false)
+        }
+        fabCreateForFamily.setSingleClickListener {
+            fabAddNewGoal.performClick()
+            bridge.openCreateGoalScreen(true)
+        }
 
         vm.loadRandomQuote(Locale.getDefault())
     }
-
-    //todo remove this blur and add another with possibility to apply and deny it with animation.
-    //todo Either doesn't use blur at all...!!!
-//    override fun onStart() {
-//        super.onStart()
-//        blurLayout.startBlur()
-//    }
-
-//    override fun onStop() {
-//        blurLayout.pauseBlur()
-//        super.onStop()
-//    }
 
     private fun setupLD() {
         vm.quoteLD.observe(this, Observer { quote ->
