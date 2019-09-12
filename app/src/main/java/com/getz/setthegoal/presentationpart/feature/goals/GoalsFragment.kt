@@ -1,10 +1,8 @@
 package com.getz.setthegoal.presentationpart.feature.goals
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
@@ -130,10 +128,10 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
     }
 
     private fun setupBottomAppBar() {
-        llFamily.setSingleClickListener {
+        mcvFamily.setSingleClickListener {
             vpGoals.setCurrentItem(GoalsPagerAdapter.FAMILY_TAB_POSITION, true)
         }
-        llMyself.setSingleClickListener {
+        mcvMyself.setSingleClickListener {
             vpGoals.setCurrentItem(GoalsPagerAdapter.MYSELF_TAB_POSITION, true)
         }
     }
@@ -141,36 +139,18 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
     private fun selectBottomElement(position: Int) {
         when (position) {
             GoalsPagerAdapter.FAMILY_TAB_POSITION -> {
-                startScaleAnimation(ivFamily, 1.0f, 1.15f, 250)
-                startScaleAnimation(ivMyself, 1.15f, 1.0f, 250)
                 ivFamily.isEnabled = true
                 ivMyself.isEnabled = false
-                tvFamily.setTextColor(resources.getColor(R.color.colorAccent))
-                tvMyself.setTextColor(resources.getColor(R.color.colorSecondaryDark))
+                tvFamily.setTextColor(resources.getColor(R.color.colorSecondaryDark))
+                tvMyself.setTextColor(resources.getColor(R.color.colorSecondary))
             }
             GoalsPagerAdapter.MYSELF_TAB_POSITION -> {
-                startScaleAnimation(ivFamily, 1.15f, 1.0f, 250)
-                startScaleAnimation(ivMyself, 1.0f, 1.15f, 250)
                 ivFamily.isEnabled = false
                 ivMyself.isEnabled = true
-                tvFamily.setTextColor(resources.getColor(R.color.colorSecondaryDark))
-                tvMyself.setTextColor(resources.getColor(R.color.colorAccent))
+                tvFamily.setTextColor(resources.getColor(R.color.colorSecondary))
+                tvMyself.setTextColor(resources.getColor(R.color.colorSecondaryDark))
             }
         }
-    }
-
-    private fun startScaleAnimation(view: View, startVal: Float, endVal: Float, durationVal: Long) {
-        val animator = ValueAnimator.ofFloat(startVal, endVal)
-            .apply {
-                duration = durationVal
-                interpolator = AccelerateDecelerateInterpolator()
-                addUpdateListener {
-                    val animatedVal = it.animatedValue as Float
-                    view.scaleX = animatedVal
-                    view.scaleY = animatedVal
-                }
-            }
-        animator.start()
     }
 
     private fun setupGoodQuoteCard() {

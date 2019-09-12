@@ -11,10 +11,10 @@
         android:layout_marginBottom="230dp"
         android:background="@color/colorLight"
         android:padding="8dp"
-
         android:rotation="-30"
         android:text="@string/create_a_goal_for_family"
         android:visibility="gone"
+        android:textColor="@color/colorSecondaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fabCreateForFamily"
         tools:visibility="visible" />
@@ -29,6 +29,7 @@
         android:rotation="-30"
         android:text="@string/create_my_goal"
         android:visibility="gone"
+        android:textColor="@color/colorSecondaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fabCreateForMyself"
         tools:visibility="visible" />
