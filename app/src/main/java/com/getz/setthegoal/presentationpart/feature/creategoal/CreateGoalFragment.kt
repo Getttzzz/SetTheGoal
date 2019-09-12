@@ -1,9 +1,25 @@
 package com.getz.setthegoal.presentationpart.feature.creategoal
 
+import android.os.Bundle
+import android.view.View
+import androidx.core.os.bundleOf
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 
 class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
-    //todo add parsing bundle isForFamily
+
+    companion object {
+        const val IS_FAMILY_ARGS = "IS_FAMILY_ARGS"
+
+        fun getInstance(isForFamily: Boolean) = CreateGoalFragment()
+            .apply { arguments = bundleOf(IS_FAMILY_ARGS to isForFamily) }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val isForFamily = arguments?.getBoolean(IS_FAMILY_ARGS, false)
+        println("GETTTZZZ.CreateGoalFragment.onViewCreated ---> isForFamily=$isForFamily")
+    }
 
 }

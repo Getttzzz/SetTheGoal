@@ -22,10 +22,9 @@ class ForeverAloneActivity :
     }
 
     override fun openCreateGoalScreen(isForFamily: Boolean) {
-        println("GETTTZZZ.ForeverAloneActivity.openCreateGoalScreen ---> ")
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flMain, CreateGoalFragment(), "createGoalFragment")
+            .add(R.id.flMain, CreateGoalFragment.getInstance(isForFamily), "createGoalFragment")
             .addToBackStack(null)
             .commit()
     }

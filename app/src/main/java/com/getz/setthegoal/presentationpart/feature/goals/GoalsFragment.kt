@@ -136,6 +136,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         }
     }
 
+    //todo add animation for tabs
     private fun selectBottomElement(position: Int) {
         when (position) {
             GoalsPagerAdapter.FAMILY_TAB_POSITION -> {
