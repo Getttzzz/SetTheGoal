@@ -57,97 +57,79 @@ data class ValueObj(
 //    @SerializedName("characters") characters:List<>
 )
 
-//todo add enum https://www.clips.uantwerpen.be/pages/mbsp-tags
-//eight parts of speech: the verb (VB), the noun (NN), the pronoun (PR+DT), the adjective (JJ), the adverb (RB), the preposition (IN), the conjunction (CC), and the interjection (UH).
+/**
+ * English contains eight parts of speech:
+ *
+ * 1.the verb (VB) (rus glagol, q:chto delat?)
+ * 2.the noun (NN)  (rus sushestvitelnoe, q:kto?)
+ * 3.the pronoun (PR+DT) (rus mestoimenie, q:kto?)
+ * 4.the adjective (JJ) (rus prilagatelnoe, q:kakoy?)
+ * 5.the adverb (RB) (rus narechie, q:gde? kogda? pochemy? kak?)
+ * 6.the preposition (IN) (rus predlog, related to noun)
+ * 7.the conjunction (CC) (rus soyuz)
+ * 8.the interjection (UH) (rus mezhdometiya)
+ *
+ * Source https://www.clips.uantwerpen.be/pages/mbsp-tags
+ * */
 
-//CC	,conjunction, coordinating	and, or, but
-//CD	,cardinal number	five, three, 13%
-//DT	,determiner	the, a, these
-//EX	,existential there	there were six boys
-//FW	,foreign word	mais
-//IN	,conjunction, subordinating or preposition	of, on, before, unless
-//JJ	,adjective	nice, easy
-//JJR	,adjective, comparative	nicer, easier
-//JJS	,adjective, superlative	nicest, easiest
-//LS	,list item marker
-//MD	,verb, modal auxillary	may, should
-//NN	,noun, singular or mass	tiger, chair, laughter
-//NNS	,noun, plural	tigers, chairs, insects
-//NNP	,noun, proper singular	Germany, God, Alice
-//NNPS	,noun, proper plural	we met two Christmases ago
-//PDT	,predeterminer	both his children
-//POS	,possessive ending	's
-//PRP	,pronoun, personal	me, you, it
-//PRP$	,pronoun, possessive	my, your, our
-//RB	,adverb	extremely, loudly, hard
-//RBR	,adverb, comparative	better
-//RBS	,adverb, superlative	best
-//RP	,adverb, particle	about, off, up
-//SYM	,symbol	%
-//TO	,infinitival to	what to do?
-//UH	,interjection	oh, oops, gosh
-//VB	,verb, base form	think
-//VBZ	,verb, 3rd person singular present	she thinks
-//VBP	,verb, non-3rd person singular present	I think
-//VBD	,verb, past tense	they thought
-//VBN	,verb, past participle	a sunken ship
-//VBG	,verb, gerund or present participle	thinking is fun
-//WDT	,wh-determiner	which, whatever, whichever
-//WP	,wh-pronoun, personal	what, who, whom
-//WRB	,wh-adverb	where, when
+/**
+ * Tag set by Penn Treebank
+ *
+ * 1.1 VB	verb, base form	think (Api says it's VB)
+ * 1.2 VBZ	verb, 3rd person singular present	she thinks (Api says it's VBZ)
+ * 1.3 VBP	verb, non-3rd person singular present	I think (Api says it's VBP)
+ * 1.4 VBD	verb, past tense	they thought (Api says it's VBD)
+ * 1.5 VBG	verb, gerund or present participle	thinking is fun (Api says it's NN)***
+ * 2.1 NN	noun, singular or mass	tiger, chair, laughter
+ * 2.2 NNS	noun, plural	tigers, chairs, insects
+ * 2.3 NNP	noun, proper singular	Germany, God, Alice
+ * 3.1 PRP	pronoun, personal	me, you, it (Api says it's OTHER)***
+ * 3.2 PRP$	pronoun, possessive	my, your, our (Api says it's OTHER)***
+ * 4.1 JJ	adjective	nice, easy (Api says it's JJ)
+ * 4.2 JJR	adjective, comparative	nicer, easier (Api says it's JJ)***
+ * 4.3 JJS	adjective, superlative	nicest, easiest (Api says it's JJS)
+ * 5.1 RB	adverb,	extremely, loudly, hard (Api says it's RB)
+ * 5.2 RBR	adverb, comparative	better (Api says it's RB)***
+ * 6.  IN	preposition	of, on, unless (Api says it's IN)
+ * 7.  CC	conjunction, coordinating	and, or, but
+ * 8.  UH	interjection	oh, oops, gosh (Api doesn't support it)***
+ * DT	determiner	the, a, these (Api says it's DT)
+ * WDT	wh-determiner	which, whatever, whichever (Api says it's WDT)
+ */
 
-enum class PartOfSpeech {
-    CC,
-    CD,
-    DT,
-    EX,
-    FW,
-    IN,
-    JJ,
-    JJR,
-    JJS,
-    LS,
-    MD,
-    NN,
-    NNS,
-    NNP,
-    NNPS,
-    PDT,
-    POS,
-    PRP,
-    RB,
-    RBR,
-    RBS,
-    RP,
-    SYM,
-    TO,
-    UH,
+
+enum class PartOfSpeechEng {
     VB,
-    VBZ,
-    VBP,
-    VBD,
-    VBN,
-    VBG,
-    WDT,
-    WP,
-    WRB,
-    OTHER
+    NN,
+    JJ,
+    RB
+    ;
+}
+
+/**
+ * 1. V     глагол: работать, нравиться
+ * 2. S     существительное: завод, я
+ * 3. A     прилагательное: новый, мой, второй
+ * 4. ADV   наречие: плохо, отчасти
+ * 5. NUM   числительное: пять, 2
+ * 6. PR    предлог: в, между, вопреки
+ * 7. CONJ  союз: и, что, как
+ * 8. PART  частица: бы, ли, только
+ * 9. INTJ  междометие: ого, увы, эх
+ * */
+
+enum class PartOfSpeechRus {
+    V,
+    S,
+    A,
+    ADV,
+    NUM,
+    PR,
+    CONJ,
+    PART,
+    INTJ,
+    COM
     ;
 }
 
 
-//todo add enum for russian
-//Часть речи
-//V глагол: работать, нравиться
-//S существительное: завод, я
-//A прилагательное: новый, мой, второй
-//ADV наречие: плохо, отчасти
-//NUM числительное: пять, 2
-//PR предлог: в, между, вопреки
-//CONJ союз: и, что, как
-//PART частица: бы, ли, только
-//INTJ междометие: ого, увы, эх
-//COM композит: вице, квази, экс, ультра и другие элементы, употребляющиеся в составе сложных слов
-//NID слово, представляющее собой иноязычное вкрапление в русский текст или несловесную формулу: Берлинер Цайтунг, Berliner Zeitung, Щ243
-//Местоимения не рассматриваются как особая часть речи, поскольку по морфологическим (способы словоизменения) и синтаксическим свойствам они примыкают к существительным (я, кто, который), прилагательным (мой, какой) или наречиям (там, куда).
-//Слова типа первый, сотый и т.д., традиционно определяемые как порядковые числительные, в корпусе считаются прилагательными.
