@@ -5,6 +5,8 @@ import android.view.View
 import androidx.core.os.bundleOf
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
+import com.getz.setthegoal.presentationpart.util.setSingleClickListener
+import kotlinx.android.synthetic.main.fragment_create_goal.*
 
 class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
@@ -20,6 +22,10 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
         val isForFamily = arguments?.getBoolean(IS_FAMILY_ARGS, false)
         println("GETTTZZZ.CreateGoalFragment.onViewCreated ---> isForFamily=$isForFamily")
+
+        mbUpdateSuggestions.setSingleClickListener {
+            //todo utilize a request to semantic api
+        }
     }
 
 }

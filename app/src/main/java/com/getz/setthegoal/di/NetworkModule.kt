@@ -1,6 +1,7 @@
 package com.getz.setthegoal.di
 
 import com.getz.setthegoal.datapart.api.RandomQuoteApi
+import com.getz.setthegoal.datapart.api.TexterraApi
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -14,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 const val RANDOM_QUOTE_BASE_URL = "https://api.forismatic.com/api/1.0/"
+const val TEXTERRA_BASE_URL = "http://api.ispras.ru/texterra/v1/"
 const val LOGGING_INTERCEPTOR = "LOGGING_INTERCEPTOR"
 
 val networkModule = Kodein.Module(ModulesNames.NETWORK_MODULE) {
@@ -22,8 +24,12 @@ val networkModule = Kodein.Module(ModulesNames.NETWORK_MODULE) {
     bind<OkHttpClient>() with singleton {
         getOkHttpClient(packInterceptors(instance(tag = LOGGING_INTERCEPTOR)))
     }
-    bind<Retrofit>() with singleton { getRetrofit(RANDOM_QUOTE_BASE_URL) }
-    bind<RandomQuoteApi>() with singleton { createApi<RandomQuoteApi>(instance()) }
+
+    bind<Retrofit>(tag = RANDOM_QUOTE_BASE_URL) with singleton { getRetrofit(RANDOM_QUOTE_BASE_URL) }
+    bind<RandomQuoteApi>() with singleton { createApi<RandomQuoteApi>(instance(tag = RANDOM_QUOTE_BASE_URL)) }
+
+    bind<Retrofit>(tag = TEXTERRA_BASE_URL) with singleton { getRetrofit(TEXTERRA_BASE_URL) }
+    bind<TexterraApi>() with singleton { createApi<TexterraApi>(instance(tag = TEXTERRA_BASE_URL)) }
 }
 
 private val interceptorModule = Kodein.Module(ModulesNames.INTERCEPTOR_MODULE) {
@@ -32,7 +38,6 @@ private val interceptorModule = Kodein.Module(ModulesNames.INTERCEPTOR_MODULE) {
 
 private fun getRetrofit(endpoint: String) =
     Retrofit.Builder()
-        .client(getOkHttpClient(packInterceptors(getLoggingInterceptor())))
         .addConverterFactory(GsonConverterFactory.create(getGson()))
         .baseUrl(endpoint)
         .build()

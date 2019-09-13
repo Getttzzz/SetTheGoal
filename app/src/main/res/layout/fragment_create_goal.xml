@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorBlackOpacity15"
     android:clickable="true"
     android:focusable="true"
@@ -19,6 +19,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mbUpdateSuggestions"
+                style="?materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update suggestions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilGoal" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilGoal"
@@ -37,8 +47,8 @@
                     android:layout_height="wrap_content"
                     android:maxLength="300"
                     android:maxLines="5"
-                    tools:text="@string/mini_motivation"
-                    app:shapeAppearance="@style/StyleCreateGoalEditText" />
+                    app:shapeAppearance="@style/StyleCreateGoalEditText"
+                    tools:text="@string/mini_motivation" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
