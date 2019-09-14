@@ -15,7 +15,15 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            /**
+             * 'SetTheGoal_TexterraApiKey' is a constant which is placed in Global gradle.properties
+             * config file in the hidden directory user/.gradle/gradle.properties
+             * */
+            buildConfigField 'String', "TexterraApiKey", SetTheGoal_TexterraApiKey
+        }
         release {
+            buildConfigField 'String', "TexterraApiKey", SetTheGoal_TexterraApiKey
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
