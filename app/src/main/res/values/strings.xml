@@ -8,5 +8,21 @@
     <string name="getting_motivation">\nGetting motivation…</string>
     <string name="create_a_goal_for_family">Create a goal for family</string>
     <string name="create_my_goal">Create my goal</string>
-    <string name="write_your_goal_here">Write your goal here</string>
+    <string name="write_your_goal_here">Write your goal right here</string>
+
+    <string name="travel_short">opportunity to travel</string>
+    <string name="car_short">buy a car</string>
+    <string name="save_money_short">save money</string>
+    <string name="clothes_short">buy a car</string>
+    <string name="apartment_short">find new clothes</string>
+    <string name="books_short">give a book as a gift</string>
+    <string name="learn_spahish_short">learn Spanish</string>
+
+    <string name="travel_full">I want to give an opportunity to travel</string>
+    <string name="save_money_full">I want to save money for…</string>
+    <string name="car_full">I want to buy an car</string>
+    <string name="apartment_full">I want to buy an apartment</string>
+    <string name="clothes_full">I want to find new clothes</string>
+    <string name="books_full">I want to give a book as a gift</string>
+    <string name="learn_Spanish_full">I want to learn Spanish</string>
 </resources>

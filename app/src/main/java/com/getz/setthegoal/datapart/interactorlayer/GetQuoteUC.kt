@@ -3,11 +3,11 @@ package com.getz.setthegoal.datapart.interactorlayer
 import com.getz.setthegoal.datapart.api.QuoteApiLanguageEnum
 import com.getz.setthegoal.datapart.core.BaseUseCase
 import com.getz.setthegoal.domainpart.entitylayer.Quote
-import com.getz.setthegoal.domainpart.interactorlayer.IGetQuoteUseCase
+import com.getz.setthegoal.domainpart.interactorlayer.IGetQuoteUC
 import com.getz.setthegoal.domainpart.repositorylayer.IQuoteRepository
 import java.util.Locale
 
-class GetQuoteUseCase(private val repository: IQuoteRepository) : BaseUseCase(), IGetQuoteUseCase {
+class GetQuoteUC(private val repository: IQuoteRepository) : BaseUseCase(), IGetQuoteUC {
     override suspend fun invoke(
         request: Locale,
         onError: (Throwable) -> Unit,

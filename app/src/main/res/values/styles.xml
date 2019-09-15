@@ -72,4 +72,9 @@
         <item name="cornerSize">16dp</item>
     </style>
 
+    <style name="StyleCornerChip" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+    </style>
+
 </resources>

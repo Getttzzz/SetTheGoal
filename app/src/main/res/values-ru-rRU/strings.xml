@@ -10,4 +10,6 @@
     <string name="create_a_goal_for_family">Создать цель ради семьи</string>
     <string name="create_my_goal">Создать свою цель</string>
     <string name="write_your_goal_here">Напишите здесь свою цель</string>
+    <string name="travel_short">возможность путешествовать</string>
+    <string name="travel_full">Я хочу дать возможность путешествовать</string>
 </resources>

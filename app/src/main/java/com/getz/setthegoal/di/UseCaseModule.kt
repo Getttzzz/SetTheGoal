@@ -1,12 +1,15 @@
 package com.getz.setthegoal.di
 
-import com.getz.setthegoal.datapart.interactorlayer.GetQuoteUseCase
-import com.getz.setthegoal.domainpart.interactorlayer.IGetQuoteUseCase
+import com.getz.setthegoal.datapart.interactorlayer.GetPartsOfSpeechUC
+import com.getz.setthegoal.datapart.interactorlayer.GetQuoteUC
+import com.getz.setthegoal.domainpart.interactorlayer.IGetPartsOfSpeechUC
+import com.getz.setthegoal.domainpart.interactorlayer.IGetQuoteUC
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 
 val useCaseModule = Kodein.Module(ModulesNames.USE_CASE_MODULE) {
-    bind<IGetQuoteUseCase>() with singleton { GetQuoteUseCase(instance()) }
+    bind<IGetQuoteUC>() with singleton { GetQuoteUC(instance()) }
+    bind<IGetPartsOfSpeechUC>() with singleton { GetPartsOfSpeechUC(instance()) }
 }
