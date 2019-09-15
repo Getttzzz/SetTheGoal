@@ -15,7 +15,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 const val RANDOM_QUOTE_BASE_URL = "https://api.forismatic.com/api/1.0/"
-const val TEXTERRA_BASE_URL = "http://api.ispras.ru/texterra/v1/"
+const val TEXTERRA_BASE_URL = "https://api.ispras.ru/texterra/v1/"
+
+const val TEXTERRA_API_TAG = "TEXTERRA_API_TAG"
+const val FORISMATIC_API_TAG = "FORISMATIC_API_TAG"
 const val LOGGING_INTERCEPTOR = "LOGGING_INTERCEPTOR"
 
 val networkModule = Kodein.Module(ModulesNames.NETWORK_MODULE) {
@@ -25,19 +28,30 @@ val networkModule = Kodein.Module(ModulesNames.NETWORK_MODULE) {
         getOkHttpClient(packInterceptors(instance(tag = LOGGING_INTERCEPTOR)))
     }
 
-    bind<Retrofit>(tag = RANDOM_QUOTE_BASE_URL) with singleton { getRetrofit(RANDOM_QUOTE_BASE_URL) }
-    bind<RandomQuoteApi>() with singleton { createApi<RandomQuoteApi>(instance(tag = RANDOM_QUOTE_BASE_URL)) }
+    bind<Retrofit>(tag = FORISMATIC_API_TAG) with singleton {
+        getRetrofit(
+            RANDOM_QUOTE_BASE_URL,
+            instance()
+        )
+    }
+    bind<RandomQuoteApi>() with singleton { createApi<RandomQuoteApi>(instance(tag = FORISMATIC_API_TAG)) }
 
-    bind<Retrofit>(tag = TEXTERRA_BASE_URL) with singleton { getRetrofit(TEXTERRA_BASE_URL) }
-    bind<TexterraApi>() with singleton { createApi<TexterraApi>(instance(tag = TEXTERRA_BASE_URL)) }
+    bind<Retrofit>(tag = TEXTERRA_API_TAG) with singleton {
+        getRetrofit(
+            TEXTERRA_BASE_URL,
+            instance()
+        )
+    }
+    bind<TexterraApi>() with singleton { createApi<TexterraApi>(instance(tag = TEXTERRA_API_TAG)) }
 }
 
 private val interceptorModule = Kodein.Module(ModulesNames.INTERCEPTOR_MODULE) {
     bind<Interceptor>(tag = LOGGING_INTERCEPTOR) with singleton { getLoggingInterceptor() }
 }
 
-private fun getRetrofit(endpoint: String) =
+private fun getRetrofit(endpoint: String, client: OkHttpClient) =
     Retrofit.Builder()
+        .client(client)
         .addConverterFactory(GsonConverterFactory.create(getGson()))
         .baseUrl(endpoint)
         .build()

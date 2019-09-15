@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName
  *      {
  *      "text": "John likes the blue house at the end of the street.",
  *      "annotations": {
- *      "pos-token": [
+ *          "pos-token": [
  *          {
  *              "start": 0,
  *              "end": 4,
@@ -32,29 +32,26 @@ import com.google.gson.annotations.SerializedName
  */
 
 
-data class RequestPOS(val texts: List<TextObj>)
-
 data class TextObj(@SerializedName("text") val text: String)
 
 data class ResponsePOS(
-    @SerializedName("text") val text: String?,
+    @SerializedName("text") val text: String = "",
     @SerializedName("annotations") val annotations: AnnotationsObj?
 )
 
 data class AnnotationsObj(
-    @SerializedName("pos-token") val words: List<Word>?
+    @SerializedName("pos-token") val words: List<WordObj>?
 )
 
-data class Word(
-    @SerializedName("start") val start: Int?,
-    @SerializedName("end") val end: Int?,
-    @SerializedName("value") val value: ValueObj?
+data class WordObj(
+    @SerializedName("start") val start: Int,
+    @SerializedName("end") val end: Int,
+    @SerializedName("value") val value: ValueObj
 )
 
 data class ValueObj(
-    @SerializedName("type") val type: String?,
-    @SerializedName("tag") val tag: String?
-//    @SerializedName("characters") characters:List<>
+    @SerializedName("type") val type: String,
+    @SerializedName("tag") val tag: String
 )
 
 enum class AbbreviationTypeEnum(val abrType: String) {
@@ -75,10 +72,9 @@ enum class AbbreviationTypeEnum(val abrType: String) {
  * 8.the interjection (UH) (rus mezhdometiya)
  *
  * Source https://www.clips.uantwerpen.be/pages/mbsp-tags
- * */
-
-/**
- * Tag set by Penn Treebank
+ *
+ *
+ * Tag set by Penn Treebank for english:
  *
  * 1.1 VB	verb, base form	think (Api says it's VB)
  * 1.2 VBZ	verb, 3rd person singular present	she thinks (Api says it's VBZ)
@@ -100,23 +96,9 @@ enum class AbbreviationTypeEnum(val abrType: String) {
  * 8.  UH	interjection	oh, oops, gosh (Api doesn't support it)***
  * DT	determiner	the, a, these (Api says it's DT)
  * WDT	wh-determiner	which, whatever, whichever (Api says it's WDT)
- */
-
-enum class PartOfSpeechEnum {
-    VERB,       //eng VB, rus V
-    NOUN,       //eng NN, rus S
-    ADJECTIVE,  //eng JJ, rus A
-    ADVERB;     //eng RB, rus ADV
-}
-
-//enum class PartOfSpeechEngEnum {
-//    VB,
-//    NN,
-//    JJ,
-//    RB;
-//}
-
-/**
+ *
+ * Russian abbreviation:
+ *
  * 1. V     глагол: работать, нравиться
  * 2. S     существительное: завод, я
  * 3. A     прилагательное: новый, мой, второй
@@ -127,18 +109,13 @@ enum class PartOfSpeechEnum {
  * 8. PART  частица: бы, ли, только
  * 9. INTJ  междометие: ого, увы, эх
  * */
+enum class PartOfSpeechEnum {
+    VERB,       //eng VB, rus V
+    NOUN,       //eng NN, rus S
+    ADJECTIVE,  //eng JJ, rus A
+    ADVERB,     //eng RB, rus ADV
+    OTHER;
+}
 
-//enum class PartOfSpeechRusEnum {
-//    V,
-//    S,
-//    A,
-//    ADV,
-//    NUM,
-//    PR,
-//    CONJ,
-//    PART,
-//    INTJ,
-//    COM;
-//}
 
 

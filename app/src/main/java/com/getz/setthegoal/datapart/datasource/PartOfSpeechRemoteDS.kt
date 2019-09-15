@@ -2,15 +2,15 @@ package com.getz.setthegoal.datapart.datasource
 
 import com.getz.setthegoal.BuildConfig
 import com.getz.setthegoal.datapart.api.TexterraApi
-import com.getz.setthegoal.datapart.entitylayer.RequestPOS
 import com.getz.setthegoal.datapart.entitylayer.ResponsePOS
+import com.getz.setthegoal.datapart.entitylayer.TextObj
 
 class PartOfSpeechRemoteDS(
     val api: TexterraApi
 ) : IPartOfSpeechDS {
 
     override suspend fun getPartOfSpeechAsync(
-        requestPOS: RequestPOS,
+        requestPOS: List<TextObj>,
         onResult: suspend (ResponsePOS) -> Unit
     ) {
         val partOfSpeechFromText = api.getPartOfSpeechFromText(
@@ -19,6 +19,10 @@ class PartOfSpeechRemoteDS(
             requestPOS = requestPOS
         )
 
-        onResult(partOfSpeechFromText)
+        if (partOfSpeechFromText.isNotEmpty()) {
+            onResult(partOfSpeechFromText[0])
+        } else {
+            throw Throwable("Result was empty.")
+        }
     }
 }
