@@ -9,4 +9,5 @@ object ModulesNames {
     const val REPOSITORY_MODULE = "REPOSITORY_MODULE"
     const val DATA_SOURCE_MODULE = "DATA_SOURCE_MODULE"
     const val USE_CASE_MODULE = "USE_CASE_MODULE"
+    const val TRANSLATOR_MODULE = "TRANSLATOR_MODULE"
 }

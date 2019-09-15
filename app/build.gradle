@@ -19,11 +19,14 @@ android {
             /**
              * 'SetTheGoal_TexterraApiKey' is a constant which is placed in Global gradle.properties
              * config file in the hidden directory user/.gradle/gradle.properties
+             * You can get your own key here: https://api.ispras.ru/new_key
              * */
             buildConfigField 'String', "TexterraApiKey", SetTheGoal_TexterraApiKey
+            buildConfigField 'String', "IBMTranslatorApiKey", SetTheGoal_IBMTranslatorApiKey
         }
         release {
             buildConfigField 'String', "TexterraApiKey", SetTheGoal_TexterraApiKey
+            buildConfigField 'String', "IBMTranslatorApiKey", SetTheGoal_IBMTranslatorApiKey
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -71,6 +74,14 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-core:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+
+    /**
+     * Here we have an exclude for IBM translator because it had duplicate conflicts
+     * with other dependency.
+     * */
+    implementation ('com.ibm.watson:language-translator:7.4.0'){
+        exclude group: 'com.google.code.findbugs'
+    }
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

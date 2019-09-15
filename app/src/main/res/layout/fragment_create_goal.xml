@@ -11,8 +11,8 @@
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:layout_width="320dp"
+        android:layout_height="460dp"
         app:cardPreventCornerOverlap="false"
         app:shapeAppearance="@style/StyleCreateGoalCardView">
 
@@ -20,15 +20,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tvSuggestions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Suggestion: (horizontal adapter)"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilGoal" />
+
+            <TextView
+                android:id="@+id/tvSuggestionContent1"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorLight"
+                android:padding="4dp"
+                android:text="I want to give an opportunity to travel for my family"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSuggestions" />
+
+            <TextView
+                android:id="@+id/tvSuggestionContent2"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorLight"
+                android:padding="4dp"
+                android:text="Clothes and shoes"
+                app:layout_constraintStart_toEndOf="@+id/tvSuggestionContent1"
+                app:layout_constraintTop_toBottomOf="@+id/tvSuggestions" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/mbUpdateSuggestions"
                 style="?materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update suggestions"
+                android:text="Next step"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tilGoal" />
+                app:layout_constraintTop_toBottomOf="@+id/tvSuggestionContent1" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilGoal"

@@ -57,6 +57,11 @@ data class ValueObj(
 //    @SerializedName("characters") characters:List<>
 )
 
+enum class AbbreviationTypeEnum(val abrType: String) {
+    PENN_TREEBANK("penn"),
+    SYN_TAG_RUS("syn-tag-rus")
+}
+
 /**
  * English contains eight parts of speech:
  *
@@ -97,14 +102,19 @@ data class ValueObj(
  * WDT	wh-determiner	which, whatever, whichever (Api says it's WDT)
  */
 
-
-enum class PartOfSpeechEng {
-    VB,
-    NN,
-    JJ,
-    RB
-    ;
+enum class PartOfSpeechEnum {
+    VERB,       //eng VB, rus V
+    NOUN,       //eng NN, rus S
+    ADJECTIVE,  //eng JJ, rus A
+    ADVERB;     //eng RB, rus ADV
 }
+
+//enum class PartOfSpeechEngEnum {
+//    VB,
+//    NN,
+//    JJ,
+//    RB;
+//}
 
 /**
  * 1. V     глагол: работать, нравиться
@@ -118,18 +128,17 @@ enum class PartOfSpeechEng {
  * 9. INTJ  междометие: ого, увы, эх
  * */
 
-enum class PartOfSpeechRus {
-    V,
-    S,
-    A,
-    ADV,
-    NUM,
-    PR,
-    CONJ,
-    PART,
-    INTJ,
-    COM
-    ;
-}
+//enum class PartOfSpeechRusEnum {
+//    V,
+//    S,
+//    A,
+//    ADV,
+//    NUM,
+//    PR,
+//    CONJ,
+//    PART,
+//    INTJ,
+//    COM;
+//}
 
 

@@ -13,12 +13,12 @@ class PartOfSpeechRemoteDataSource(
         requestPOS: RequestPOS,
         onResult: suspend (ResponsePOS) -> Unit
     ) {
-        api.getPartOfSpeechFromText(
+        val partOfSpeechFromText = api.getPartOfSpeechFromText(
             targetType = "pos-token",
             apikey = BuildConfig.TexterraApiKey,
             requestPOS = requestPOS
         )
 
-
+        onResult(partOfSpeechFromText)
     }
 }
