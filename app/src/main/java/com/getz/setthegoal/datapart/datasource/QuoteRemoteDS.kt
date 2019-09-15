@@ -4,9 +4,9 @@ import com.getz.setthegoal.datapart.api.QuoteApiLanguageEnum
 import com.getz.setthegoal.datapart.api.RandomQuoteApi
 import com.getz.setthegoal.datapart.entitylayer.QuoteDto
 
-class QuoteRemoteDataSource(
+class QuoteRemoteDS(
     private val api: RandomQuoteApi
-) : IQuoteDataSource {
+) : IQuoteDS {
 
     override suspend fun getQuoteAsync(
         lang: QuoteApiLanguageEnum,

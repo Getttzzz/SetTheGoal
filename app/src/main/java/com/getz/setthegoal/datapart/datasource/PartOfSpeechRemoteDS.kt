@@ -5,9 +5,9 @@ import com.getz.setthegoal.datapart.api.TexterraApi
 import com.getz.setthegoal.datapart.entitylayer.RequestPOS
 import com.getz.setthegoal.datapart.entitylayer.ResponsePOS
 
-class PartOfSpeechRemoteDataSource(
+class PartOfSpeechRemoteDS(
     val api: TexterraApi
-) : IPartOfSpeechDataSource {
+) : IPartOfSpeechDS {
 
     override suspend fun getPartOfSpeechAsync(
         requestPOS: RequestPOS,
