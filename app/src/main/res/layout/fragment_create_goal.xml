@@ -45,50 +45,22 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chipSuggestionsGroup"
+                app:layout_constraintTop_toBottomOf="@+id/rvSuggestions"
                 tools:visibility="visible" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipSuggestionsGroup"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSuggestions"
                 android:layout_width="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSuggestions">
+                app:layout_constraintTop_toBottomOf="@+id/tvSuggestions" />
 
-                <com.google.android.material.chip.Chip
-                    app:shapeAppearance="@style/StyleCornerChip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="opportunity to travel" />
-
-                <com.google.android.material.chip.Chip
-                    app:shapeAppearance="@style/StyleCornerChip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="buy a course" />
-
-                <com.google.android.material.chip.Chip
-                    app:shapeAppearance="@style/StyleCornerChip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="buy a car" />
-
-                <com.google.android.material.chip.Chip
-                    app:shapeAppearance="@style/StyleCornerChip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="learn Spanish" />
-
-                <com.google.android.material.chip.Chip
-                    app:shapeAppearance="@style/StyleCornerChip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="play the guitar" />
-
-            </com.google.android.material.chip.ChipGroup>
+            <!--                <com.google.android.material.chip.Chip-->
+            <!--                    app:shapeAppearance="@style/StyleCornerChip"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="play the guitar" />-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilGoal"
@@ -106,9 +78,9 @@
                     android:id="@+id/etGoal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="100dp"
                     android:maxLength="300"
                     android:maxLines="5"
+                    android:minHeight="100dp"
                     app:shapeAppearance="@style/StyleCreateGoalEditText"
                     tools:text="" />
             </com.google.android.material.textfield.TextInputLayout>

@@ -10,6 +10,36 @@
     <string name="create_a_goal_for_family">Создать цель ради семьи</string>
     <string name="create_my_goal">Создать свою цель</string>
     <string name="write_your_goal_here">Напишите здесь свою цель</string>
-    <string name="travel_short">возможность путешествовать</string>
-    <string name="travel_full">Я хочу дать возможность путешествовать</string>
+
+    <string name="s_food">есть только здоровую еду</string>
+    <string name="s_apartment">купить квартиру</string>
+    <string name="s_books">дарить книги</string>
+    <string name="s_car">купить машину</string>
+    <string name="s_clothes">купить новую одежду</string>
+    <string name="s_learn_spanish">выучить один уровень Испанского</string>
+    <string name="s_save_money">накопить деньги</string>
+    <string name="s_tennis">научиться играть в теннис</string>
+    <string name="s_get_a_promotion">получить повышение</string>
+    <string name="s_watch_movies">смотреть фильмы в оригинале</string>
+    <string name="s_go_abroad">съездить за границу</string>
+    <string name="s_analyze_competitors">проанализировать конкурентов</string>
+    <string name="s_learn_a_song">выучить песню</string>
+    <string name="s_swim_one_km">проплыть один километр</string>
+    <string name="s_exclude_sugar">исключить сахар</string>
+    <string name="s_buy_a_dumbbells_for_home">купить гантели для дома</string>
+    <string name="s_work_for_yourself">работать на себя</string>
+    <string name="s_cut_costs">уменишить расходы</string>
+    <string name="s_make_a_public_speech">публично выступить</string>
+    <string name="s_find_your_soulmate">найти вторую половинку</string>
+    <string name="s_simplify_my_life">упросить мою жизнь</string>
+    <string name="s_throw_away_useless_things">выбросить ненужные вещи</string>
+    <string name="s_go_to_unexpected_journey">поехать в неожиданное путешествие</string>
+    <string name="s_read_business_book">прочитать книгу по бизнесу</string>
+    <string name="s_get_driver_license">получить водительские права</string>
+    <string name="s_learn_English">выучить один уровень Английского</string>
+    <string name="s_paint_picture">нарисовать картину</string>
+    <string name="s_learn_to_play_drums">научиться играть на барабанах</string>
+    <string name="s_make_an_origami">сделать оригами</string>
+    <string name="s_give_up_a_bad_habit">бросить одну плохую привычку</string>
+
 </resources>
