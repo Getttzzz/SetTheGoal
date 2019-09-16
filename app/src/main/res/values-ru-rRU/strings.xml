@@ -46,5 +46,6 @@
     <string name="previous">Пред.</string>
     <string name="finish">Готово</string>
     <string name="i_want_to">Я хочу %1$s</string>
+    <string name="select_one_word">Выбирите одно слово, которое описывает вашу цель</string>
 
 </resources>

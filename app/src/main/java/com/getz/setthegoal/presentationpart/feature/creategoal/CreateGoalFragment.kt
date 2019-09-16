@@ -14,6 +14,7 @@ import com.getz.setthegoal.presentationpart.util.swipeLeft
 import com.getz.setthegoal.presentationpart.util.swipeRight
 import com.getz.setthegoal.presentationpart.util.visible
 import kotlinx.android.synthetic.main.fragment_create_goal.*
+import kotlinx.android.synthetic.main.fragment_write_goal.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
 
@@ -31,21 +32,24 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         vm = ViewModelProviders.of(this, direct.instance()).get(CreateGoalVM::class.java)
-        println("GETTTZZZ.CreateGoalFragment.onCreate ---> vm=${vm.hashCode()}")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val isForFamily = arguments?.getBoolean(IS_FAMILY_ARGS, false)
+        vm.isForFamily = arguments?.getBoolean(IS_FAMILY_ARGS, false)!!
         setupViewPager()
-        vm.nextButtonSharedLD.observe(this, Observer { enabled ->
-            btnNext.isEnabled = enabled
-        })
+        setupLD()
     }
 
     override fun onDestroy() {
         vm.nextButtonSharedLD.removeObservers(this)
         super.onDestroy()
+    }
+
+    private fun setupLD() {
+        vm.nextButtonSharedLD.observe(this, Observer { enabled ->
+            btnNext.isEnabled = enabled
+        })
     }
 
     private fun setupViewPager() {
@@ -66,6 +70,8 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
             CreateGoalPagerAdapter.APPLY_PICTURE_TAB_POSITION -> {
                 btnPrevious.visible()
                 btnNext.text = getString(R.string.next)
+
+                vm.recognizePartsOfSpeech()
             }
             CreateGoalPagerAdapter.APPLY_SUBTASKS_TAB_POSITION -> {
                 btnPrevious.visible()

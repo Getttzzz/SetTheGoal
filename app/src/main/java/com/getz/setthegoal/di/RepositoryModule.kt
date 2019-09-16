@@ -12,6 +12,6 @@ import org.kodein.di.generic.singleton
 val repositoryModule = Kodein.Module(ModulesNames.REPOSITORY_MODULE) {
     bind<IQuoteRepository>() with singleton { QuoteRepository(instance(), instance()) }
     bind<IPartOfSpeechRepository>() with singleton {
-        PartOfSpeechRepository(instance(), instance())
+        PartOfSpeechRepository(instance(), instance(), instance())
     }
 }

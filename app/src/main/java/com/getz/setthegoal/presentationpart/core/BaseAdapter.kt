@@ -3,7 +3,7 @@ package com.getz.setthegoal.presentationpart.core
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseAdapter<ENTITY, VH : RecyclerView.ViewHolder>(
-    private val godList: ArrayList<ENTITY> = arrayListOf()
+    val godList: ArrayList<ENTITY> = arrayListOf()
 ) : RecyclerView.Adapter<VH>() {
 
     fun replace(collection: Collection<ENTITY>) {

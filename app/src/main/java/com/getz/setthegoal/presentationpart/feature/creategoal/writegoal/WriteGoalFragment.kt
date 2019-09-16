@@ -32,6 +32,7 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
             val possibleWords = inputText.trim().split(" ")
             val enabled = possibleWords.size >= 2
             vm.nextButtonSharedLD.value = enabled
+            vm.writtenGoalText = inputText
         }
     }
 
@@ -40,12 +41,18 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
 
         suggestions.shuffle()
 
+        val suggestionsRV = SuggestionsRV()
+            .apply {
+                onClick = { position ->
+                    val selectedStrResInt = this.godList[position]
+                    val selectedText = getString(selectedStrResInt)
+                    etGoal.setText(getString(R.string.i_want_to, selectedText))
+                }
+            }
         rvSuggestions.layoutManager =
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
-        rvSuggestions.adapter = SuggestionsRV(suggestions) { position ->
-            val selectedStrResInt = suggestions[position]
-            val selectedText = getString(selectedStrResInt)
-            etGoal.setText(getString(R.string.i_want_to, selectedText))
-        }
+        rvSuggestions.adapter = suggestionsRV
+
+        suggestionsRV.replace(suggestions)
     }
 }

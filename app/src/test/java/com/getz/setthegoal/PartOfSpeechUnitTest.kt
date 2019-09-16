@@ -1,6 +1,7 @@
 package com.getz.setthegoal
 
 import com.getz.setthegoal.datapart.entitylayer.ResponsePOS
+import com.getz.setthegoal.datapart.mapper.DataToDomainPartOfSpeechFilter
 import com.getz.setthegoal.datapart.mapper.DataToDomainPartOfSpeechMapper
 import com.google.gson.Gson
 import org.junit.Assert
@@ -10,14 +11,27 @@ import org.junit.Test
 class PartOfSpeechUnitTest {
 
     private lateinit var mapper: DataToDomainPartOfSpeechMapper
+    private lateinit var filter: DataToDomainPartOfSpeechFilter
     private lateinit var responsePOSEng: ResponsePOS
     private lateinit var responsePOSRus: ResponsePOS
 
     @Before
     fun firstSetup() {
         mapper = DataToDomainPartOfSpeechMapper()
+        filter = DataToDomainPartOfSpeechFilter()
         responsePOSEng = generateTestResponsePOSEnglish()
         responsePOSRus = generateTestResponsePOSRussian()
+    }
+
+    @Test
+    fun filterTest() {
+        val mapped = mapper.transform(responsePOSEng)
+        val filtered = filter.transform(mapped)
+        //1.VERB
+        //2.NOUN
+        //3.ADJECTIVE
+        //4.ADVERB
+        println("GETTTZZZ.PartOfSpeechUnitTest.filterTest ---> filtered=$filtered")
     }
 
     @Test
@@ -58,7 +72,7 @@ class PartOfSpeechUnitTest {
 
     private fun generateTestResponsePOSEnglish(): ResponsePOS {
         return Gson().fromJson(
-            "{\"text\":\"think, i think she thinks they thought.\",\"annotations\":{\"pos-token\":[{\"start\":0,\"end\":5,\"value\":{\"type\":\"penn\",\"tag\":\"VB\",\"characters\":[]}},{\"start\":5,\"end\":6,\"value\":{\"type\":\"penn\",\"tag\":\"COMMA\",\"characters\":[]}},{\"start\":7,\"end\":8,\"value\":{\"type\":\"penn\",\"tag\":\"OTHER\",\"characters\":[]}},{\"start\":9,\"end\":14,\"value\":{\"type\":\"penn\",\"tag\":\"VBP\",\"characters\":[]}},{\"start\":15,\"end\":18,\"value\":{\"type\":\"penn\",\"tag\":\"OTHER\",\"characters\":[]}},{\"start\":19,\"end\":25,\"value\":{\"type\":\"penn\",\"tag\":\"VBZ\",\"characters\":[]}},{\"start\":26,\"end\":30,\"value\":{\"type\":\"penn\",\"tag\":\"IN\",\"characters\":[]}},{\"start\":31,\"end\":38,\"value\":{\"type\":\"penn\",\"tag\":\"NN\",\"characters\":[]}},{\"start\":38,\"end\":39,\"value\":{\"type\":\"penn\",\"tag\":\"DOT\",\"characters\":[]}}]}}",
+            "{\"text\":\"partly cat go to beautiful nothing\",\"annotations\":{\"pos-token\":[{\"start\":0,\"end\":6,\"value\":{\"type\":\"penn\",\"tag\":\"RB\",\"characters\":[]}},{\"start\":7,\"end\":10,\"value\":{\"type\":\"penn\",\"tag\":\"NN\",\"characters\":[]}},{\"start\":11,\"end\":13,\"value\":{\"type\":\"penn\",\"tag\":\"VB\",\"characters\":[]}},{\"start\":14,\"end\":16,\"value\":{\"type\":\"penn\",\"tag\":\"OTHER\",\"characters\":[]}},{\"start\":17,\"end\":26,\"value\":{\"type\":\"penn\",\"tag\":\"JJ\",\"characters\":[]}},{\"start\":27,\"end\":34,\"value\":{\"type\":\"penn\",\"tag\":\"NN\",\"characters\":[]}}]}}",
             ResponsePOS::class.java
         )
     }

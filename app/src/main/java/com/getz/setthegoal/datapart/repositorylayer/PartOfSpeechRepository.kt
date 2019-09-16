@@ -10,14 +10,17 @@ import com.getz.setthegoal.domainpart.repositorylayer.IPartOfSpeechRepository
 
 class PartOfSpeechRepository(
     private val remotePartOfSpeechDS: IPartOfSpeechDS,
-    private val gandalf: Gandalf<ResponsePOS, List<Word>>
+    private val gandalfMapper: Gandalf<ResponsePOS, List<Word>>,
+    private val gandalfFilterShellNotPass: Gandalf<List<Word>, List<Word>>
 ) : BaseRepository(), IPartOfSpeechRepository {
 
     override suspend fun getWords(inputText: String, onResult: suspend (List<Word>) -> Unit) {
         val request = listOf(TextObj(inputText))
 
         remotePartOfSpeechDS.getPartOfSpeechAsync(request) { response ->
-            onResult(gandalf.transform(response))
+            val mapped = gandalfMapper.transform(response)
+            val filtered = gandalfFilterShellNotPass.transform(mapped)
+            onResult(filtered)
         }
     }
 }
