@@ -45,11 +45,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorLight"
+            android:fontFamily="sans-serif-medium"
             android:maxLength="300"
             android:maxLines="5"
-            android:minHeight="100dp"
+            android:minHeight="175dp"
             android:textColor="@color/colorSecondaryDark"
-            android:textSize="20sp"
+            android:textSize="22sp"
             app:shapeAppearance="@style/StyleCreateGoalEditText" />
     </com.google.android.material.textfield.TextInputLayout>
 

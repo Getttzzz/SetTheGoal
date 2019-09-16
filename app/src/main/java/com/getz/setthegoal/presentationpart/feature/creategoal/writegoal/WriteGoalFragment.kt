@@ -23,18 +23,29 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupNextBtnValidation()
+        setupAdapter()
+    }
+
+    private fun setupNextBtnValidation() {
         etGoal.addOnTextChangedListener { inputText ->
             val possibleWords = inputText.trim().split(" ")
             val enabled = possibleWords.size >= 2
             vm.nextButtonSharedLD.value = enabled
         }
+    }
 
+    private fun setupAdapter() {
         val suggestions = GoalSuggestions.getSuggestions()
+
+        suggestions.shuffle()
+
         rvSuggestions.layoutManager =
-            StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.HORIZONTAL)
+            StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
         rvSuggestions.adapter = SuggestionsRV(suggestions) { position ->
-            println("GETTTZZZ.WriteGoalFragment.onViewCreated ---> position=$position")
-            //todo add extracting data
+            val selectedStrResInt = suggestions[position]
+            val selectedText = getString(selectedStrResInt)
+            etGoal.setText(getString(R.string.i_want_to, selectedText))
         }
     }
 }
