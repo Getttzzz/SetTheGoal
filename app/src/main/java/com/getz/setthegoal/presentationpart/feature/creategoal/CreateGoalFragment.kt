@@ -41,8 +41,6 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         vm.nextButtonSharedLD.observe(this, Observer { enabled ->
             btnNext.isEnabled = enabled
         })
-        //todo slowly scrolling adapter with huge amount of goals. It will be so damn cool!!!!!!
-        //todo Adapter with chips. Scroll horizontal.
     }
 
     override fun onDestroy() {

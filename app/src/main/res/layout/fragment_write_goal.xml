@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,9 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/suggestions"
+        android:textColor="@color/colorSecondaryDark"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilGoal" />
 
@@ -20,15 +22,11 @@
         android:id="@+id/rvSuggestions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSuggestions" />
-
-    <!--                <com.google.android.material.chip.Chip-->
-    <!--                    app:shapeAppearance="@style/StyleCornerChip"-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:text="play the guitar" />-->
+        app:layout_constraintTop_toBottomOf="@+id/tvSuggestions"
+        tools:listitem="@layout/item_suggestion" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilGoal"
@@ -46,9 +44,12 @@
             android:id="@+id/etGoal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorLight"
             android:maxLength="300"
             android:maxLines="5"
             android:minHeight="100dp"
+            android:textColor="@color/colorSecondaryDark"
+            android:textSize="20sp"
             app:shapeAppearance="@style/StyleCreateGoalEditText" />
     </com.google.android.material.textfield.TextInputLayout>
 

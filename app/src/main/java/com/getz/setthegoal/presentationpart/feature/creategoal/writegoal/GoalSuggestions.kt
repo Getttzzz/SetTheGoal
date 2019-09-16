@@ -3,7 +3,7 @@ package com.getz.setthegoal.presentationpart.feature.creategoal.writegoal
 import com.getz.setthegoal.R
 
 object GoalSuggestions {
-    fun getSuggestions(): List<Int> = arrayListOf(
+    fun getSuggestions(): ArrayList<Int> = arrayListOf(
         R.string.s_analyze_competitors,
         R.string.s_apartment,
         R.string.s_books,
