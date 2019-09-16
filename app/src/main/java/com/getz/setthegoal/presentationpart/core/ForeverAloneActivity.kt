@@ -17,7 +17,6 @@ class ForeverAloneActivity :
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.flMain, GoalsFragment(), "goalsFragment")
-            .addToBackStack(null)
             .commit()
     }
 
@@ -25,7 +24,7 @@ class ForeverAloneActivity :
         supportFragmentManager
             .beginTransaction()
             .add(R.id.flMain, CreateGoalFragment.getInstance(isForFamily), "createGoalFragment")
-            .addToBackStack(null)
+            .addToBackStack(null) //possibility to return back to GoalsFragment()
             .commit()
     }
 }

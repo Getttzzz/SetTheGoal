@@ -7,7 +7,7 @@ import com.getz.setthegoal.presentationpart.core.BaseVm
 import kotlinx.coroutines.launch
 import java.util.Locale
 
-class GoalsViewModel(
+class GoalsVM(
     private val getQuoteUC: IGetQuoteUC
 ) : BaseVm() {
 

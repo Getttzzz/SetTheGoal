@@ -27,7 +27,6 @@ abstract class BaseVm : ViewModel(), CoroutineScope {
                 }
 
     override fun onCleared() {
-        println("GETTTZZZ.BaseVm.onCleared ---> ")
         coroutineContext.cancelChildren()
         super.onCleared()
     }

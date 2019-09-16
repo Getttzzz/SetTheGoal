@@ -2,7 +2,8 @@ package com.getz.setthegoal.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.getz.setthegoal.presentationpart.feature.goals.GoalsViewModel
+import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
+import com.getz.setthegoal.presentationpart.feature.goals.GoalsVM
 import org.kodein.di.Kodein
 import org.kodein.di.TT
 import org.kodein.di.direct
@@ -14,9 +15,13 @@ import org.kodein.di.generic.singleton
 val viewModelModule = Kodein.Module(ModulesNames.VIEW_MODEL_MODULE) {
     import(factoryModule)
 
-    bind<GoalsViewModel>(tag = GoalsViewModel::class.java.simpleName) with provider {
-        GoalsViewModel(instance())
-    }
+    bind<GoalsVM>(tag = GoalsVM::class.java.simpleName) with
+            provider { GoalsVM(instance()) }
+    /**
+     * Shared view model. That's why it's singleton
+     * */
+    bind<CreateGoalVM>(tag = CreateGoalVM::class.java.simpleName) with
+            singleton { CreateGoalVM() }
 }
 
 private val factoryModule = Kodein.Module(ModulesNames.FACTORY_VIEW_MODEL_MODULE) {

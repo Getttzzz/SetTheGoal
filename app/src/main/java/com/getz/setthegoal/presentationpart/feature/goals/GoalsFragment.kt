@@ -20,7 +20,7 @@ import java.util.Locale
 
 class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
 
-    lateinit var vm: GoalsViewModel
+    lateinit var vm: GoalsVM
     lateinit var bridge: GoalsBridge
 
     private var isOpened = false
@@ -38,7 +38,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vm = ViewModelProviders.of(this, direct.instance()).get(GoalsViewModel::class.java)
+        vm = ViewModelProviders.of(this, direct.instance()).get(GoalsVM::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
