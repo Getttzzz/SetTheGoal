@@ -7,10 +7,10 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.viewpager.widget.ViewPager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.customview.ExpandableTextView
+import com.getz.setthegoal.presentationpart.util.addOnPageSelectedListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_goals.*
 import kotlinx.android.synthetic.main.layout_floating_buttons.*
@@ -114,14 +114,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
     private fun setupPager() {
         selectBottomElement(GoalsPagerAdapter.FAMILY_TAB_POSITION)
         vpGoals.adapter = GoalsPagerAdapter(childFragmentManager)
-        vpGoals.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) = Unit
-            override fun onPageScrolled(pos: Int, posOffset: Float, posOffsetPixels: Int) = Unit
-            override fun onPageSelected(position: Int) {
-                println("GETTTZZZ.GoalsFragment.onPageSelected ---> selected page=$position")
-                selectBottomElement(position)
-            }
-        })
+        vpGoals.addOnPageSelectedListener { position -> selectBottomElement(position) }
     }
 
     private fun setupBottomAppBar() {

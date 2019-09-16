@@ -41,5 +41,9 @@
     <string name="s_learn_to_play_drums">научиться играть на барабанах</string>
     <string name="s_make_an_origami">сделать оригами</string>
     <string name="s_give_up_a_bad_habit">бросить одну плохую привычку</string>
+    <string name="suggestions">Подсказки</string>
+    <string name="next">Далее</string>
+    <string name="previous">Вернуться</string>
+    <string name="finish">Готово</string>
 
 </resources>

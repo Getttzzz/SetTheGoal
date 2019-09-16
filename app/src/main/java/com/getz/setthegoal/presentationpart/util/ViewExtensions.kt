@@ -4,6 +4,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import androidx.core.view.size
+import androidx.viewpager.widget.ViewPager
 
 fun View.setSingleClickListener(onClick: (View) -> Unit) {
     val singleClicker = OnSingleClickListener { onClick(it) }
@@ -20,6 +22,33 @@ fun EditText.addOnTextChangedListener(onTextChange: (String) -> Unit) {
             onTextChange.invoke(text.toString())
         }
     })
+}
+
+fun ViewPager.addOnPageSelectedListener(onPageSelected: (position: Int) -> Unit) {
+    this.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        override fun onPageScrollStateChanged(state: Int) = Unit
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) = Unit
+
+        override fun onPageSelected(position: Int) {
+            onPageSelected.invoke(position)
+        }
+    })
+}
+
+fun ViewPager.swipeRight(position: Int) {
+    if (position < this.size) {
+        this.setCurrentItem(position + 1, true)
+    }
+}
+
+fun ViewPager.swipeLeft(position: Int) {
+    if (position > 0) {
+        this.setCurrentItem(position - 1, true)
+    }
 }
 
 fun View.visible() {
