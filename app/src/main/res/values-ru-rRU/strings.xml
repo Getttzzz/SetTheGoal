@@ -43,7 +43,7 @@
     <string name="s_give_up_a_bad_habit">бросить одну плохую привычку</string>
     <string name="suggestions">Подсказки</string>
     <string name="next">Далее</string>
-    <string name="previous">Вернуться</string>
+    <string name="previous">Пред.</string>
     <string name="finish">Готово</string>
 
 </resources>

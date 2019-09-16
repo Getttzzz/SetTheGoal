@@ -62,13 +62,15 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tlCreateGoal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnNext"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnNext"
+                app:tabBackground="@drawable/selector_create_goal_tab"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
