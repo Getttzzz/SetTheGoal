@@ -1,19 +1,29 @@
 package com.getz.setthegoal.presentationpart.feature.creategoal.writegoal
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.view.animation.LinearInterpolator
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
 import com.getz.setthegoal.presentationpart.util.addOnTextChangedListener
+import com.getz.setthegoal.presentationpart.util.gone
+import com.getz.setthegoal.presentationpart.util.setSingleClickListener
+import com.getz.setthegoal.presentationpart.util.visible
 import kotlinx.android.synthetic.main.fragment_write_goal.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
 
 class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
     lateinit var vm: CreateGoalVM
+
+    private val smoothScrollHandler = Handler(Looper.getMainLooper())
+    private lateinit var runnable: () -> Unit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +33,24 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupLD()
         setupNextBtnValidation()
         setupAdapter()
+        setupAutoScrolling()
+
+        btnNextSecondary.setSingleClickListener { vm.pressNextSharedLD.value = Unit }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        rvSuggestions.stopScroll()
+        smoothScrollHandler.removeCallbacks(runnable)
+    }
+
+    private fun setupLD() {
+        vm.keyboardListenerLD.observe(this, Observer { isOpened ->
+            if (isOpened) btnNextSecondary.visible() else btnNextSecondary.gone()
+        })
     }
 
     private fun setupNextBtnValidation() {
@@ -33,6 +59,8 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
             val enabled = possibleWords.size >= 2
             vm.nextButtonSharedLD.value = enabled
             vm.writtenGoalText = inputText
+            btnNextSecondary.isEnabled = enabled
+            rvSuggestions.stopScroll()
         }
     }
 
@@ -54,5 +82,10 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
         rvSuggestions.adapter = suggestionsRV
 
         suggestionsRV.replace(suggestions)
+    }
+
+    private fun setupAutoScrolling() {
+        runnable = { rvSuggestions.smoothScrollBy(6000, 0, LinearInterpolator(), 90_000) }
+        smoothScrollHandler.postDelayed(runnable, 700)
     }
 }

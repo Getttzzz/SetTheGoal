@@ -1,9 +1,13 @@
 package com.getz.setthegoal.presentationpart.util
 
+import android.content.Context
+import android.graphics.Rect
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.TextView
 import androidx.core.view.size
 import androidx.viewpager.widget.ViewPager
 
@@ -38,6 +42,34 @@ fun ViewPager.addOnPageSelectedListener(onPageSelected: (position: Int) -> Unit)
         }
     })
 }
+
+fun View.addKeyboardListener(result: (isOpened: Boolean) -> Unit): () -> Unit {
+    val globalSubscriber = {
+        val rect = Rect()
+        this.getWindowVisibleDisplayFrame(rect)
+        val keyboardHeight = rootView.height - rect.bottom
+        /**
+         * (rootView.height * fifteenPercent) equals around 300-400px on different devices.
+         * */
+        val fifteenPercent = 0.15f
+        val opened = keyboardHeight > rootView.height * fifteenPercent
+        result.invoke(opened)
+    }
+    this.viewTreeObserver.addOnGlobalLayoutListener(globalSubscriber)
+    return globalSubscriber
+}
+
+fun View.removeKeyboardListener(globalSubscriber: () -> Unit) {
+    this.viewTreeObserver.removeOnGlobalLayoutListener(globalSubscriber)
+}
+
+fun hideKeyboard(view: TextView) {
+    val inputMethodManager = inputMethodManager(view.context)
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken, InputMethodManager.SHOW_FORCED)
+}
+
+private fun inputMethodManager(context: Context): InputMethodManager =
+    context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
 fun ViewPager.swipeRight(position: Int) {
     if (position < this.size) {

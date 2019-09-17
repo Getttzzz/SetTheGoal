@@ -11,7 +11,9 @@ class CreateGoalVM(
 ) : BaseVm() {
 
     val nextButtonSharedLD = MutableLiveData<Boolean>()
+    val pressNextSharedLD = MutableLiveData<Unit>()
     val recognizedWordsLD = MutableLiveData<List<Word>>()
+    val keyboardListenerLD = MutableLiveData<Boolean>()
 
     var isForFamily = false
 

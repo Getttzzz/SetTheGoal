@@ -7,8 +7,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
+import com.getz.setthegoal.presentationpart.util.addKeyboardListener
 import com.getz.setthegoal.presentationpart.util.addOnPageSelectedListener
 import com.getz.setthegoal.presentationpart.util.gone
+import com.getz.setthegoal.presentationpart.util.hideKeyboard
+import com.getz.setthegoal.presentationpart.util.removeKeyboardListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import com.getz.setthegoal.presentationpart.util.swipeLeft
 import com.getz.setthegoal.presentationpart.util.swipeRight
@@ -21,6 +24,7 @@ import org.kodein.di.generic.instance
 class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
     lateinit var vm: CreateGoalVM
+    lateinit var keyboardListener: () -> Unit
 
     companion object {
         const val IS_FAMILY_ARGS = "IS_FAMILY_ARGS"
@@ -41,6 +45,19 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         setupLD()
     }
 
+    override fun onStart() {
+        super.onStart()
+        keyboardListener = clRootCreateGoal.addKeyboardListener { isOpened ->
+            vm.keyboardListenerLD.value = isOpened
+            if (isOpened) btnNext.gone() else btnNext.visible()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        clRootCreateGoal.removeKeyboardListener(keyboardListener)
+    }
+
     override fun onDestroy() {
         vm.nextButtonSharedLD.removeObservers(this)
         super.onDestroy()
@@ -50,6 +67,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         vm.nextButtonSharedLD.observe(this, Observer { enabled ->
             btnNext.isEnabled = enabled
         })
+        vm.pressNextSharedLD.observe(this, Observer { btnNext.performClick() })
     }
 
     private fun setupViewPager() {
@@ -71,6 +89,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
                 btnPrevious.visible()
                 btnNext.text = getString(R.string.next)
 
+                hideKeyboard(etGoal)
                 vm.recognizePartsOfSpeech()
             }
             CreateGoalPagerAdapter.APPLY_SUBTASKS_TAB_POSITION -> {
