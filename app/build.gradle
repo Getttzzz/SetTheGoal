@@ -23,10 +23,12 @@ android {
              * */
             buildConfigField 'String', "TexterraApiKey", SetTheGoal_TexterraApiKey
             buildConfigField 'String', "IBMTranslatorApiKey", SetTheGoal_IBMTranslatorApiKey
+            buildConfigField 'String', "UnsplashClientKey", SetTheGoal_UnsplashClientKey
         }
         release {
             buildConfigField 'String', "TexterraApiKey", SetTheGoal_TexterraApiKey
             buildConfigField 'String', "IBMTranslatorApiKey", SetTheGoal_IBMTranslatorApiKey
+            buildConfigField 'String', "UnsplashClientKey", SetTheGoal_UnsplashClientKey
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

@@ -1,6 +1,7 @@
-package com.getz.setthegoal.presentationpart.feature.creategoal.writegoal
+package com.getz.setthegoal.datapart.entitylayer
 
 import com.getz.setthegoal.R
+import kotlin.random.Random
 
 object GoalSuggestions {
     fun getSuggestions(): ArrayList<Int> = arrayListOf(
@@ -35,4 +36,9 @@ object GoalSuggestions {
         R.string.s_watch_movies,
         R.string.s_work_for_yourself
     )
+
+    fun getOneRandomSuggestion(): Int {
+        val rand = Random(getSuggestions().size)
+        return getSuggestions().get(rand.nextInt(0, getSuggestions().size))
+    }
 }

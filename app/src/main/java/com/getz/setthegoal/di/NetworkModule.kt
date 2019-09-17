@@ -2,6 +2,7 @@ package com.getz.setthegoal.di
 
 import com.getz.setthegoal.datapart.api.RandomQuoteApi
 import com.getz.setthegoal.datapart.api.TexterraApi
+import com.getz.setthegoal.datapart.api.UnsplashApi
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -16,9 +17,11 @@ import java.util.concurrent.TimeUnit
 
 const val RANDOM_QUOTE_BASE_URL = "https://api.forismatic.com/api/1.0/"
 const val TEXTERRA_BASE_URL = "https://api.ispras.ru/texterra/v1/"
+const val UNSPLASH_BASE_URL = "https://api.unsplash.com/"
 
 const val TEXTERRA_API_TAG = "TEXTERRA_API_TAG"
 const val FORISMATIC_API_TAG = "FORISMATIC_API_TAG"
+const val UNSPLASH_API_TAG = "UNSPLASH_API_TAG"
 const val LOGGING_INTERCEPTOR = "LOGGING_INTERCEPTOR"
 
 val networkModule = Kodein.Module(ModulesNames.NETWORK_MODULE) {
@@ -29,20 +32,19 @@ val networkModule = Kodein.Module(ModulesNames.NETWORK_MODULE) {
     }
 
     bind<Retrofit>(tag = FORISMATIC_API_TAG) with singleton {
-        getRetrofit(
-            RANDOM_QUOTE_BASE_URL,
-            instance()
-        )
+        getRetrofit(RANDOM_QUOTE_BASE_URL, instance())
     }
     bind<RandomQuoteApi>() with singleton { createApi<RandomQuoteApi>(instance(tag = FORISMATIC_API_TAG)) }
 
     bind<Retrofit>(tag = TEXTERRA_API_TAG) with singleton {
-        getRetrofit(
-            TEXTERRA_BASE_URL,
-            instance()
-        )
+        getRetrofit(TEXTERRA_BASE_URL, instance())
     }
     bind<TexterraApi>() with singleton { createApi<TexterraApi>(instance(tag = TEXTERRA_API_TAG)) }
+
+    bind<Retrofit>(tag = UNSPLASH_API_TAG) with singleton {
+        getRetrofit(UNSPLASH_BASE_URL, instance())
+    }
+    bind<UnsplashApi>() with singleton { createApi<UnsplashApi>(instance(tag = UNSPLASH_API_TAG)) }
 }
 
 private val interceptorModule = Kodein.Module(ModulesNames.INTERCEPTOR_MODULE) {

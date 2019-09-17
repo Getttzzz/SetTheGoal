@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.getz.setthegoal.R
+import com.getz.setthegoal.datapart.entitylayer.GoalSuggestions
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
 import com.getz.setthegoal.presentationpart.util.addOnTextChangedListener

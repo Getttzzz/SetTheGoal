@@ -12,6 +12,7 @@ import com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks.Wor
 import kotlinx.android.synthetic.main.fragment_apply_picture.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
+import java.util.Locale
 
 class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
 
@@ -29,8 +30,7 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
             .apply {
                 onClick = { position ->
                     val selectedWord = this.godList[position]
-                    println("GETTTZZZ.ApplyPictureFragment.onViewCreated ---> selectedWord=$selectedWord")
-                    //todo connect Unsplash Api
+                    vm.getPhotos(selectedWord, Locale.getDefault())
                 }
             }
         rvWords.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -39,6 +39,9 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         vm.recognizedWordsLD.observe(this, Observer { words ->
             wordsRV.replace(words)
         })
+
+        //todo card view with pic will be selectable. I met this parameter a few days ago.
+        //User presses on pic and this card selects and marks with seagull
     }
 
 }
