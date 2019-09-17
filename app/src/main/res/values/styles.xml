@@ -5,6 +5,7 @@
         <!--colorPrimary uses for: ToolBar, buttons, bottomBar (accent color)-->
         <!--and tab layout (selected tab)-->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!--colorSecondary uses for: FAB (standard, small, with text), radiobutton, checkbox.-->
@@ -65,6 +66,11 @@
     <style name="StyleCreateGoalCardView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="StylePhotoCardView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">0dp</item>
     </style>
 
     <style name="StyleCreateGoalEditText" parent="ShapeAppearance.MaterialComponents.SmallComponent">

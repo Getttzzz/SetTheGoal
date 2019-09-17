@@ -49,6 +49,8 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         super.onStart()
         keyboardListener = clRootCreateGoal.addKeyboardListener { isOpened ->
             vm.keyboardListenerLD.value = isOpened
+
+            if (btnNext == null) return@addKeyboardListener
             if (isOpened) btnNext.gone() else btnNext.visible()
         }
     }
@@ -78,27 +80,35 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
     }
 
     private fun selectPage(position: Int) {
-        btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
         btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
         when (position) {
             CreateGoalPagerAdapter.WRITE_GOAL_TAB_POSITION -> {
                 btnPrevious.gone()
                 btnNext.text = getString(R.string.next)
+                btnNext.setSingleClickListener {
+                    vm.recognizePartsOfSpeech()
+                    vpCreateGoal.swipeRight(position)
+                }
             }
             CreateGoalPagerAdapter.APPLY_PICTURE_TAB_POSITION -> {
                 btnPrevious.visible()
                 btnNext.text = getString(R.string.next)
 
                 hideKeyboard(etGoal)
-                vm.recognizePartsOfSpeech()
+
+                btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
             }
             CreateGoalPagerAdapter.APPLY_SUBTASKS_TAB_POSITION -> {
                 btnPrevious.visible()
                 btnNext.text = getString(R.string.next)
+                btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
             }
             CreateGoalPagerAdapter.APPLY_DEADLINE_TAB_POSITION -> {
                 btnPrevious.visible()
                 btnNext.text = getString(R.string.finish)
+                btnNext.setSingleClickListener {
+                    //request to save the data
+                }
             }
         }
     }

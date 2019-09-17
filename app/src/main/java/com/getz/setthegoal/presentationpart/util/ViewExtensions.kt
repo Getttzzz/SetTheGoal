@@ -1,15 +1,26 @@
 package com.getz.setthegoal.presentationpart.util
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.size
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.load.Transformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.FitCenter
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import com.getz.setthegoal.presentationpart.core.GlideApp
 
 fun View.setSingleClickListener(onClick: (View) -> Unit) {
     val singleClicker = OnSingleClickListener { onClick(it) }
@@ -89,4 +100,30 @@ fun View.visible() {
 
 fun View.gone() {
     this.visibility = View.GONE
+}
+
+fun loadPicture(
+    view: ImageView,
+    url: String,
+    isCenterCrop: Boolean = false,
+    isCenterInside: Boolean = false,
+    isRoundedCorner: Boolean = false,
+    listener: RequestListener<Drawable>? = null
+) {
+    val options = arrayListOf<Transformation<Bitmap>>()
+    if (isCenterCrop) options.add(CenterCrop())
+    if (isCenterInside) options.add(CenterInside())
+    if (isRoundedCorner) options.add(RoundedCorners(10))
+    if (options.isEmpty()) options.add(FitCenter())
+
+    val transforms = RequestOptions().transform(*options.toTypedArray())
+
+    GlideApp.with(view)
+        .load(url)
+        .apply(transforms)
+//        .error(GlideApp.with(view).load(url).apply(transforms))
+//        .diskCacheStrategy(if (BuildConfig.DEBUG) DiskCacheStrategy.NONE else DiskCacheStrategy.AUTOMATIC)
+//        .skipMemoryCache(BuildConfig.DEBUG)
+        .listener(listener)
+        .into(view)
 }

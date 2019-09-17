@@ -28,7 +28,7 @@ interface UnsplashApi {
         @Query("client_id") clientId: String,
         @Query("query") query: String,
         @Query("page") page: Int,
-        @Query("per_page") perPage: Int,
-        @Query("orientation") orientation: String
+        @Query("per_page") perPage: Int
+//        @Query("orientation") orientation: String
     ): SearchPhotoResponse
 }

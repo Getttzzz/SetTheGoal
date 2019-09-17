@@ -15,8 +15,8 @@ class PhotoRemoteDS(
             clientId = BuildConfig.UnsplashClientKey,
             query = query,
             page = 1,
-            perPage = 10,
-            orientation = "landscape"
+            perPage = 10
+//            orientation = "squarish"
         )
 
         if (response.results.isNotEmpty()) {

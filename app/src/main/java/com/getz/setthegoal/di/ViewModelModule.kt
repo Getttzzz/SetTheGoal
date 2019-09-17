@@ -21,7 +21,7 @@ val viewModelModule = Kodein.Module(ModulesNames.VIEW_MODEL_MODULE) {
      * Shared view model. That's why it's singleton
      * */
     bind<CreateGoalVM>(tag = CreateGoalVM::class.java.simpleName) with
-            singleton { CreateGoalVM(instance(), instance()) }
+            singleton { CreateGoalVM(instance(), instance(), instance()) }
 }
 
 private val factoryModule = Kodein.Module(ModulesNames.FACTORY_VIEW_MODEL_MODULE) {

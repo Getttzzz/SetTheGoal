@@ -70,7 +70,7 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
 
         suggestions.shuffle()
 
-        val suggestionsRV = SuggestionsRV()
+        val suggestionAdapter = SuggestionAdapter()
             .apply {
                 onClick = { position ->
                     val selectedStrResInt = this.godList[position]
@@ -80,9 +80,9 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
             }
         rvSuggestions.layoutManager =
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
-        rvSuggestions.adapter = suggestionsRV
+        rvSuggestions.adapter = suggestionAdapter
 
-        suggestionsRV.replace(suggestions)
+        suggestionAdapter.replace(suggestions)
     }
 
     private fun setupAutoScrolling() {
