@@ -6,6 +6,9 @@
     android:layout_height="160dp"
     android:layout_margin="8dp"
     app:cardElevation="4dp"
+    android:checkable="true"
+    android:id="@+id/cvPhotoRoot"
+    app:checkedIcon="@drawable/ic_check_flag"
     app:cardPreventCornerOverlap="false"
     app:shapeAppearance="@style/StylePhotoCardView">
 

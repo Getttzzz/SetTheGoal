@@ -35,23 +35,17 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         val wordAdapter = setupWordAdapter()
         val photoAdapter = setupPhotoAdapter()
 
-        vm.recognizedWordsLD.observe(this, Observer { words ->
-            wordAdapter.replace(words)
-        })
-        vm.photosResultLD.observe(this, Observer { photos ->
-            photoAdapter.replace(photos)
-        })
-
-        //todo card view with pic will be selectable. I met this parameter a few days ago.
-        //User presses on pic and this card selects and marks with seagull
+        vm.recognizedWordsLD.observe(this, Observer { words -> wordAdapter.replace(words) })
+        vm.photosResultLD.observe(this, Observer { photos -> photoAdapter.replace(photos) })
     }
 
     private fun setupPhotoAdapter(): PhotoAdapter {
         val photoAdapter = PhotoAdapter()
             .apply {
                 onClick = { position ->
+                    this.select(position)
                     val photo = this.godList[position]
-                    println("GETTTZZZ.ApplyPictureFragment.onViewCreated ---> photo=$photo")
+                    vm.selectedImageUrl = photo
                 }
                 onAuthorClick = { position ->
                     val photo = this.godList[position]

@@ -1,14 +1,14 @@
-package com.getz.setthegoal.domainpart.entitylayer
+package com.getz.setthegoal.presentationpart.entitylayer
 
-
-data class Photo(
-    val urls: UrlsDomain,
+data class PhotoUI(
+    val urls: UrlsUI,
     val incrementDownloadLink: String,
     val userName: String,
-    val profileLink: String
+    val profileLink: String,
+    var isSelected: Boolean
 )
 
-data class UrlsDomain(
+data class UrlsUI(
     val raw: String,
     val full: String,
     val regular: String,

@@ -2,7 +2,7 @@ package com.getz.setthegoal
 
 import android.app.Application
 import com.getz.setthegoal.di.dataSourceModule
-import com.getz.setthegoal.di.domainMapperModule
+import com.getz.setthegoal.di.mapperModule
 import com.getz.setthegoal.di.networkModule
 import com.getz.setthegoal.di.repositoryModule
 import com.getz.setthegoal.di.translatorModule
@@ -17,7 +17,7 @@ class GoalApp() : Application(), KodeinAware {
     override val kodein: Kodein = Kodein.lazy {
         import(androidXModule(this@GoalApp))
         import(networkModule)
-        import(domainMapperModule)
+        import(mapperModule)
         import(viewModelModule)
         import(repositoryModule)
         import(dataSourceModule)

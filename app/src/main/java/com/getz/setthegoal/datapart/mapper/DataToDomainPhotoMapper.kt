@@ -3,7 +3,7 @@ package com.getz.setthegoal.datapart.mapper
 import com.getz.setthegoal.datapart.entitylayer.SearchPhotoResponse
 import com.getz.setthegoal.domainpart.core.Gandalf
 import com.getz.setthegoal.domainpart.entitylayer.Photo
-import com.getz.setthegoal.domainpart.entitylayer.UrlsUI
+import com.getz.setthegoal.domainpart.entitylayer.UrlsDomain
 
 class DataToDomainPhotoMapper : Gandalf<SearchPhotoResponse, List<Photo>> {
 
@@ -11,7 +11,7 @@ class DataToDomainPhotoMapper : Gandalf<SearchPhotoResponse, List<Photo>> {
         val resultedList = arrayListOf<Photo>()
         source.results.forEach { result ->
 
-            val urlsForUI = UrlsUI(
+            val urlsForUI = UrlsDomain(
                 result.urls.raw,
                 result.urls.full,
                 result.urls.regular,

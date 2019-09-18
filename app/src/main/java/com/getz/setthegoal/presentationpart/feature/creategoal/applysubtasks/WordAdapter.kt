@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.getz.setthegoal.R
-import com.getz.setthegoal.domainpart.entitylayer.Word
 import com.getz.setthegoal.presentationpart.core.BaseAdapter
 import com.getz.setthegoal.presentationpart.entitylayer.WordUI
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
@@ -34,7 +33,10 @@ class WordAdapter : BaseAdapter<WordUI, WordAdapter.VH>() {
 
     inner class VH(val view: View) : RecyclerView.ViewHolder(view) {
         init {
-            view.chipsa.setSingleClickListener { onClick.invoke(adapterPosition) }
+            view.chipsa.setSingleClickListener {
+                if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
+                onClick.invoke(adapterPosition)
+            }
         }
     }
 }

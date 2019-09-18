@@ -25,7 +25,10 @@ class SuggestionAdapter : BaseAdapter<Int, SuggestionAdapter.VH>() {
 
     inner class VH(val view: View) : RecyclerView.ViewHolder(view) {
         init {
-            view.chipsa.setSingleClickListener { onClick.invoke(adapterPosition) }
+            view.chipsa.setSingleClickListener {
+                if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
+                onClick.invoke(adapterPosition)
+            }
         }
     }
 }

@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.getz.setthegoal.R
-import com.getz.setthegoal.domainpart.entitylayer.Photo
 import com.getz.setthegoal.presentationpart.core.BaseAdapter
+import com.getz.setthegoal.presentationpart.entitylayer.PhotoUI
 import com.getz.setthegoal.presentationpart.util.loadPicture
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.item_photo.view.*
 
 
-class PhotoAdapter : BaseAdapter<Photo, PhotoAdapter.VH>() {
+class PhotoAdapter : BaseAdapter<PhotoUI, PhotoAdapter.VH>() {
 
     lateinit var onClick: (position: Int) -> Unit
     lateinit var onAuthorClick: (position: Int) -> Unit
@@ -27,13 +27,26 @@ class PhotoAdapter : BaseAdapter<Photo, PhotoAdapter.VH>() {
         val photo = godList[position]
         holder.view.tvAuthor.paintFlags = holder.view.tvAuthor.paintFlags or UNDERLINE_TEXT_FLAG
         holder.view.tvAuthor.text = photo.userName
+        holder.view.cvPhotoRoot.isChecked = photo.isSelected
         loadPicture(holder.view.ivPhoto, photo.urls.small)
+    }
+
+    fun select(position: Int) {
+        godList.forEach { it.isSelected = false }
+        godList[position].isSelected = true
+        notifyDataSetChanged()
     }
 
     inner class VH(val view: View) : RecyclerView.ViewHolder(view) {
         init {
-            view.setSingleClickListener { onClick.invoke(adapterPosition) }
-            view.tvAuthor.setSingleClickListener { onAuthorClick.invoke(adapterPosition) }
+            view.setSingleClickListener {
+                if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
+                onClick.invoke(adapterPosition)
+            }
+            view.tvAuthor.setSingleClickListener {
+                if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
+                onAuthorClick.invoke(adapterPosition)
+            }
         }
     }
 }
