@@ -6,47 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/flPhotosContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorGray1"
-        android:minHeight="190dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flWordsContainer">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPhotos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_photo"
-            tools:orientation="horizontal" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/flWordsContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSelectWord">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvWords"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_word"
-            tools:orientation="horizontal" />
-    </FrameLayout>
-
     <TextView
         android:id="@+id/tvSelectWord"
         android:layout_width="0dp"
@@ -72,5 +31,109 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flPhotosContainer" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/flWordsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSelectWord">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvWords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:visibility="visible"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_word"
+            tools:orientation="horizontal" />
+
+        <com.agrawalsuneet.squareloaderspack.loaders.RotatingSquareLoader
+            android:id="@+id/loadingWords"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+
+            android:visibility="visible"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rotatingsquare_animDuration="3000"
+            app:rotatingsquare_sqaureColor="@color/colorGray1"
+            app:rotatingsquare_squareSideLength="28dp"
+            app:rotatingsquare_strokeWidth="6dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/flPhotosContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorGray1"
+        android:minHeight="190dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flWordsContainer">
+
+        <ImageView
+            android:id="@+id/ivBeeIdle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:alpha="0.3"
+
+            android:src="@drawable/ic_bee"
+
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPhotos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+
+            android:visibility="gone"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_photo"
+            tools:orientation="horizontal" />
+
+        <com.agrawalsuneet.squareloaderspack.loaders.RotatingSquareLoader
+            android:id="@+id/loadingPhotos"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:visibility="gone"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rotatingsquare_animDuration="3000"
+            app:rotatingsquare_sqaureColor="@color/colorAccent"
+            app:rotatingsquare_squareSideLength="40dp"
+            app:rotatingsquare_strokeWidth="6dp" />
+
+        <include layout="@layout/layout_found_nothing" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

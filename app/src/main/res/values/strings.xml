@@ -49,5 +49,7 @@
     <string name="select_one_word">Select one word\nwhich describes your goal</string>
     <string name="inspiration_source_unsplash_com">Inspiration source Unsplash.com ^_^</string>
     <string name="unsplash_url"><![CDATA[https://unsplash.com/?utm_source=SetTheGoalApp&utm_medium=referral]]></string>
+    <string name="found_nothing">Found nothing</string>
+    <string name="find_another_pictures">Find another pictures?</string>
 
 </resources>

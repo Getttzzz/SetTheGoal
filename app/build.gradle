@@ -83,6 +83,8 @@ dependencies {
     implementation "com.github.bumptech.glide:okhttp3-integration:$glide"
     implementation "com.github.bumptech.glide:annotations:$glide"
 
+    implementation 'com.agrawalsuneet.androidlibs:squareloaderspack:0.5'
+
     /**
      * Here we have an exclude for IBM translator because it had duplicate conflicts
      * with other dependency.

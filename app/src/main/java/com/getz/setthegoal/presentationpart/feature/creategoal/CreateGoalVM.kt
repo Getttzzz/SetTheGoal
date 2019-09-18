@@ -24,6 +24,7 @@ class CreateGoalVM(
     val recognizedWordsLD = MutableLiveData<List<WordUI>>()
     val keyboardListenerLD = MutableLiveData<Boolean>()
     val photosResultLD = MutableLiveData<List<PhotoUI>>()
+    val loadingPhotosLD = MutableLiveData<Boolean>()
 
     var isForFamily = false
 
@@ -39,10 +40,12 @@ class CreateGoalVM(
     }
 
     fun getPhotos(selectedWord: String, default: Locale) = launch {
+        loadingPhotosLD.value = true
         val request = Pair(selectedWord, default)
         getPhotoUC.invoke(request, ::processError) { photos ->
             println("GETTTZZZ.CreateGoalVM.getPhotos ---> photos=$photos")
             photosResultLD.value = gandalfPhotosMapper.transform(photos)
+            loadingPhotosLD.value = false
         }
     }
 

@@ -12,6 +12,7 @@
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorLightWithOpacity">#77FFE54C</color>
     <color name="colorGray1">#E9E9E9</color>
+    <color name="colorGray2">#929292</color>
     <color name="colorBlackOpacity15">#99000000</color>
     <color name="colorBlackOpacity10">#66000000</color>
     <color name="colorOnPrimary">#ffffff</color>

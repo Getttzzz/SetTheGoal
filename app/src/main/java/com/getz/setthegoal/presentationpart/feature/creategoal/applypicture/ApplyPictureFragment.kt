@@ -10,8 +10,11 @@ import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
 import com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks.WordAdapter
+import com.getz.setthegoal.presentationpart.util.gone
 import com.getz.setthegoal.presentationpart.util.openLink
+import com.getz.setthegoal.presentationpart.util.say
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
+import com.getz.setthegoal.presentationpart.util.visible
 import kotlinx.android.synthetic.main.fragment_apply_picture.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
@@ -35,8 +38,20 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         val wordAdapter = setupWordAdapter()
         val photoAdapter = setupPhotoAdapter()
 
-        vm.recognizedWordsLD.observe(this, Observer { words -> wordAdapter.replace(words) })
-        vm.photosResultLD.observe(this, Observer { photos -> photoAdapter.replace(photos) })
+        vm.recognizedWordsLD.observe(this, Observer { words ->
+            loadingWords.gone()
+            wordAdapter.replace(words)
+        })
+        vm.photosResultLD.observe(this, Observer { photos ->
+            photoAdapter.replace(photos)
+        })
+        vm.errorLD.observe(this, Observer { this.say(it) })
+        vm.loadingPhotosLD.observe(this, Observer { loading ->
+            ivBeeIdle.visible(!loading)
+            rvPhotos.visible(!loading)
+            loadingPhotos.visible(loading)
+        })
+        //todo fix usecase when photos result is empty
     }
 
     private fun setupPhotoAdapter(): PhotoAdapter {

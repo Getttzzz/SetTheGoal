@@ -11,7 +11,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.size
+import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -37,6 +39,10 @@ fun EditText.addOnTextChangedListener(onTextChange: (String) -> Unit) {
             onTextChange.invoke(text.toString())
         }
     })
+}
+
+fun Fragment.say(msg: String) {
+    Toast.makeText(this.context, msg, Toast.LENGTH_LONG).show()
 }
 
 fun ViewPager.addOnPageSelectedListener(onPageSelected: (position: Int) -> Unit) {
@@ -100,6 +106,10 @@ fun View.visible() {
 
 fun View.gone() {
     this.visibility = View.GONE
+}
+
+fun View.visible(isVisible: Boolean) {
+    if (isVisible) this.visibility = View.VISIBLE else this.visibility = View.GONE
 }
 
 fun loadPicture(

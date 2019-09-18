@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/fragment_apply_picture">
+
+    <LinearLayout
+        android:id="@+id/llFoundNothing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBeeFoundNothing"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_bee" />
+
+        <TextView
+            android:id="@+id/tvFoundNothing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/found_nothing"
+            android:textColor="@color/colorGray2"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnotherPicture"
+            style="?materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/find_another_pictures" />
+    </LinearLayout>
+
+
+</merge>
