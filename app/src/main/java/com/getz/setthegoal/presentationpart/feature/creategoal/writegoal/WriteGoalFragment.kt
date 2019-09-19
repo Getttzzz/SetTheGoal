@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.animation.LinearInterpolator
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -13,9 +14,7 @@ import com.getz.setthegoal.datapart.entitylayer.GoalSuggestions
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
 import com.getz.setthegoal.presentationpart.util.addOnTextChangedListener
-import com.getz.setthegoal.presentationpart.util.gone
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
-import com.getz.setthegoal.presentationpart.util.visible
 import kotlinx.android.synthetic.main.fragment_write_goal.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
@@ -37,20 +36,31 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
         setupLD()
         setupNextBtnValidation()
         setupAdapter()
-        setupAutoScrolling()
-
         btnNextSecondary.setSingleClickListener { vm.pressNextSharedLD.value = Unit }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        startAutoScrolling()
     }
 
     override fun onPause() {
         super.onPause()
+
         rvSuggestions.stopScroll()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
         smoothScrollHandler.removeCallbacks(runnable)
     }
 
     private fun setupLD() {
         vm.keyboardListenerLD.observe(this, Observer { isOpened ->
-            if (isOpened) btnNextSecondary.visible() else btnNextSecondary.gone()
+            if (btnNextSecondary == null) return@Observer
+            btnNextSecondary.post { btnNextSecondary.isVisible = isOpened }
         })
     }
 
@@ -85,8 +95,8 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
         suggestionAdapter.replace(suggestions)
     }
 
-    private fun setupAutoScrolling() {
+    private fun startAutoScrolling() {
         runnable = { rvSuggestions.smoothScrollBy(6000, 0, LinearInterpolator(), 90_000) }
-        smoothScrollHandler.postDelayed(runnable, 700)
+        smoothScrollHandler.postDelayed(runnable, 400)
     }
 }

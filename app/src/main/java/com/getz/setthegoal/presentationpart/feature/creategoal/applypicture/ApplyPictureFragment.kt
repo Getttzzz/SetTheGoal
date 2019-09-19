@@ -1,8 +1,10 @@
 package com.getz.setthegoal.presentationpart.feature.creategoal.applypicture
 
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
+import androidx.core.text.buildSpannedString
+import androidx.core.text.underline
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +16,6 @@ import com.getz.setthegoal.presentationpart.util.gone
 import com.getz.setthegoal.presentationpart.util.openLink
 import com.getz.setthegoal.presentationpart.util.say
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
-import com.getz.setthegoal.presentationpart.util.visible
 import kotlinx.android.synthetic.main.fragment_apply_picture.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
@@ -32,12 +33,29 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tvUnsplash.paintFlags = tvUnsplash.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-        tvUnsplash.setSingleClickListener { openLink(getString(R.string.unsplash_url), context!!) }
+        //hideKeyboard(tvUnsplash) todo decide where hide keyboard
+        setupUnsplashView()
 
         val wordAdapter = setupWordAdapter()
         val photoAdapter = setupPhotoAdapter()
 
+        setupLD(wordAdapter, photoAdapter)
+
+        //todo fix use-case when photos result is empty
+    }
+
+    private fun setupUnsplashView() {
+        tvUnsplash.text = buildSpannedString {
+            append(getString(R.string.inspiration_source)).append(" ")
+            underline { append(getString(R.string.unsplash_com)) }
+        }
+        tvUnsplash.setSingleClickListener { openLink(getString(R.string.unsplash_url), context!!) }
+    }
+
+    private fun setupLD(
+        wordAdapter: WordAdapter,
+        photoAdapter: PhotoAdapter
+    ) {
         vm.recognizedWordsLD.observe(this, Observer { words ->
             loadingWords.gone()
             wordAdapter.replace(words)
@@ -47,11 +65,10 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         })
         vm.errorLD.observe(this, Observer { this.say(it) })
         vm.loadingPhotosLD.observe(this, Observer { loading ->
-            ivBeeIdle.visible(!loading)
-            rvPhotos.visible(!loading)
-            loadingPhotos.visible(loading)
+            ivBeeIdle.isVisible = !loading
+            rvPhotos.isVisible = !loading
+            loadingPhotos.isVisible = loading
         })
-        //todo fix usecase when photos result is empty
     }
 
     private fun setupPhotoAdapter(): PhotoAdapter {

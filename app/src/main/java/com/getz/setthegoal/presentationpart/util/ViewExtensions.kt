@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
@@ -60,8 +61,8 @@ fun ViewPager.addOnPageSelectedListener(onPageSelected: (position: Int) -> Unit)
     })
 }
 
-fun View.addKeyboardListener(result: (isOpened: Boolean) -> Unit): () -> Unit {
-    val globalSubscriber = {
+fun View.addKeyboardListener(result: (isOpened: Boolean) -> Unit): ViewTreeObserver.OnGlobalLayoutListener {
+    val globalSubscriber = ViewTreeObserver.OnGlobalLayoutListener {
         val rect = Rect()
         this.getWindowVisibleDisplayFrame(rect)
         val keyboardHeight = rootView.height - rect.bottom
@@ -76,7 +77,7 @@ fun View.addKeyboardListener(result: (isOpened: Boolean) -> Unit): () -> Unit {
     return globalSubscriber
 }
 
-fun View.removeKeyboardListener(globalSubscriber: () -> Unit) {
+fun View.removeKeyboardListener(globalSubscriber: ViewTreeObserver.OnGlobalLayoutListener?) {
     this.viewTreeObserver.removeOnGlobalLayoutListener(globalSubscriber)
 }
 
