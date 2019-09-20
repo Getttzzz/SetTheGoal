@@ -46,12 +46,13 @@
     <string name="previous">Пред.</string>
     <string name="finish">Готово</string>
     <string name="i_want_to">Я хочу %1$s</string>
-    <string name="select_one_word">Выбирите одно слово,\nкоторое описывает вашу цель</string>
+    <string name="select_one_word">Выберите одно слово,\nкоторое описывает вашу цель</string>
     <string name="inspiration_source_unsplash_com">Источник вдохновения Unsplash.com</string>
     <string name="unsplash_url"><![CDATA[https://unsplash.com/?utm_source=SetTheGoalApp&utm_medium=referral]]></string>
     <string name="found_nothing">Ничего не найдено</string>
     <string name="find_another_pictures">Найти другие картинки?</string>
     <string name="inspiration_source">Источник вдохновения</string>
     <string name="unsplash_com">Unsplash.com</string>
+    <string name="select_photo">Выберите одно фото,\nкоторое описывает вашу цель</string>
 
 </resources>

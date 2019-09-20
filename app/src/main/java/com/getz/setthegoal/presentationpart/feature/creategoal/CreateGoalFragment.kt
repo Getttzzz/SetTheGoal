@@ -40,14 +40,21 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        println("GETTTZZZ.CreateGoalFragment.onViewCreated ---> ")
 
         vm.isForFamily = arguments?.getBoolean(IS_FAMILY_ARGS, false)!!
         setupViewPager()
         setupLD()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        println("GETTTZZZ.CreateGoalFragment.onDestroyView ---> ")
+    }
+
     override fun onResume() {
         super.onResume()
+        println("GETTTZZZ.CreateGoalFragment.onResume ---> ")
 //        clRootCreateGoal.doOnLayout {}
         keyboardListener = clRootCreateGoal.addKeyboardListener { isOpened ->
             vm.keyboardListenerLD.value = isOpened
@@ -84,7 +91,6 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
     }
 
     private fun selectPage(position: Int) {
-        btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
         when (position) {
             CreateGoalPagerAdapter.WRITE_GOAL_TAB_POSITION -> {
                 btnPrevious.gone()
@@ -93,17 +99,27 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
                     vm.recognizePartsOfSpeech()
                     vpCreateGoal.swipeRight(position)
                 }
+                btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_PICTURE_TAB_POSITION -> {
                 btnPrevious.visible()
                 btnNext.text = getString(R.string.next)
 
                 btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
+                btnPrevious.setSingleClickListener {
+
+
+                    //todo vm tvSelectPhoto.gone()
+
+
+                    vpCreateGoal.swipeLeft(position)
+                }
             }
             CreateGoalPagerAdapter.APPLY_SUBTASKS_TAB_POSITION -> {
                 btnPrevious.visible()
                 btnNext.text = getString(R.string.next)
                 btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
+                btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_DEADLINE_TAB_POSITION -> {
                 btnPrevious.visible()
@@ -111,6 +127,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
                 btnNext.setSingleClickListener {
                     //request to save the data
                 }
+                btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
         }
     }

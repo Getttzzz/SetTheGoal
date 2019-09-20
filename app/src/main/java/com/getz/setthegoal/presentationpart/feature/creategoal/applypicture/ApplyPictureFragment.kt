@@ -23,7 +23,7 @@ import java.util.Locale
 
 class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
 
-    lateinit var vm: CreateGoalVM
+    private lateinit var vm: CreateGoalVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +42,7 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         setupLD(wordAdapter, photoAdapter)
 
         //todo fix use-case when photos result is empty
+        //todo add validation for Next button
     }
 
     private fun setupUnsplashView() {
@@ -52,11 +53,9 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         tvUnsplash.setSingleClickListener { openLink(getString(R.string.unsplash_url), context!!) }
     }
 
-    private fun setupLD(
-        wordAdapter: WordAdapter,
-        photoAdapter: PhotoAdapter
-    ) {
+    private fun setupLD(wordAdapter: WordAdapter, photoAdapter: PhotoAdapter) {
         vm.recognizedWordsLD.observe(this, Observer { words ->
+            changeDescriptionState(true)
             loadingWords.gone()
             wordAdapter.replace(words)
         })
@@ -96,11 +95,17 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
                     this.select(position)
                     val selectedWord = this.godList[position]
                     vm.getPhotos(selectedWord.originalWord, Locale.getDefault())
+                    changeDescriptionState(false)
                 }
             }
         rvWords.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvWords.adapter = wordAdapter
         return wordAdapter
+    }
+
+    private fun changeDescriptionState(needSelectWord: Boolean) {
+        tvSelectWord.isVisible = needSelectWord
+        tvSelectPhoto.isVisible = !needSelectWord
     }
 
 }

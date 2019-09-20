@@ -20,7 +20,7 @@ import org.kodein.di.direct
 import org.kodein.di.generic.instance
 
 class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
-    lateinit var vm: CreateGoalVM
+    private lateinit var vm: CreateGoalVM
 
     private val smoothScrollHandler = Handler(Looper.getMainLooper())
     private lateinit var runnable: () -> Unit
