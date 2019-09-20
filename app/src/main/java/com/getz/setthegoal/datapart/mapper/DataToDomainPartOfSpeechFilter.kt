@@ -17,17 +17,17 @@ class DataToDomainPartOfSpeechFilter : Gandalf<List<Word>, List<Word>> {
             }
         }
             .sortedWith(Comparator { o1, o2 ->
-                //1.VERB
-                //2.NOUN
+                //1.NOUN
+                //2.VERB
                 //3.ADJECTIVE
                 //4.ADVERB
                 when {
-                    o1.partOfSpeech == PartOfSpeechEnum.VERB && o2.partOfSpeech == PartOfSpeechEnum.NOUN -> -1
+                    o1.partOfSpeech == PartOfSpeechEnum.VERB && o2.partOfSpeech == PartOfSpeechEnum.NOUN -> 1
                     o1.partOfSpeech == PartOfSpeechEnum.VERB && o2.partOfSpeech == PartOfSpeechEnum.ADJECTIVE -> -1
                     o1.partOfSpeech == PartOfSpeechEnum.VERB && o2.partOfSpeech == PartOfSpeechEnum.ADVERB -> -1
                     o1.partOfSpeech == PartOfSpeechEnum.VERB && o2.partOfSpeech == PartOfSpeechEnum.VERB -> 0
 
-                    o1.partOfSpeech == PartOfSpeechEnum.NOUN && o2.partOfSpeech == PartOfSpeechEnum.VERB -> 1
+                    o1.partOfSpeech == PartOfSpeechEnum.NOUN && o2.partOfSpeech == PartOfSpeechEnum.VERB -> -1
                     o1.partOfSpeech == PartOfSpeechEnum.NOUN && o2.partOfSpeech == PartOfSpeechEnum.NOUN -> 0
                     o1.partOfSpeech == PartOfSpeechEnum.NOUN && o2.partOfSpeech == PartOfSpeechEnum.ADJECTIVE -> -1
                     o1.partOfSpeech == PartOfSpeechEnum.NOUN && o2.partOfSpeech == PartOfSpeechEnum.ADVERB -> -1
