@@ -47,15 +47,10 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         setupLD()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        println("GETTTZZZ.CreateGoalFragment.onDestroyView ---> ")
-    }
-
     override fun onResume() {
         super.onResume()
         println("GETTTZZZ.CreateGoalFragment.onResume ---> ")
-//        clRootCreateGoal.doOnLayout {}
+        //clRootCreateGoal.doOnLayout {}
         keyboardListener = clRootCreateGoal.addKeyboardListener { isOpened ->
             vm.keyboardListenerLD.value = isOpened
 

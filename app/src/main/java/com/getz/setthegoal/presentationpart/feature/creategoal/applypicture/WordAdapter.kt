@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks
+package com.getz.setthegoal.presentationpart.feature.creategoal.applypicture
 
 import android.view.LayoutInflater
 import android.view.View

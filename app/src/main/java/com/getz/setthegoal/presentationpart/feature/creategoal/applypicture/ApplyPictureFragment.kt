@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
-import com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks.WordAdapter
 import com.getz.setthegoal.presentationpart.util.gone
+import com.getz.setthegoal.presentationpart.util.hideKeyboard
 import com.getz.setthegoal.presentationpart.util.openLink
 import com.getz.setthegoal.presentationpart.util.say
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
@@ -33,7 +33,6 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //hideKeyboard(tvUnsplash) todo decide where hide keyboard
         setupUnsplashView()
 
         val wordAdapter = setupWordAdapter()
@@ -43,6 +42,11 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
 
         //todo fix use-case when photos result is empty
         //todo add validation for Next button
+    }
+
+    override fun onResume() {
+        super.onResume()
+        hideKeyboard(tvUnsplash)
     }
 
     private fun setupUnsplashView() {

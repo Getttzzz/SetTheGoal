@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.getz.setthegoal.presentationpart.feature.creategoal.applydeadline.ApplyDeadlineFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.applypicture.ApplyPictureFragment
-import com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks.ApplySubtasksFragment
+import com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks.ApplySubGoalFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.writegoal.WriteGoalFragment
 
 class CreateGoalPagerAdapter(fm: FragmentManager) :
@@ -21,7 +21,7 @@ class CreateGoalPagerAdapter(fm: FragmentManager) :
     override fun getItem(position: Int): Fragment = when (position) {
         WRITE_GOAL_TAB_POSITION -> WriteGoalFragment()
         APPLY_PICTURE_TAB_POSITION -> ApplyPictureFragment()
-        APPLY_SUBTASKS_TAB_POSITION -> ApplySubtasksFragment()
+        APPLY_SUBTASKS_TAB_POSITION -> ApplySubGoalFragment()
         APPLY_DEADLINE_TAB_POSITION -> ApplyDeadlineFragment()
         else -> throw IllegalArgumentException("Wrong position.")
     }

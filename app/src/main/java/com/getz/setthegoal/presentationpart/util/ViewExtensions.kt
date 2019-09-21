@@ -25,8 +25,8 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.getz.setthegoal.presentationpart.core.GlideApp
 
-fun View.setSingleClickListener(onClick: (View) -> Unit) {
-    val singleClicker = OnSingleClickListener { onClick(it) }
+fun View.setSingleClickListener(interval: Int = 600, onClick: (View) -> Unit) {
+    val singleClicker = OnSingleClickListener(interval = interval) { onClick(it) }
     setOnClickListener(singleClicker)
 }
 
