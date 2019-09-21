@@ -49,14 +49,9 @@
             android:id="@+id/rvSubGoal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-
-            android:visibility="visible"
-
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
             android:clipToPadding="false"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

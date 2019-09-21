@@ -80,7 +80,7 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
                 onClick = { position ->
                     this.select(position)
                     val photo = this.godList[position]
-                    vm.selectedImageUrl = photo
+                    vm.selectedPhoto = photo
                 }
                 onAuthorClick = { position ->
                     val photo = this.godList[position]

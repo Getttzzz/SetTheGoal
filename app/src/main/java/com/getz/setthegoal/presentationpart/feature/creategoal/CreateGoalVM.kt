@@ -8,6 +8,7 @@ import com.getz.setthegoal.domainpart.interactorlayer.IGetPartsOfSpeechUC
 import com.getz.setthegoal.domainpart.interactorlayer.IGetPhotoUC
 import com.getz.setthegoal.presentationpart.core.BaseVm
 import com.getz.setthegoal.presentationpart.entitylayer.PhotoUI
+import com.getz.setthegoal.presentationpart.entitylayer.SubGoalUI
 import com.getz.setthegoal.presentationpart.entitylayer.WordUI
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -29,9 +30,9 @@ class CreateGoalVM(
     var isForFamily = false
 
     lateinit var writtenGoalText: String
-    lateinit var selectedImageUrl: PhotoUI
+    lateinit var selectedPhoto: PhotoUI
+    lateinit var selectedSubTasks: List<SubGoalUI>
     lateinit var selectedDeadline: String
-    lateinit var selectedSubTasks: ArrayList<String>
 
     fun recognizePartsOfSpeech() = launch {
         getPartsOfSpeechUC.invoke(writtenGoalText, ::processError) { recognizedWords ->

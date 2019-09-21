@@ -54,5 +54,11 @@
     <string name="inspiration_source">Inspiration source is</string>
     <string name="unsplash_com">Unsplash.com</string>
     <string name="select_photo">Select photo\nwhich describes your goal</string>
+    <string name="one_week">One week</string>
+    <string name="one_month">One month</string>
+    <string name="three_months">Three months</string>
+    <string name="six_months">Six months</string>
+    <string name="one_year">One year</string>
+    <string name="how_much_time_do_you_need">How much time do you need to achieve this goal?</string>
 
 </resources>

@@ -73,7 +73,7 @@
         <item name="cornerSize">0dp</item>
     </style>
 
-    <style name="StyleCreateSubGoalCardView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <style name="MaterialCardViewCut6dp" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">6dp</item>
     </style>

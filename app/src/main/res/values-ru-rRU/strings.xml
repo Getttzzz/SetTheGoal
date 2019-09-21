@@ -54,5 +54,11 @@
     <string name="inspiration_source">Источник вдохновения</string>
     <string name="unsplash_com">Unsplash.com</string>
     <string name="select_photo">Выберите одно фото,\nкоторое описывает вашу цель</string>
+    <string name="one_week">Одна неделя</string>
+    <string name="one_month">Один месяц</string>
+    <string name="three_months">Три месяца</string>
+    <string name="six_months">Шесть месяцев</string>
+    <string name="one_year">Один год</string>
+    <string name="how_much_time_do_you_need">Сколько времени нужно, чтобы достичь эту цель?</string>
 
 </resources>
