@@ -20,12 +20,12 @@ class SuggestionAdapter : BaseAdapter<Int, SuggestionAdapter.VH>() {
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val strResId = godList[position]
-        holder.view.chipsa.text = holder.view.context.getString(strResId)
+        holder.view.tvSuggestion.text = holder.view.context.getString(strResId)
     }
 
     inner class VH(val view: View) : RecyclerView.ViewHolder(view) {
         init {
-            view.chipsa.setSingleClickListener {
+            view.setSingleClickListener {
                 if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
                 onClick.invoke(adapterPosition)
             }

@@ -8,7 +8,7 @@ import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseAdapter
 import com.getz.setthegoal.presentationpart.entitylayer.WordUI
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
-import kotlinx.android.synthetic.main.item_suggestion.view.*
+import kotlinx.android.synthetic.main.item_word.view.*
 
 class WordAdapter : BaseAdapter<WordUI, WordAdapter.VH>() {
 
@@ -21,8 +21,8 @@ class WordAdapter : BaseAdapter<WordUI, WordAdapter.VH>() {
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val word = godList[position]
-        holder.view.chipsa.text = word.originalWord
-        holder.view.chipsa.isChecked = word.isSelected
+        holder.view.tvWord.text = word.originalWord
+        holder.view.mcvWord.isChecked = word.isSelected
     }
 
     fun select(position: Int) {
@@ -33,7 +33,7 @@ class WordAdapter : BaseAdapter<WordUI, WordAdapter.VH>() {
 
     inner class VH(val view: View) : RecyclerView.ViewHolder(view) {
         init {
-            view.chipsa.setSingleClickListener {
+            view.setSingleClickListener {
                 if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
                 onClick.invoke(adapterPosition)
             }

@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mcvWord"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_margin="6dp"
+    android:checkable="true"
+    app:cardBackgroundColor="@color/selector_deadline_bg"
+    app:checkedIcon="@null"
+    app:shapeAppearance="@style/MaterialCardViewCut6dp"
+    app:strokeColor="@color/selector_deadline_stroke"
+    app:strokeWidth="1dp">
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chipsa"
+    <TextView
+        android:id="@+id/tvWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:checkable="true"
-        android:checked="false"
-        app:checkedIconVisible="false"
-        app:chipIconVisible="false"
-        app:chipEndPadding="8dp"
-        app:chipStartPadding="8dp"
-        app:closeIconVisible="false"
-        app:chipBackgroundColor="@drawable/selector_chips"
-        app:shapeAppearance="@style/StyleCornerChip"
-        tools:text="Wagon" />
-</LinearLayout>
+        android:paddingStart="10dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="3dp"
+        android:textColor="@color/colorSecondaryDark"
+        android:textSize="14sp"
+        tools:text="Word" />
+
+</com.google.android.material.card.MaterialCardView>
