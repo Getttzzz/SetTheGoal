@@ -28,6 +28,16 @@ class ApplyDeadlineFragment : BaseFragment(R.layout.fragment_apply_deadline) {
         deadlineAdapter.replace(deadlines)
     }
 
+    override fun onResume() {
+        super.onResume()
+        lottieWaiting.playAnimation()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        lottieWaiting.pauseAnimation()
+    }
+
     private fun setupDeadlineAdapter(): DeadlineAdapter {
         val deadlineAdapter = DeadlineAdapter()
             .apply {

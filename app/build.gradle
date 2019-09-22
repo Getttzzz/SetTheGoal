@@ -84,6 +84,7 @@ dependencies {
     implementation "com.github.bumptech.glide:annotations:$glide"
 
     implementation 'com.agrawalsuneet.androidlibs:squareloaderspack:0.5'
+    implementation "com.airbnb.android:lottie:2.8.0"
 
     /**
      * Here we have an exclude for IBM translator because it had duplicate conflicts

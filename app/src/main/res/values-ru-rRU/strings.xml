@@ -60,5 +60,12 @@
     <string name="six_months">Шесть месяцев</string>
     <string name="one_year">Один год</string>
     <string name="how_much_time_do_you_need">Сколько времени нужно, чтобы достичь эту цель?</string>
+    <string name="mae_bicycle">Иди и добейся своей цели!</string>
+    <string name="mae_meditation">Вы просто восхитительны! Расслабься, подумай и двигайся вперед!</string>
+    <string name="mae_fruits">Вы просто нечто! Скушай немного фруктов, чтобы зарядить себя энергией для достижения цели!</string>
+    <string name="mae_coffee">Выпейте кофе, просто потому что вы прекрасны! Однако, не забывайте о своей цели!</string>
+    <string name="mae_music">Вы обворожительны! Послушайте вашу любимую музыку и начните достигать цель прямо сейчас!</string>
+    <string name="mae_croissant">Вы просто шикарны! Перекусите и приступайте к цели!</string>
+    <string name="mae_bear">Этот медведь полностью согласен с вашей целью! Так держать!</string>
 
 </resources>

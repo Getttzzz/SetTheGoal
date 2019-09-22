@@ -51,11 +51,11 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
 
         ivNewIdea.setSingleClickListener { vm.loadRandomQuote(Locale.getDefault()) }
         fabCreateForMyself.setSingleClickListener {
-            fabAddNewGoal.performClick()
+            immediatelyHideFab()
             bridge.openCreateGoalScreen(false)
         }
         fabCreateForFamily.setSingleClickListener {
-            fabAddNewGoal.performClick()
+            immediatelyHideFab()
             bridge.openCreateGoalScreen(true)
         }
 
@@ -89,6 +89,15 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
                 true
             }
         }
+    }
+
+    private fun immediatelyHideFab() {
+        fabAddNewGoal.startAnimation(fabRotateOpositeClock)
+        fabCreateForMyself.visibility = View.INVISIBLE
+        fabCreateForFamily.visibility = View.INVISIBLE
+        tvCreateForMyself.visibility = View.GONE
+        mcvCreateForFamily.visibility = View.GONE
+        isOpened = false
     }
 
     private fun setupExpandableListener() {
