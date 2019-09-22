@@ -30,8 +30,8 @@ fun View.setSingleClickListener(interval: Int = 600, onClick: (View) -> Unit) {
     setOnClickListener(singleClicker)
 }
 
-fun EditText.addOnTextChangedListener(onTextChange: (String) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
+fun EditText.addTextListener(onTextChange: (String) -> Unit): TextWatcher {
+    val listener = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) = Unit
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
@@ -39,7 +39,13 @@ fun EditText.addOnTextChangedListener(onTextChange: (String) -> Unit) {
         override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
             onTextChange.invoke(text.toString())
         }
-    })
+    }
+    this.addTextChangedListener(listener)
+    return listener
+}
+
+fun EditText.removeTextListener(tw: TextWatcher?) {
+    this.removeTextChangedListener(tw)
 }
 
 fun Fragment.say(msg: String) {

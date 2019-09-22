@@ -31,7 +31,7 @@ class ApplySubGoalFragment : BaseFragment(R.layout.fragment_apply_sub_goal) {
             subGoalAdapter.addOneItem(SubGoalUI("", subGoalAdapter.godList.size + 1))
         }
 
-        //todo add written by user sub-tasks to viewmodel
+        vm.selectedSubTasks = subGoalAdapter.godList
     }
 
     private fun setupSubGoalAdapter(): SubGoalAdapter {

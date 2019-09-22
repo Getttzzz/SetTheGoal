@@ -13,7 +13,7 @@ import com.getz.setthegoal.R
 import com.getz.setthegoal.datapart.entitylayer.GoalSuggestions
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
-import com.getz.setthegoal.presentationpart.util.addOnTextChangedListener
+import com.getz.setthegoal.presentationpart.util.addTextListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_write_goal.*
 import org.kodein.di.direct
@@ -65,7 +65,7 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
     }
 
     private fun setupNextBtnValidation() {
-        etGoal.addOnTextChangedListener { inputText ->
+        etGoal.addTextListener { inputText ->
             val possibleWords = inputText.trim().split(" ")
             val enabled = possibleWords.size >= 2
             vm.nextButtonSharedLD.value = enabled

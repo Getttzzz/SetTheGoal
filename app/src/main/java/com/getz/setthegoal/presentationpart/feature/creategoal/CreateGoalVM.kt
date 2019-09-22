@@ -20,6 +20,7 @@ class CreateGoalVM(
     private val gandalfPhotosMapper: Gandalf<List<Photo>, List<PhotoUI>>
 ) : BaseVm() {
 
+    val putSubGoalsLD = MutableLiveData<Unit>()
     val nextButtonSharedLD = MutableLiveData<Boolean>()
     val pressNextSharedLD = MutableLiveData<Unit>()
     val recognizedWordsLD = MutableLiveData<List<WordUI>>()
