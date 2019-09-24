@@ -39,7 +39,7 @@ class SubGoalAdapter : BaseAdapter<SubGoalUI, SubGoalAdapter.VH>() {
     override fun onBindViewHolder(holder: VH, position: Int) {
         val subGoal = godList[position]
         holder.view.tvNumber.text =
-            holder.view.context.getString(R.string.str_with_dot, subGoal.goal)
+            holder.view.context.getString(R.string.str_with_dot, subGoal.order)
         holder.view.etSubGoal.setText(subGoal.goal)
     }
 

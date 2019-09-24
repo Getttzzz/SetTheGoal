@@ -59,8 +59,9 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
 
     private fun setupLD() {
         vm.keyboardListenerLD.observe(this, Observer { isOpened ->
-            if (btnNextSecondary == null) return@Observer
-            btnNextSecondary.post { btnNextSecondary.isVisible = isOpened }
+            if (btnNextSecondary != null) {
+                btnNextSecondary.isVisible = isOpened
+            }
         })
     }
 

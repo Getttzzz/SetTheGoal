@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="230dp"
-        android:backgroundTint="@color/colorLight"
+        android:backgroundTint="@color/colorAccent"
         android:rotation="-30"
         android:visibility="gone"
         app:cardElevation="6dp"
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:padding="2dp"
             android:text="@string/create_a_goal_for_family"
-            android:textColor="@color/colorSecondaryDark" />
+            android:textColor="@color/colorText" />
     </com.google.android.material.card.MaterialCardView>
 
 
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="160dp"
-        android:backgroundTint="@color/colorLight"
+        android:backgroundTint="@color/colorAccent"
         android:rotation="-30"
         android:visibility="gone"
         app:cardElevation="6dp"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:padding="2dp"
             android:text="@string/create_my_goal"
-            android:textColor="@color/colorSecondaryDark" />
+            android:textColor="@color/colorText" />
     </com.google.android.material.card.MaterialCardView>
 
 
@@ -57,10 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="170dp"
         android:src="@drawable/ic_family_filled_black"
+        android:theme="@style/AppTheme.Yellow"
         android:visibility="invisible"
-
         app:elevation="8dp"
-
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,10 +72,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="110dp"
         android:src="@drawable/ic_person_filled_black"
+        android:theme="@style/AppTheme.Yellow"
         android:visibility="invisible"
-
         app:elevation="8dp"
-
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

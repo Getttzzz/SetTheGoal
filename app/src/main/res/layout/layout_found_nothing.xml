@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/found_nothing"
-            android:textColor="@color/colorGray2"
+            android:textColor="@color/colorGrayDark"
             android:textSize="16sp" />
 
         <com.google.android.material.button.MaterialButton
@@ -38,7 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/find_another_pictures" />
+            android:text="@string/find_another_pictures"
+            android:theme="@style/AppTheme.Yellow" />
     </LinearLayout>
 
 

@@ -7,8 +7,9 @@
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
     android:checkable="true"
-    app:checkedIcon="@null"
     app:cardBackgroundColor="@color/selector_deadline_bg"
+    app:cardElevation="0dp"
+    app:checkedIcon="@null"
     app:shapeAppearance="@style/MaterialCardViewCut6dp"
     app:strokeColor="@color/selector_deadline_stroke"
     app:strokeWidth="1dp">
@@ -21,7 +22,7 @@
         android:paddingTop="3dp"
         android:paddingEnd="10dp"
         android:paddingBottom="3dp"
-        android:textColor="@color/colorSecondaryDark"
+        android:textColor="@color/colorText"
         android:textSize="14sp"
         tools:text="One year" />
 

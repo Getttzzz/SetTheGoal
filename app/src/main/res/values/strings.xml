@@ -67,6 +67,9 @@
     <string name="mae_music">You are breathtaking! Listen to your favorite music and start to pursue the goal right now!</string>
     <string name="mae_croissant">You are incredible! Grab a bite and pursue the objective!</string>
     <string name="mae_bear">This bear completely approves your objective! Well done!</string>
-    <string name="str_with_dot">%1$s.</string>
+    <string name="str_with_dot">%1$d.</string>
+    <string name="write_a_few_sub_goals">Write a few sub-goals</string>
+    <string name="add_sub_goal">Add sub-goal</string>
+    <string name="congratulation_your_goal_is_ready">Congratulation!\nYour goal is ready!</string>
 
 </resources>

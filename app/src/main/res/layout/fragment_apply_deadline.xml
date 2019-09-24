@@ -14,7 +14,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:text="@string/how_much_time_do_you_need"
-        android:textColor="@color/colorSecondaryDark"
+        android:textColor="@color/colorText"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -54,7 +54,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
             vm.keyboardListenerLD.value = isOpened
 
             if (btnNext != null) {
-                btnNext.post { btnNext.isVisible = !isOpened }
+                btnNext.isVisible = !isOpened
             }
         }
     }

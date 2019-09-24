@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.core.content.ContextCompat.getColor
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.getz.setthegoal.R
@@ -141,14 +142,14 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
             GoalsPagerAdapter.FAMILY_TAB_POSITION -> {
                 ivFamily.isEnabled = true
                 ivMyself.isEnabled = false
-                tvFamily.setTextColor(resources.getColor(R.color.colorSecondaryDark))
-                tvMyself.setTextColor(resources.getColor(R.color.colorSecondary))
+                tvFamily.setTextColor(getColor(context!!, R.color.colorWhite))
+                tvMyself.setTextColor(getColor(context!!, R.color.colorText))
             }
             GoalsPagerAdapter.MYSELF_TAB_POSITION -> {
                 ivFamily.isEnabled = false
                 ivMyself.isEnabled = true
-                tvFamily.setTextColor(resources.getColor(R.color.colorSecondary))
-                tvMyself.setTextColor(resources.getColor(R.color.colorSecondaryDark))
+                tvFamily.setTextColor(getColor(context!!, R.color.colorText))
+                tvMyself.setTextColor(getColor(context!!, R.color.colorWhite))
             }
         }
     }

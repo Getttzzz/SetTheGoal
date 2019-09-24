@@ -2,20 +2,20 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvPhotoRoot"
     android:layout_width="wrap_content"
     android:layout_height="160dp"
     android:layout_margin="8dp"
-    app:cardElevation="4dp"
     android:checkable="true"
-    android:id="@+id/cvPhotoRoot"
-    app:checkedIcon="@drawable/ic_check_flag"
+    android:theme="@style/AppTheme.Yellow"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="4dp"
     app:cardPreventCornerOverlap="false"
-    app:shapeAppearance="@style/StylePhotoCardView">
+    app:checkedIcon="@drawable/ic_check_flag">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <ImageView
             android:id="@+id/ivPhoto"
