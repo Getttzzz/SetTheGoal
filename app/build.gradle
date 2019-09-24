@@ -15,6 +15,17 @@ android {
     }
     buildTypes {
         debug {
+            manifestPlaceholders = [crashlyticsEnabled: false]
+            minifyEnabled false
+            debuggable true
+        }
+        release {
+            manifestPlaceholders = [crashlyticsEnabled: true]
+            minifyEnabled false
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        all {
             /**
              * 'SetTheGoal_TexterraApiKey' is a constant which is placed in Global gradle.properties
              * config file in the hidden directory user/.gradle/gradle.properties
@@ -24,16 +35,14 @@ android {
             buildConfigField 'String', "IBMTranslatorApiKey", SetTheGoal_IBMTranslatorApiKey
             buildConfigField 'String', "UnsplashClientKey", SetTheGoal_UnsplashClientKey
         }
-        release {
-            buildConfigField 'String', "TexterraApiKey", SetTheGoal_TexterraApiKey
-            buildConfigField 'String', "IBMTranslatorApiKey", SetTheGoal_IBMTranslatorApiKey
-            buildConfigField 'String', "UnsplashClientKey", SetTheGoal_UnsplashClientKey
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            String apkVersion = "${variant.buildType.name}-v${variant.versionName}.(${variant.versionCode})"
+            buildConfigField 'String', 'APK_VERSION', "\"${apkVersion}\""
+            outputFileName = "SetTheGoal-${apkVersion}.apk"
         }
     }
-    //I added this because of "Static interface methods are only supported starting with
-    //Android N" error
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -86,6 +95,11 @@ dependencies {
     implementation 'com.agrawalsuneet.androidlibs:squareloaderspack:0.5'
     implementation "com.airbnb.android:lottie:2.8.0"
 
+    //Firebase
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
+    implementation 'com.google.firebase:firebase-auth:19.0.0'
+    implementation 'com.google.firebase:firebase-firestore:21.1.1'
+
     /**
      * Here we have an exclude for IBM translator because it had duplicate conflicts
      * with other dependency.
@@ -98,3 +112,5 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+
+apply plugin: 'com.google.gms.google-services'
