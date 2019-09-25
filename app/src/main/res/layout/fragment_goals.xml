@@ -23,14 +23,27 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/ivAvatar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:alpha="0.4"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_person"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
                     android:id="@+id/ivNewIdea"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
+                    android:alpha="0.4"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_new_idea_colored"
-                    app:layout_constraintEnd_toStartOf="@id/cvAvatar"
+                    app:layout_constraintEnd_toStartOf="@+id/ivAvatar"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
@@ -73,23 +86,6 @@
                     app:layout_constraintEnd_toStartOf="@+id/ivArrow"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvGoodQuote" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvAvatar"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_add_person" />
-
-                </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

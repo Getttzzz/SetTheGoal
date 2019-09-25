@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="18dp">
+
+    <TextView
+        android:id="@+id/tvAuthAs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/auth_as"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="160dp"
+        android:text="@string/google"
+        android:theme="@style/AppTheme.Yellow"
+        app:layout_constraintBottom_toTopOf="@+id/tvGoogleAccountInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAuthAs"
+        app:shapeAppearance="@style/StyleCornerOutlinedButton" />
+
+    <TextView
+        android:id="@+id/tvGoogleAccountInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorText"
+        android:textSize="14sp"
+
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toTopOf="@+id/btnGoogleSignOut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGoogle" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoogleSignOut"
+        style="?materialButtonOutlinedStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="@string/sign_out_from_old_account"
+        android:theme="@style/AppTheme.Yellow"
+
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toTopOf="@+id/tvOr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGoogleAccountInfo"
+        app:shapeAppearance="@style/StyleCornerOutlinedButton" />
+
+    <TextView
+        android:id="@+id/tvOr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/or_be"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnIncognito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGoogleSignOut" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnIncognito"
+        style="?materialButtonOutlinedStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="160dp"
+        android:text="@string/incognito"
+        android:theme="@style/AppTheme.Yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvOr"
+
+        app:shapeAppearance="@style/StyleCornerOutlinedButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

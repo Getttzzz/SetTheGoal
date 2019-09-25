@@ -72,5 +72,18 @@
     <string name="add_sub_goal">Add sub-goal</string>
     <string name="congratulation_your_goal_is_ready">Congratulation!\nYour goal is ready!</string>
     <string name="goals_for_my_family">Goals for my family</string>
+    <string name="auth_as">Auth with</string>
+    <string name="google">google</string>
+    <string name="or_be">or be</string>
+    <string name="incognito">incognito</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="auth_wasnt_successful">Authentication wasn\'t successful</string>
+    <string name="acc_is_null">Auth is failed. Account is null.</string>
+    <string name="attempt_to_get_acc_failed">Attempt to get account was failed. Error code is %1$d</string>
+    <string name="auth_as_incognito_is_failed">Auth as incognito is failed.</string>
+    <string name="looks_like_you_were_here_under_google">Looks like you were here as %1$s\nYou can sign out from old account\nand sign in as a new user.</string>
+    <string name="sign_out_from_old_account">Sign out from old account</string>
+    <string name="signed_out_successfully">Signed out successfully.</string>
+    <string name="signed_out_error">Signed out error.</string>
 
 </resources>

@@ -72,5 +72,18 @@
     <string name="add_sub_goal">Добавить подцель</string>
     <string name="congratulation_your_goal_is_ready">Поздравляем!\nВаша цель готова!</string>
     <string name="goals_for_my_family">Цели ради семьи</string>
+    <string name="auth_as">Авторизоваться используя</string>
+    <string name="google">гугле</string>
+    <string name="or_be">или будьте</string>
+    <string name="incognito">инкогнито</string>
+    <string name="auth_failed">Аутентификация есть неудачный. Сорри.</string>
+    <string name="auth_wasnt_successful">Аутентификация не была успех.</string>
+    <string name="acc_is_null">Аутентификация есть неудачный. Аккаунт есть пустота.</string>
+    <string name="attempt_to_get_acc_failed">Попытка получить аккаунт была неудачной. Код ошибки %1$d</string>
+    <string name="auth_as_incognito_is_failed">Аутентификация как инкогнито была неудачной.</string>
+    <string name="looks_like_you_were_here_under_google">Видимо вы уже были тут как %1$s\nВы можете выйти из старого аккаунта\nи войти как новый пользователь.</string>
+    <string name="sign_out_from_old_account">Выйти из старого аккаунта</string>
+    <string name="signed_out_successfully">Выход произошел успешно.</string>
+    <string name="signed_out_error">Ошибка выхода.</string>
 
 </resources>

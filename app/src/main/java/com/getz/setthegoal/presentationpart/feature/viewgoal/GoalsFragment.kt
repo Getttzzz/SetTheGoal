@@ -8,11 +8,14 @@ import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat.getColor
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.request.RequestOptions
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
+import com.getz.setthegoal.presentationpart.core.GlideApp
 import com.getz.setthegoal.presentationpart.customview.ExpandableTextView
 import com.getz.setthegoal.presentationpart.util.addOnPageSelectedListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_goals.*
 import kotlinx.android.synthetic.main.layout_floating_buttons.*
 import org.kodein.di.direct
@@ -49,7 +52,30 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         setupExpandableListener()
         setupLD()
         setupFabMenu()
+        setupClickListeners()
 
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        currentUser?.let { user ->
+            if (user.isAnonymous) {
+                //do nothing
+            } else {
+                GlideApp.with(this)
+                    .load(user.photoUrl)
+                    .apply(RequestOptions().circleCrop())
+                    .into(ivAvatar)
+            }
+        }
+
+        vm.loadRandomQuote(Locale.getDefault())
+    }
+
+    private fun setupClickListeners() {
+        ivAvatar.setSingleClickListener {
+
+            //todo add new fragment
+            FirebaseAuth.getInstance().signOut()
+            bridge.onSignedOut()
+        }
         ivNewIdea.setSingleClickListener { vm.loadRandomQuote(Locale.getDefault()) }
         fabCreateForMyself.setSingleClickListener {
             immediatelyHideFab()
@@ -59,8 +85,6 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
             immediatelyHideFab()
             bridge.openCreateGoalScreen(true)
         }
-
-        vm.loadRandomQuote(Locale.getDefault())
     }
 
     private fun setupLD() {

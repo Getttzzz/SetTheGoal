@@ -119,6 +119,7 @@ fun View.visible(isVisible: Boolean) {
     if (isVisible) this.visibility = View.VISIBLE else this.visibility = View.GONE
 }
 
+
 fun loadPicture(
     view: ImageView,
     url: String,
