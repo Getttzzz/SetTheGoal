@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalFragment
-import com.getz.setthegoal.presentationpart.feature.goals.GoalsBridge
-import com.getz.setthegoal.presentationpart.feature.goals.GoalsFragment
+import com.getz.setthegoal.presentationpart.feature.viewgoal.GoalsBridge
+import com.getz.setthegoal.presentationpart.feature.viewgoal.GoalsFragment
 
 class ForeverAloneActivity :
     AppCompatActivity(R.layout.activity_forever_alone),

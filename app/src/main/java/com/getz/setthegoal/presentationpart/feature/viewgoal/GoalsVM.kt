@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentationpart.feature.goals
+package com.getz.setthegoal.presentationpart.feature.viewgoal
 
 import androidx.lifecycle.MutableLiveData
 import com.getz.setthegoal.domainpart.entitylayer.Quote
