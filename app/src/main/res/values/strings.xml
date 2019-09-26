@@ -75,7 +75,7 @@
     <string name="auth_as">Auth with</string>
     <string name="google">google</string>
     <string name="or_be">or be</string>
-    <string name="incognito">incognito</string>
+    <string name="incognito">Incognito</string>
     <string name="auth_failed">Authentication failed</string>
     <string name="auth_wasnt_successful">Authentication wasn\'t successful</string>
     <string name="acc_is_null">Auth is failed. Account is null.</string>
@@ -85,5 +85,9 @@
     <string name="sign_out_from_old_account">Sign out from old account</string>
     <string name="signed_out_successfully">Signed out successfully.</string>
     <string name="signed_out_error">Signed out error.</string>
+    <string name="become_a_real_user">Become a real user</string>
+    <string name="sign_out">Sign out</string>
+    <string name="you_are_signed_in_as">You are signed in as</string>
+    <string name="linking_account_was_failed">Linking account was failed.</string>
 
 </resources>

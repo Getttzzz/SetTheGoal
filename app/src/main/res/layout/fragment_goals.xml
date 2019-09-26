@@ -28,9 +28,9 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
-                    android:alpha="0.4"
+                    android:alpha="0.6"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_person"
+                    android:src="@drawable/ic_detective"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
-                    android:alpha="0.4"
+                    android:alpha="0.6"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_new_idea_colored"
                     app:layout_constraintEnd_toStartOf="@+id/ivAvatar"

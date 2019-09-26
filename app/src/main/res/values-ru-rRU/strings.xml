@@ -75,7 +75,7 @@
     <string name="auth_as">Авторизоваться используя</string>
     <string name="google">гугле</string>
     <string name="or_be">или будьте</string>
-    <string name="incognito">инкогнито</string>
+    <string name="incognito">Инкогнито</string>
     <string name="auth_failed">Аутентификация есть неудачный. Сорри.</string>
     <string name="auth_wasnt_successful">Аутентификация не была успех.</string>
     <string name="acc_is_null">Аутентификация есть неудачный. Аккаунт есть пустота.</string>
@@ -85,5 +85,9 @@
     <string name="sign_out_from_old_account">Выйти из старого аккаунта</string>
     <string name="signed_out_successfully">Выход произошел успешно.</string>
     <string name="signed_out_error">Ошибка выхода.</string>
+    <string name="become_a_real_user">Стать реальным пользователем</string>
+    <string name="sign_out">Выйти из аккаунта</string>
+    <string name="you_are_signed_in_as">Вы вошли как</string>
+    <string name="linking_account_was_failed">Связывание аккаунта прошло с ошибкой.</string>
 
 </resources>

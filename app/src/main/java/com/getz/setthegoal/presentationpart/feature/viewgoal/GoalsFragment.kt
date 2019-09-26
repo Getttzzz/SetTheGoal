@@ -53,28 +53,26 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         setupLD()
         setupFabMenu()
         setupClickListeners()
-
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        currentUser?.let { user ->
-            if (user.isAnonymous) {
-                //do nothing
-            } else {
-                GlideApp.with(this)
-                    .load(user.photoUrl)
-                    .apply(RequestOptions().circleCrop())
-                    .into(ivAvatar)
-            }
-        }
+        setupUserIcon()
 
         vm.loadRandomQuote(Locale.getDefault())
     }
 
+    private fun setupUserIcon() {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            if (!user.isAnonymous) {
+                GlideApp.with(this)
+                    .load(user.photoUrl)
+                    .error(R.drawable.ic_person)
+                    .apply(RequestOptions().circleCrop())
+                    .into(ivAvatar)
+            }
+        }
+    }
+
     private fun setupClickListeners() {
         ivAvatar.setSingleClickListener {
-
-            //todo add new fragment
-            FirebaseAuth.getInstance().signOut()
-            bridge.onSignedOut()
+            bridge.openProfileScreen()
         }
         ivNewIdea.setSingleClickListener { vm.loadRandomQuote(Locale.getDefault()) }
         fabCreateForMyself.setSingleClickListener {
