@@ -1,8 +1,15 @@
 package com.getz.setthegoal.presentationpart.core
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.getz.setthegoal.R
+import com.getz.setthegoal.di.EXTRA_ONLINE_STATUS
+import com.getz.setthegoal.di.GET_CONNECTION_STATUS_ACTION
 import com.getz.setthegoal.presentationpart.feature.auth.AuthBridge
 import com.getz.setthegoal.presentationpart.feature.auth.AuthFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalBridge
@@ -14,10 +21,13 @@ import com.getz.setthegoal.presentationpart.feature.viewgoal.GoalsFragment
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeFragment
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_forever_alone.*
 
 class ForeverAloneActivity :
     AppCompatActivity(R.layout.activity_forever_alone),
     GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge {
+
+    private lateinit var connectionBroReceiver: BroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +40,18 @@ class ForeverAloneActivity :
         } else {
             openWelcomeScreen()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val (connectionReceiver, filter) = createConnectionReceiver()
+        connectionBroReceiver = connectionReceiver
+        registerReceiver(connectionReceiver, filter)
+    }
+
+    override fun onPause() {
+        unregisterReceiver(connectionBroReceiver)
+        super.onPause()
     }
 
     override fun onSignedOutFromProfile() {
@@ -79,5 +101,18 @@ class ForeverAloneActivity :
             .beginTransaction()
             .replace(R.id.flMain, WelcomeFragment())
             .commit()
+    }
+
+    private fun createConnectionReceiver(): Pair<BroadcastReceiver, IntentFilter> {
+        val receiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent?) {
+                val isOnline = intent?.getBooleanExtra(EXTRA_ONLINE_STATUS, false) ?: false
+                tvConnectionStatus?.let { tv -> tv.isVisible = !isOnline }
+            }
+        }
+        val connectionFilter = IntentFilter(GET_CONNECTION_STATUS_ACTION)
+            .apply { addCategory(Intent.CATEGORY_DEFAULT) }
+
+        return Pair(receiver, connectionFilter)
     }
 }

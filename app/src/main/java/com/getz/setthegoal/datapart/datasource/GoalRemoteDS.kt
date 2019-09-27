@@ -12,16 +12,18 @@ class GoalRemoteDS(
 
     override suspend fun createGoal(goalDto: GoalDto, onResult: suspend (Boolean) -> Unit) {
         val task = firestore.collection(COLLECTION_GOALS).add(goalDto)
-
         Tasks.await(task)
-
-        val goalRef = task.result
-        println("GETTTZZZ.GoalRemoteDS.createGoal ---> goalRef.id=${goalRef?.id}")
-
         onResult(task.isSuccessful)
     }
 
     override suspend fun getGoals(): List<GoalDto> {
+
+//        firestore.collection(COLLECTION_GOALS)
+//            .addSnapshotListener { snapshot, exception ->
+//                snapshot?.
+//            }
+
+
         return emptyList()
     }
 }

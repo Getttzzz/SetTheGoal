@@ -20,6 +20,9 @@ val viewModelModule = Kodein.Module(ModulesNames.VIEW_MODEL_MODULE) {
     /**
      * Shared view model. That's why it's singleton
      * */
+
+    //todo learn kodein scopes https://kodein.org/Kodein-DI/?6.4/core#_scope
+
     bind<CreateGoalVM>(tag = CreateGoalVM::class.java.simpleName) with
             singleton {
                 CreateGoalVM(

@@ -117,7 +117,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
                 btnPrevious.visible()
                 btnNext.text = getString(R.string.save)
                 btnNext.setSingleClickListener {
-                    //                    vm.saveGoal()
+                    vm.saveGoal()
                     vpCreateGoal.swipeRight(position)
                 }
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }

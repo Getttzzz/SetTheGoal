@@ -90,5 +90,6 @@
     <string name="you_are_signed_in_as">Вы вошли как</string>
     <string name="linking_account_was_failed">Связывание аккаунта прошло с ошибкой.</string>
     <string name="save">Сохр.</string>
+    <string name="you_are_offline">Вы вне сети</string>
 
 </resources>

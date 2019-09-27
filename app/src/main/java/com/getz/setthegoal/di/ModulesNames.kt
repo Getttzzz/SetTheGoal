@@ -14,4 +14,5 @@ object ModulesNames {
     const val USE_CASE_MODULE = "USE_CASE_MODULE"
     const val TRANSLATOR_MODULE = "TRANSLATOR_MODULE"
     const val FIRESTORE_MODULE = "FIRESTORE_MODULE"
+    const val CONNECTION_MODULE = "CONNECTION_MODULE"
 }

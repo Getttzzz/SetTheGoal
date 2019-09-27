@@ -90,5 +90,6 @@
     <string name="you_are_signed_in_as">You are signed in as</string>
     <string name="linking_account_was_failed">Linking account was failed.</string>
     <string name="save">Save</string>
+    <string name="you_are_offline">You are offline</string>
 
 </resources>
