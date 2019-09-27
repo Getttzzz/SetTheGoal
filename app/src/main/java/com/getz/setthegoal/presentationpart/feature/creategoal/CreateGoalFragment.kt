@@ -1,5 +1,6 @@
 package com.getz.setthegoal.presentationpart.feature.creategoal
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
@@ -24,6 +25,7 @@ import org.kodein.di.generic.instance
 class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
     lateinit var vm: CreateGoalVM
+    lateinit var bridge: CreateGoalBridge
     private var keyboardListener: ViewTreeObserver.OnGlobalLayoutListener? = null
 
     companion object {
@@ -31,6 +33,11 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
         fun getInstance(isForFamily: Boolean) = CreateGoalFragment()
             .apply { arguments = bundleOf(IS_FAMILY_ARGS to isForFamily) }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        bridge = context as CreateGoalBridge
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,15 +115,18 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
             }
             CreateGoalPagerAdapter.APPLY_DEADLINE_TAB_POSITION -> {
                 btnPrevious.visible()
-                btnNext.text = getString(R.string.next)
-                btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
+                btnNext.text = getString(R.string.save)
+                btnNext.setSingleClickListener {
+                    //                    vm.saveGoal()
+                    vpCreateGoal.swipeRight(position)
+                }
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_FINISH_TAB_POSITION -> {
                 btnPrevious.visible()
                 btnNext.text = getString(R.string.finish)
                 btnNext.setSingleClickListener {
-                    //request to save the data
+                    bridge.closeCreateFragment()
                 }
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }

@@ -5,5 +5,5 @@ data class GoalUI(
     val photo: PhotoUI,
     val subGoals: List<SubGoalUI>,
     val deadline: String,
-    val isForFamily: Boolean
+    val forWhom: String
 )

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.feature.auth.AuthBridge
 import com.getz.setthegoal.presentationpart.feature.auth.AuthFragment
+import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalBridge
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalFragment
 import com.getz.setthegoal.presentationpart.feature.profile.ProfileBridge
 import com.getz.setthegoal.presentationpart.feature.profile.ProfileFragment
@@ -16,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class ForeverAloneActivity :
     AppCompatActivity(R.layout.activity_forever_alone),
-    GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge {
+    GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,10 @@ class ForeverAloneActivity :
             .add(R.id.flMain, ProfileFragment())
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun closeCreateFragment() {
+        supportFragmentManager.popBackStack()
     }
 
     override fun openCreateGoalScreen(isForFamily: Boolean) {

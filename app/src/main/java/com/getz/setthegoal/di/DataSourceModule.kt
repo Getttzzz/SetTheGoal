@@ -1,5 +1,7 @@
 package com.getz.setthegoal.di
 
+import com.getz.setthegoal.datapart.datasource.GoalRemoteDS
+import com.getz.setthegoal.datapart.datasource.IGoalDS
 import com.getz.setthegoal.datapart.datasource.IPartOfSpeechDS
 import com.getz.setthegoal.datapart.datasource.IPhotoDS
 import com.getz.setthegoal.datapart.datasource.IQuoteDS
@@ -18,4 +20,5 @@ val dataSourceModule = Kodein.Module(ModulesNames.DATA_SOURCE_MODULE) {
     bind<IPartOfSpeechDS>() with singleton { PartOfSpeechRemoteDS(instance()) }
     bind<ITranslatorDS>() with singleton { TranslatorRemoteDS(instance()) }
     bind<IPhotoDS>() with singleton { PhotoRemoteDS(instance()) }
+    bind<IGoalDS>() with singleton { GoalRemoteDS(instance()) }
 }

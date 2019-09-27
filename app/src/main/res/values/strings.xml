@@ -89,5 +89,6 @@
     <string name="sign_out">Sign out</string>
     <string name="you_are_signed_in_as">You are signed in as</string>
     <string name="linking_account_was_failed">Linking account was failed.</string>
+    <string name="save">Save</string>
 
 </resources>
