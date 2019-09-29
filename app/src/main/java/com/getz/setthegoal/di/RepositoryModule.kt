@@ -22,5 +22,12 @@ val repositoryModule = Kodein.Module(ModulesNames.REPOSITORY_MODULE) {
     }
     bind<IPhotoRepository>() with singleton { PhotoRepository(instance(), instance()) }
     bind<ITranslatorRepository>() with singleton { TranslatorRepository(instance()) }
-    bind<IGoalRepository>() with singleton { GoalRepository(instance(), instance()) }
+    bind<IGoalRepository>() with singleton {
+        GoalRepository(
+            instance(),
+            instance(),
+            instance(),
+            instance()
+        )
+    }
 }

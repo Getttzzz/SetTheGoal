@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestore
 
 const val COLLECTION_GOALS = "goals"
+const val OWNER_ID = "ownerId"
 
 class GoalRemoteDS(
     private val firestore: FirebaseFirestore
@@ -16,14 +17,23 @@ class GoalRemoteDS(
         onResult(task.isSuccessful)
     }
 
-    override suspend fun getGoals(): List<GoalDto> {
+    override fun getGoals(uid: String, onResult: (List<GoalDto>) -> Unit) {
+        firestore.collection(COLLECTION_GOALS)
+            .whereEqualTo(OWNER_ID, uid)
+            .addSnapshotListener { querySnapshot, e ->
+                val result = arrayListOf<GoalDto>()
 
-//        firestore.collection(COLLECTION_GOALS)
-//            .addSnapshotListener { snapshot, exception ->
-//                snapshot?.
-//            }
+                querySnapshot?.let {
+                    it.documents.forEach {
+                        val goalDto = it.toObject(GoalDto::class.java)
+                        println("GETTTZZZ.GoalRemoteDS.getGoals ---> goalDto=$goalDto")
 
+                        goalDto?.let { result.add(it) }
+                    }
+                }
 
-        return emptyList()
+                onResult(result)
+            }
+
     }
 }

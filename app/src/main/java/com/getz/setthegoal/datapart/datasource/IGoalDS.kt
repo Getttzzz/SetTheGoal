@@ -4,7 +4,7 @@ import com.getz.setthegoal.datapart.entitylayer.GoalDto
 
 interface IGoalDS {
     suspend fun createGoal(goalDto: GoalDto, onResult: suspend (Boolean) -> Unit)
-    suspend fun getGoals(): List<GoalDto>
+    fun getGoals(uid: String, onResult: (List<GoalDto>) -> Unit)
 //    suspend fun updateGoal()
 //    suspend fun deleteGoal()
 }

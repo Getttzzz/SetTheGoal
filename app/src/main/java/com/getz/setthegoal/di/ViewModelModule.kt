@@ -9,20 +9,24 @@ import org.kodein.di.TT
 import org.kodein.di.direct
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
-import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
 val viewModelModule = Kodein.Module(ModulesNames.VIEW_MODEL_MODULE) {
     import(factoryModule)
 
-    bind<GoalsVM>(tag = GoalsVM::class.java.simpleName) with
-            provider { GoalsVM(instance()) }
+    bind<GoalsVM>(tag = GoalsVM::class.java.simpleName) with singleton {
+        GoalsVM(
+            instance(),
+            instance(),
+            instance()
+        )
+    }
+
+
     /**
      * Shared view model. That's why it's singleton
      * */
-
     //todo learn kodein scopes https://kodein.org/Kodein-DI/?6.4/core#_scope
-
     bind<CreateGoalVM>(tag = CreateGoalVM::class.java.simpleName) with
             singleton {
                 CreateGoalVM(
