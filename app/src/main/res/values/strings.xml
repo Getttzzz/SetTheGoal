@@ -91,5 +91,6 @@
     <string name="linking_account_was_failed">Linking account was failed.</string>
     <string name="save">Save</string>
     <string name="you_are_offline">You are offline</string>
+    <string name="sub_goals_done">Sub goals done: %1$d/%2$d</string>
 
 </resources>

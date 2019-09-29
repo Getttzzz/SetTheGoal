@@ -91,5 +91,6 @@
     <string name="linking_account_was_failed">Связывание аккаунта прошло с ошибкой.</string>
     <string name="save">Сохр.</string>
     <string name="you_are_offline">Вы вне сети</string>
+    <string name="sub_goals_done">Подцелей выполнено: %1$d/%2$d</string>
 
 </resources>

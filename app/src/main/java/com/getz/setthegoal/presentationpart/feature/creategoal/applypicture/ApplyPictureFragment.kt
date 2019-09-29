@@ -74,37 +74,31 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         })
     }
 
-    private fun setupPhotoAdapter(): PhotoAdapter {
-        val photoAdapter = PhotoAdapter()
-            .apply {
-                onClick = { position ->
-                    this.select(position)
-                    val photo = this.godList[position]
-                    vm.selectedPhoto = photo
-                }
-                onAuthorClick = { position ->
-                    val photo = this.godList[position]
-                    openLink(photo.profileLink, this@ApplyPictureFragment.context!!)
-                }
-            }
-        rvPhotos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rvPhotos.adapter = photoAdapter
-        return photoAdapter
+    private fun setupPhotoAdapter() = PhotoAdapter().apply {
+        onClick = { position ->
+            this.select(position)
+            val photo = this.godList[position]
+            vm.selectedPhoto = photo
+        }
+        onAuthorClick = { position ->
+            val photo = this.godList[position]
+            openLink(photo.profileLink, this@ApplyPictureFragment.context!!)
+        }
+        rvPhotos.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvPhotos.adapter = this
     }
 
-    private fun setupWordAdapter(): WordAdapter {
-        val wordAdapter = WordAdapter()
-            .apply {
-                onClick = { position ->
-                    this.select(position)
-                    val selectedWord = this.godList[position]
-                    vm.getPhotos(selectedWord.originalWord, Locale.getDefault())
-                    changeDescriptionState(false)
-                }
-            }
-        rvWords.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rvWords.adapter = wordAdapter
-        return wordAdapter
+    private fun setupWordAdapter() = WordAdapter().apply {
+        onClick = { position ->
+            this.select(position)
+            val selectedWord = this.godList[position]
+            vm.getPhotos(selectedWord.originalWord, Locale.getDefault())
+            changeDescriptionState(false)
+        }
+        rvWords.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvWords.adapter = this
     }
 
     private fun changeDescriptionState(needSelectWord: Boolean) {

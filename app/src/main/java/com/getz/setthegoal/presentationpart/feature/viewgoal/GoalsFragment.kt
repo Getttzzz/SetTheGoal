@@ -79,7 +79,16 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
             immediatelyHideFab()
             bridge.openCreateGoalScreen(false)
         }
+        mcvCreateForMyself.setSingleClickListener {
+            immediatelyHideFab()
+            bridge.openCreateGoalScreen(false)
+        }
+
         fabCreateForFamily.setSingleClickListener {
+            immediatelyHideFab()
+            bridge.openCreateGoalScreen(true)
+        }
+        mcvCreateForFamily.setSingleClickListener {
             immediatelyHideFab()
             bridge.openCreateGoalScreen(true)
         }
@@ -99,7 +108,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
                 fabAddNewGoal.startAnimation(fabRotateOpositeClock)
                 fabCreateForMyself.hide()
                 fabCreateForFamily.hide()
-                tvCreateForMyself.visibility = View.GONE
+                mcvCreateForMyself.visibility = View.GONE
                 mcvCreateForFamily.visibility = View.GONE
                 false
             } else {
@@ -107,7 +116,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
                 fabAddNewGoal.startAnimation(fabRotateClock)
                 fabCreateForMyself.show()
                 fabCreateForFamily.show()
-                tvCreateForMyself.visibility = View.VISIBLE
+                mcvCreateForMyself.visibility = View.VISIBLE
                 mcvCreateForFamily.visibility = View.VISIBLE
                 true
             }
@@ -118,7 +127,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         fabAddNewGoal.startAnimation(fabRotateOpositeClock)
         fabCreateForMyself.visibility = View.INVISIBLE
         fabCreateForFamily.visibility = View.INVISIBLE
-        tvCreateForMyself.visibility = View.GONE
+        mcvCreateForMyself.visibility = View.GONE
         mcvCreateForFamily.visibility = View.GONE
         isOpened = false
     }

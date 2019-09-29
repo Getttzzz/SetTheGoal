@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
+import kotlinx.android.synthetic.main.fragment_goals_for_family.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
 
@@ -21,12 +23,27 @@ class GoalsForFamilyFragment : BaseFragment(R.layout.fragment_goals_for_family) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = setupGoalAdapter()
 
         vm.goalsLD.observe(this, Observer { goals ->
-            println("GETTTZZZ.GoalsForFamilyFragment.onViewCreated ---> goals=$goals")
+            adapter.replace(goals)
         })
 
-        println("GETTTZZZ.GoalsForFamilyFragment.onViewCreated --->  vm.loadGoals()")
         vm.loadGoals()
     }
+
+    private fun setupGoalAdapter() = GoalAdapter().apply {
+        rvGoalsForFamily.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvGoalsForFamily.adapter = this
+        onClick = { position ->
+            val goalUI = this.godList[position]
+            println("GETTTZZZ.GoalsForFamilyFragment.setupGoalAdapter ---> click on $goalUI")
+        }
+        onOptionsClick = { position ->
+            val goalUI = this.godList[position]
+            println("GETTTZZZ.GoalsForFamilyFragment.setupGoalAdapter ---> option click on $goalUI")
+        }
+    }
+
 }

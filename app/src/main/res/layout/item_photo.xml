@@ -17,6 +17,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--
+        Parameters
+            adjustViewBounds="true" and
+            scaleType="fitCenter" and
+            minWidth="100dp" and
+            layout_width="match_parent" and
+            layout_height="match_parent"
+        are required to get next behavior:
+        View will be the same as Photo (h and w) but
+        limited according predefined parent container height
+        -->
         <ImageView
             android:id="@+id/ivPhoto"
             android:layout_width="match_parent"
