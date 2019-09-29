@@ -11,7 +11,16 @@ class DomainToDataGoalMapper(
 
     override fun transform(source: Goal): GoalDto {
         val uid = auth.currentUser?.uid ?: "empty_uid"
-        return GoalDto(source.text, uid)
+
+        return GoalDto(
+            ownerId = uid,
+            text = source.text,
+            photo = source.photo,
+            subGoals = source.subGoals,
+            deadline = source.deadline,
+            forWhom = source.forWhom,
+            done = source.done
+        )
     }
 
 }

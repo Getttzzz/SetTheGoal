@@ -14,13 +14,44 @@ class DomainToPresentationGoalMapper : Gandalf<List<Goal>, List<GoalUI>> {
 
         source.forEach { goal ->
 
-            val urls = UrlsUI("", "", "", "", "")
-            val photoUI = PhotoUI(urls, "", "", "", false)
-            val subGoals = arrayListOf(SubGoalUI("", 1))
-            val deadline = "six_months"
-            val forWhom = "family"
+            val urlsDomain = goal.photo?.urls
+            val urls = UrlsUI(
+                urlsDomain?.raw ?: "",
+                urlsDomain?.full ?: "",
+                urlsDomain?.regular ?: "",
+                urlsDomain?.small ?: "",
+                urlsDomain?.thumb ?: ""
+            )
 
-            result.add(GoalUI(goal.text, photoUI, subGoals, deadline, forWhom))
+            val photoUI = PhotoUI(
+                urls = urls,
+                incrementDownloadLink = goal.photo?.incrementDownloadLink ?: "",
+                userName = goal.photo?.userName ?: "",
+                profileLink = goal.photo?.profileLink ?: "",
+                isSelected = false
+            )
+
+            val subGoals = arrayListOf<SubGoalUI>()
+            goal.subGoals.forEach { subGoalDomain ->
+                subGoals.add(
+                    SubGoalUI(
+                        goal = subGoalDomain.goal,
+                        order = subGoalDomain.order,
+                        done = subGoalDomain.done
+                    )
+                )
+            }
+
+            result.add(
+                GoalUI(
+                    text = goal.text,
+                    photo = photoUI,
+                    subGoals = subGoals,
+                    deadline = goal.deadline,
+                    forWhom = goal.forWhom,
+                    done = goal.done
+                )
+            )
         }
 
         return result

@@ -62,7 +62,8 @@ class CreateGoalVM(
             photo = selectedPhoto,
             subGoals = selectedSubTasks,
             deadline = selectedDeadline,
-            forWhom = if (isForFamily) "family" else "myself"
+            forWhom = if (isForFamily) "family" else "myself",
+            done = false
         )
         val goalDomain = toDomainGoalMapper.transform(goalUI)
         createGoalUC.invoke(goalDomain, ::processError) { success ->

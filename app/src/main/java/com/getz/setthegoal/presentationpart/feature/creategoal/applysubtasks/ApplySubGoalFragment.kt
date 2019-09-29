@@ -28,7 +28,7 @@ class ApplySubGoalFragment : BaseFragment(R.layout.fragment_apply_sub_goal) {
         val subGoalAdapter = setupSubGoalAdapter()
 
         btnAddSubGoal.setSingleClickListener(300) {
-            subGoalAdapter.addOneItem(SubGoalUI("", subGoalAdapter.godList.size + 1))
+            subGoalAdapter.addOneItem(SubGoalUI("", subGoalAdapter.godList.size + 1, false))
         }
 
         vm.selectedSubTasks = subGoalAdapter.godList
