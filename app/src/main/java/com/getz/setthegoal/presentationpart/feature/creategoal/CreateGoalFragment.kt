@@ -12,12 +12,10 @@ import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.util.addKeyboardListener
 import com.getz.setthegoal.presentationpart.util.addOnPageSelectedListener
-import com.getz.setthegoal.presentationpart.util.gone
 import com.getz.setthegoal.presentationpart.util.removeKeyboardListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import com.getz.setthegoal.presentationpart.util.swipeLeft
 import com.getz.setthegoal.presentationpart.util.swipeRight
-import com.getz.setthegoal.presentationpart.util.visible
 import kotlinx.android.synthetic.main.fragment_create_goal.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
@@ -90,32 +88,33 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
     private fun selectPage(position: Int) {
         when (position) {
             CreateGoalPagerAdapter.WRITE_GOAL_TAB_POSITION -> {
-                btnPrevious.gone()
                 btnNext.text = getString(R.string.next)
+                btnPrevious.text = getString(R.string.close)
+
                 btnNext.setSingleClickListener {
                     vm.recognizePartsOfSpeech()
                     vpCreateGoal.swipeRight(position)
                 }
-                btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
+                btnPrevious.setSingleClickListener { bridge.closeCreateFragment() }
             }
             CreateGoalPagerAdapter.APPLY_PICTURE_TAB_POSITION -> {
-                btnPrevious.visible()
                 btnNext.text = getString(R.string.next)
+                btnPrevious.text = getString(R.string.previous)
 
                 btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
-                btnPrevious.setSingleClickListener {
-                    vpCreateGoal.swipeLeft(position)
-                }
+                btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_SUBTASKS_TAB_POSITION -> {
-                btnPrevious.visible()
                 btnNext.text = getString(R.string.next)
+                btnPrevious.text = getString(R.string.previous)
+
                 btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_DEADLINE_TAB_POSITION -> {
-                btnPrevious.visible()
                 btnNext.text = getString(R.string.save)
+                btnPrevious.text = getString(R.string.previous)
+
                 btnNext.setSingleClickListener {
                     vm.saveGoal()
                     vpCreateGoal.swipeRight(position)
@@ -123,12 +122,11 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_FINISH_TAB_POSITION -> {
-                btnPrevious.visible()
                 btnNext.text = getString(R.string.finish)
-                btnNext.setSingleClickListener {
-                    bridge.closeCreateFragment()
-                }
-                btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
+                btnPrevious.text = getString(R.string.close)
+
+                btnNext.setSingleClickListener { bridge.closeCreateFragment() }
+                btnPrevious.setSingleClickListener { bridge.closeCreateFragment() }
             }
         }
     }

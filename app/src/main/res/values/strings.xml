@@ -92,5 +92,6 @@
     <string name="save">Save</string>
     <string name="you_are_offline">You are offline</string>
     <string name="sub_goals_done">Sub goals done: %1$d/%2$d</string>
+    <string name="close">Close</string>
 
 </resources>
