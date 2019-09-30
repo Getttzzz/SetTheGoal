@@ -81,7 +81,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         selectPage(CreateGoalPagerAdapter.WRITE_GOAL_TAB_POSITION)
         vpCreateGoal.adapter = CreateGoalPagerAdapter(childFragmentManager)
         vpCreateGoal.addOnPageSelectedListener { position -> selectPage(position) }
-        vpCreateGoal.offscreenPageLimit = 5
+        vpCreateGoal.offscreenPageLimit = STEPS_TO_CREATE
         tlCreateGoal.setupWithViewPager(vpCreateGoal, true)
     }
 

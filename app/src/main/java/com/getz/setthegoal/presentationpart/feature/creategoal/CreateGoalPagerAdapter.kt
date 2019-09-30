@@ -9,6 +9,8 @@ import com.getz.setthegoal.presentationpart.feature.creategoal.applypicture.Appl
 import com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks.ApplySubGoalFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.writegoal.WriteGoalFragment
 
+const val STEPS_TO_CREATE = 5
+
 class CreateGoalPagerAdapter(fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -29,5 +31,5 @@ class CreateGoalPagerAdapter(fm: FragmentManager) :
         else -> throw IllegalArgumentException("Wrong position.")
     }
 
-    override fun getCount() = 5
+    override fun getCount() = STEPS_TO_CREATE
 }

@@ -33,6 +33,9 @@ class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        vm.nextButtonSharedLD.value = false
+        btnNextSecondary.isEnabled = false
+
         setupLD()
         setupNextBtnValidation()
         setupAdapter()
