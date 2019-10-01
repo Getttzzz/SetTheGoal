@@ -12,6 +12,7 @@ class DataToDomainGoalMapper : Gandalf<List<GoalDto>, List<Goal>> {
 
             result.add(
                 Goal(
+                    goalId = dto.goalId,
                     text = dto.text,
                     photo = dto.photo,
                     subGoals = dto.subGoals,

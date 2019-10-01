@@ -46,6 +46,7 @@ class DomainToPresentationGoalMapper : Gandalf<List<Goal>, List<GoalUI>> {
 
             result.add(
                 GoalUI(
+                    goalId = goal.goalId,
                     text = goal.text,
                     photo = photoUI,
                     subGoals = subGoals,

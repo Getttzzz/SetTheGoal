@@ -43,6 +43,7 @@ class PresentationToDomainGoalMapper : Gandalf<GoalUI, Goal> {
         }
 
         return Goal(
+            goalId = source.goalId,
             text = source.text,
             photo = photoDomain,
             subGoals = subGoalsDomain,

@@ -13,6 +13,7 @@ class DomainToDataGoalMapper(
         val uid = auth.currentUser?.uid ?: "empty_uid"
 
         return GoalDto(
+            goalId = source.goalId,
             ownerId = uid,
             text = source.text,
             photo = source.photo,

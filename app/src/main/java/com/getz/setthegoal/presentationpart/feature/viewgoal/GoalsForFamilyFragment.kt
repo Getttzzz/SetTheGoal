@@ -38,11 +38,12 @@ class GoalsForFamilyFragment : BaseFragment(R.layout.fragment_goals_for_family) 
         rvGoalsForFamily.adapter = this
         onClick = { position ->
             val goalUI = this.godList[position]
-            println("GETTTZZZ.GoalsForFamilyFragment.setupGoalAdapter ---> click on $goalUI")
         }
         onOptionsClick = { position ->
             val goalUI = this.godList[position]
-            println("GETTTZZZ.GoalsForFamilyFragment.setupGoalAdapter ---> option click on $goalUI")
+            if (goalUI.goalId.isNotEmpty()) {
+                vm.deleteGoal(goalUI.goalId)
+            }
         }
     }
 

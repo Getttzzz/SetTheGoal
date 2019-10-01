@@ -57,6 +57,7 @@ class CreateGoalVM(
 
     fun saveGoal() = launch {
         val goalUI = GoalUI(
+            goalId = "",
             text = writtenGoalText,
             photo = selectedPhoto,
             subGoals = selectedSubTasks,

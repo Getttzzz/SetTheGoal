@@ -1,6 +1,7 @@
 package com.getz.setthegoal.presentationpart.entitylayer
 
 data class GoalUI(
+    val goalId: String,
     val text: String,
     val photo: PhotoUI?,
     val subGoals: List<SubGoalUI>,

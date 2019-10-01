@@ -18,6 +18,7 @@ val viewModelModule = Kodein.Module(ModulesNames.VIEW_MODEL_MODULE) {
         GoalsVM(
             instance(),
             instance(),
+            instance(),
             instance()
         )
     }

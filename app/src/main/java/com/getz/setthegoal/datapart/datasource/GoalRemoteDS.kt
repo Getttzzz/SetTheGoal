@@ -12,7 +12,24 @@ class GoalRemoteDS(
 ) : IGoalDS {
 
     override suspend fun createGoal(goalDto: GoalDto, onResult: suspend (Boolean) -> Unit) {
-        val task = firestore.collection(COLLECTION_GOALS).add(goalDto)
+        val newDocumentRef = firestore.collection(COLLECTION_GOALS).document()
+        goalDto.goalId = newDocumentRef.id
+        val task = newDocumentRef.set(goalDto)
+        Tasks.await(task)
+        onResult(task.isSuccessful)
+    }
+
+    /**
+     * Interesting fact: to delete created offline model, first of all, developer should
+     * insert document ref (mean 'id') into the model. After that step, it's easy to delete
+     * offline model by doc ref.
+     *
+     * However, Doug Stevenson (Google Developer Advocate) said:
+     * There's no API for manipulating the local cache in any way.
+     * Source: https://stackoverflow.com/a/48932470/12009139
+     * */
+    override suspend fun deleteGoal(goalId: String, onResult: suspend (Boolean) -> Unit) {
+        val task = firestore.collection(COLLECTION_GOALS).document(goalId).delete()
         Tasks.await(task)
         onResult(task.isSuccessful)
     }
@@ -25,10 +42,7 @@ class GoalRemoteDS(
 
                 querySnapshot?.let {
                     it.documents.forEach {
-                        val goalDto = it.toObject(GoalDto::class.java)
-                        println("GETTTZZZ.GoalRemoteDS.getGoals ---> goalDto=$goalDto")
-
-                        goalDto?.let { result.add(it) }
+                        it.toObject(GoalDto::class.java)?.let { goalDto -> result.add(goalDto) }
                     }
                 }
 

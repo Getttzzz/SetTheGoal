@@ -9,6 +9,7 @@ import com.getz.setthegoal.domainpart.entitylayer.SubGoal
  * To provide empty constructor in data class it needs to set default values for each parameter.
  * */
 data class GoalDto(
+    var goalId: String = "",
     val ownerId: String = "",
     val text: String = "",
     val photo: Photo? = null,
