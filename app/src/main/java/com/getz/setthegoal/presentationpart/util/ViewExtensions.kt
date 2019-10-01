@@ -16,15 +16,16 @@ import android.widget.Toast
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.Transformation
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
-import com.getz.setthegoal.BuildConfig
+import com.bumptech.glide.request.target.Target
 import com.getz.setthegoal.presentationpart.core.GlideApp
 
 fun View.setSingleClickListener(interval: Int = 600, onClick: (View) -> Unit) {
@@ -121,6 +122,28 @@ fun View.visible(isVisible: Boolean) {
     if (isVisible) this.visibility = View.VISIBLE else this.visibility = View.GONE
 }
 
+fun getHideableListener(view: View) = object : RequestListener<Drawable> {
+    override fun onLoadFailed(
+        e: GlideException?,
+        model: Any?,
+        target: Target<Drawable>?,
+        isFirstResource: Boolean
+    ): Boolean {
+        view.gone()
+        return false
+    }
+
+    override fun onResourceReady(
+        resource: Drawable?,
+        model: Any?,
+        target: Target<Drawable>?,
+        dataSource: DataSource?,
+        isFirstResource: Boolean
+    ): Boolean {
+        view.gone()
+        return false
+    }
+}
 
 fun loadPicture(
     view: ImageView,
@@ -138,36 +161,12 @@ fun loadPicture(
 
     val transforms = RequestOptions().transform(*options.toTypedArray())
 
-
-//    listener = object:RequestListener<Drawable>{
-//        override fun onLoadFailed(
-//            e: GlideException?,
-//            model: Any?,
-//            target: Target<Drawable>?,
-//            isFirstResource: Boolean
-//        ): Boolean {
-//            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//        }
-//
-//        override fun onResourceReady(
-//            resource: Drawable?,
-//            model: Any?,
-//            target: Target<Drawable>?,
-//            dataSource: DataSource?,
-//            isFirstResource: Boolean
-//        ): Boolean {
-//            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//        }
-//
-//    }
-
-
     GlideApp.with(view)
         .load(url)
         .apply(transforms)
 //        .error(GlideApp.with(view).load(url).apply(transforms))
-        .diskCacheStrategy(if (BuildConfig.DEBUG) DiskCacheStrategy.NONE else DiskCacheStrategy.AUTOMATIC)
-        .skipMemoryCache(BuildConfig.DEBUG)
+//        .diskCacheStrategy(if (BuildConfig.DEBUG) DiskCacheStrategy.NONE else DiskCacheStrategy.AUTOMATIC)
+//        .skipMemoryCache(BuildConfig.DEBUG)
         .listener(listener)
         .into(view)
 }

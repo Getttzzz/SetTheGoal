@@ -3,6 +3,7 @@ package com.getz.setthegoal.datapart.api
 import com.getz.setthegoal.datapart.entitylayer.SearchPhotoResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 
 /**
@@ -31,4 +32,10 @@ interface UnsplashApi {
         @Query("per_page") perPage: Int
 //        @Query("orientation") orientation: String
     ): SearchPhotoResponse
+
+    @GET
+    suspend fun markAsDownloadedForUnsplash(
+        @Url downloadLinkToTrigger: String,
+        @Query("client_id") clientId: String
+    )
 }

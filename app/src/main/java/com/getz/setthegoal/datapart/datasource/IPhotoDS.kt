@@ -7,4 +7,6 @@ interface IPhotoDS {
         query: String,
         onResult: suspend (SearchPhotoResponse) -> Unit
     )
+
+    suspend fun markAsDownloadedForUnsplash(incrementDownloadLink: String)
 }

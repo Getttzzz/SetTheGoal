@@ -19,6 +19,6 @@ val useCaseModule = Kodein.Module(ModulesNames.USE_CASE_MODULE) {
     bind<IGetQuoteUC>() with singleton { GetQuoteUC(instance()) }
     bind<IGetPartsOfSpeechUC>() with singleton { GetPartsOfSpeechUC(instance()) }
     bind<IGetPhotoUC>() with singleton { GetPhotoUC(instance(), instance()) }
-    bind<ICreateGoalUC>() with singleton { CreateGoalUC(instance()) }
+    bind<ICreateGoalUC>() with singleton { CreateGoalUC(instance(), instance()) }
     bind<IGetGoalsUC>() with singleton { GetGoalsUC(instance()) }
 }

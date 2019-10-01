@@ -9,6 +9,7 @@
 
     <color name="colorText">#444444</color>
 
+    <color name="colorGrayTheLightestWinner">#F7F8FA</color>
     <color name="colorGrayTheLightest">#F3F3F3</color>
     <color name="colorGrayLight">#E9E9E9</color>
     <color name="colorGrayDark">#929292</color>

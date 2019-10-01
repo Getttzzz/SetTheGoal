@@ -12,7 +12,6 @@ import com.getz.setthegoal.presentationpart.core.BaseVm
 import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
 import com.getz.setthegoal.presentationpart.entitylayer.PhotoUI
 import com.getz.setthegoal.presentationpart.entitylayer.SubGoalUI
-import com.getz.setthegoal.presentationpart.entitylayer.UrlsUI
 import com.getz.setthegoal.presentationpart.entitylayer.WordUI
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -36,7 +35,7 @@ class CreateGoalVM(
     var isForFamily = false
 
     var writtenGoalText: String = ""
-    var selectedPhoto: PhotoUI = PhotoUI(UrlsUI("", "", "", "", ""), "", "", "", false)
+    var selectedPhoto: PhotoUI? = null
     var selectedSubTasks: List<SubGoalUI> = listOf()
     var selectedDeadline: String = ""
 
@@ -65,10 +64,9 @@ class CreateGoalVM(
             forWhom = if (isForFamily) "family" else "myself",
             done = false
         )
-        val goalDomain = toDomainGoalMapper.transform(goalUI)
-        createGoalUC.invoke(goalDomain, ::processError) { success ->
-            println("GETTTZZZ.CreateGoalVM.saveGoal ---> success=$success")
-        }
-    }
 
+        val goalDomain = toDomainGoalMapper.transform(goalUI)
+
+        createGoalUC.invoke(goalDomain, ::processError) {}
+    }
 }

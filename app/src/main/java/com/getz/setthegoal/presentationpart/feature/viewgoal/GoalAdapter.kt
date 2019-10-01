@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.request.RequestOptions
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseAdapter
+import com.getz.setthegoal.presentationpart.core.GlideApp
 import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
-import com.getz.setthegoal.presentationpart.util.loadPicture
+import com.getz.setthegoal.presentationpart.util.getHideableListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.item_goal.view.*
 
@@ -25,7 +27,12 @@ class GoalAdapter : BaseAdapter<GoalUI, GoalAdapter.VH>() {
     override fun onBindViewHolder(holder: VH, position: Int) {
         val goal = godList[position]
 
-        loadPicture(holder.view.ivPhotoGoal, goal.photo.urls.small, isCenterCrop = true)
+        GlideApp.with(holder.view)
+            .load(goal.photo?.urls?.small ?: "")
+            .apply(RequestOptions().centerCrop())
+            .listener(getHideableListener(holder.view.pbPhotoGoal))
+            .error(R.drawable.layer_list_bee)
+            .into(holder.view.ivPhotoGoal)
 
         holder.view.tvGoal.text = goal.text
         holder.view.tvSubGoalsDone.isVisible = goal.subGoals.isNotEmpty()

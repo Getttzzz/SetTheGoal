@@ -27,16 +27,32 @@
             android:adjustViewBounds="true"
             android:minWidth="20dp"
             android:scaleType="fitCenter"
+            android:background="@color/colorGrayTheLightestWinner"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_bee" />
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--tools:src="@drawable/ic_bee"-->
+
+        <ProgressBar
+            android:id="@+id/pbPhotoGoal"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_atop"
+            android:padding="12dp"
+            android:rotation="-45"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvGoal"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
@@ -55,7 +71,7 @@
             android:id="@+id/tvSubGoalsDone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="8dp"
             android:textColor="@color/colorText"

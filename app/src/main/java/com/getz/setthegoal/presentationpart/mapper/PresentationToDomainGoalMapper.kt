@@ -11,21 +11,25 @@ class PresentationToDomainGoalMapper : Gandalf<GoalUI, Goal> {
 
     override fun transform(source: GoalUI): Goal {
 
-        val urlsUI = source.photo.urls
-        val urlsDomain = UrlsDomain(
-            raw = urlsUI.raw,
-            full = urlsUI.full,
-            regular = urlsUI.regular,
-            small = urlsUI.small,
-            thumb = urlsUI.thumb
-        )
 
-        val photoDomain = Photo(
-            urls = urlsDomain,
-            incrementDownloadLink = source.photo.incrementDownloadLink,
-            userName = source.photo.userName,
-            profileLink = source.photo.profileLink
-        )
+        val photoDomain = if (source.photo != null) {
+            val urlsUI = source.photo.urls
+            val urlsDomain = UrlsDomain(
+                raw = urlsUI.raw,
+                full = urlsUI.full,
+                regular = urlsUI.regular,
+                small = urlsUI.small,
+                thumb = urlsUI.thumb
+            )
+
+            Photo(
+                urls = urlsDomain,
+                incrementDownloadLink = source.photo.incrementDownloadLink,
+                userName = source.photo.userName,
+                profileLink = source.photo.profileLink
+            )
+        } else null
+
 
         val subGoalsDomain = arrayListOf<SubGoal>()
         source.subGoals.forEach { subGoalUI ->

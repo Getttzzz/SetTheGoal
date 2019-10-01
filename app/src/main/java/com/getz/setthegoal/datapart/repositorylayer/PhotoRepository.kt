@@ -17,4 +17,8 @@ class PhotoRepository(
             onResult(gandalfMapper.transform(response))
         }
     }
+
+    override suspend fun markAsDownloadedForUnsplash(incrementDownloadLink: String) {
+        remotePhotoDS.markAsDownloadedForUnsplash(incrementDownloadLink)
+    }
 }
