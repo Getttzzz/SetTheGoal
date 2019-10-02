@@ -3,15 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvPhotoRoot"
-    android:layout_width="wrap_content"
+    android:layout_width="160dp"
     android:layout_height="160dp"
     android:layout_margin="8dp"
-    android:checkable="true"
     android:theme="@style/AppTheme.Yellow"
     app:cardCornerRadius="0dp"
     app:cardElevation="4dp"
-    app:cardPreventCornerOverlap="false"
-    app:checkedIcon="@drawable/ic_check_flag">
+    app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,7 +30,6 @@
             android:id="@+id/ivPhoto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
             android:minWidth="100dp"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,19 +38,59 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_infinity" />
 
+        <ProgressBar
+            android:id="@+id/pbPhoto"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_atop"
+            android:padding="12dp"
+            android:rotation="-45"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvAuthor"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:background="@color/colorBlackOpacity10"
+            android:ellipsize="end"
             android:gravity="center"
-            android:maxLines="2"
+            android:maxLines="1"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
             android:textColor="@android:color/white"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Annie Spratt" />
+
+        <LinearLayout
+            android:id="@+id/llCarpet"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorAccentOpacity50"
+            android:gravity="end"
+
+            android:visibility="gone"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_check_flag" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
