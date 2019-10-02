@@ -33,7 +33,7 @@
             android:textSize="16sp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAnotherPicture"
+            android:id="@+id/btnFindAnotherPicture"
             style="?materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

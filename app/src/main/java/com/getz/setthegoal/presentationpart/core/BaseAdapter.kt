@@ -11,4 +11,9 @@ abstract class BaseAdapter<ENTITY, VH : RecyclerView.ViewHolder>(
         godList.addAll(collection)
         notifyDataSetChanged()
     }
+
+    fun clean() {
+        godList.clear()
+        notifyDataSetChanged()
+    }
 }

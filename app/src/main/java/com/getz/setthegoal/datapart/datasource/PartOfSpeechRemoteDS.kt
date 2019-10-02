@@ -4,6 +4,7 @@ import com.getz.setthegoal.BuildConfig
 import com.getz.setthegoal.datapart.api.TexterraApi
 import com.getz.setthegoal.datapart.entitylayer.ResponsePOS
 import com.getz.setthegoal.datapart.entitylayer.TextObj
+import com.getz.setthegoal.datapart.entitylayer.customexception.ResultWasEmptyException
 
 class PartOfSpeechRemoteDS(
     val api: TexterraApi
@@ -19,10 +20,8 @@ class PartOfSpeechRemoteDS(
             requestPOS = requestPOS
         )
 
-        if (partOfSpeechFromText.isNotEmpty()) {
+        if (partOfSpeechFromText.isNotEmpty() && partOfSpeechFromText[0].annotations?.words?.isNotEmpty()!!) {
             onResult(partOfSpeechFromText[0])
-        } else {
-            throw Throwable("Result was empty.")
-        }
+        } else throw ResultWasEmptyException()
     }
 }

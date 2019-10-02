@@ -11,12 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
-import com.getz.setthegoal.presentationpart.util.gone
 import com.getz.setthegoal.presentationpart.util.hideKeyboard
 import com.getz.setthegoal.presentationpart.util.openLink
-import com.getz.setthegoal.presentationpart.util.say
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_apply_picture.*
+import kotlinx.android.synthetic.main.layout_found_nothing.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
 import java.util.Locale
@@ -24,6 +23,8 @@ import java.util.Locale
 class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
 
     private lateinit var vm: CreateGoalVM
+    private val photoAdapter: PhotoAdapter by lazy { setupPhotoAdapter() }
+    private val wordAdapter: WordAdapter by lazy { setupWordAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +35,12 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         super.onViewCreated(view, savedInstanceState)
 
         setupUnsplashView()
+        showFoundNothingView(false)
+        setupLD()
 
-        val wordAdapter = setupWordAdapter()
-        val photoAdapter = setupPhotoAdapter()
-
-        setupLD(wordAdapter, photoAdapter)
-
-        //todo fix use-case when photos result is empty
-        //todo add validation for Next button
+        btnFindAnotherPicture.setSingleClickListener {
+            //todo implement get random pictures from unsplash request
+        }
     }
 
     override fun onResume() {
@@ -57,24 +56,34 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         tvUnsplash.setSingleClickListener { openLink(getString(R.string.unsplash_url), context!!) }
     }
 
-    private fun setupLD(wordAdapter: WordAdapter, photoAdapter: PhotoAdapter) {
+    private fun setupLD() {
         vm.recognizedWordsLD.observe(this, Observer { words ->
+            photoAdapter.clean()
             changeDescriptionState(true)
-            loadingWords.gone()
             wordAdapter.replace(words)
         })
-        vm.photosResultLD.observe(this, Observer { photos ->
-            photoAdapter.replace(photos)
-        })
-        vm.errorLD.observe(this, Observer { this.say(it) })
+        vm.photosResultLD.observe(this, Observer { photos -> photoAdapter.replace(photos) })
         vm.loadingPhotosLD.observe(this, Observer { loading ->
             ivBeeIdle.isVisible = !loading
             rvPhotos.isVisible = !loading
             loadingPhotos.isVisible = loading
         })
+        vm.loadingWordsLD.observe(this, Observer { loading ->
+            rvWords?.let { it.isVisible = !loading }
+            loadingWords?.let { it.isVisible = loading }
+        })
+        vm.photoWasEmptyLD.observe(this, Observer { showFoundNothingView(true) })
+    }
+
+    private fun showFoundNothingView(show: Boolean) {
+        ivBeeIdle.isVisible = !show
+        llFoundNothing.isVisible = show
     }
 
     private fun setupPhotoAdapter() = PhotoAdapter().apply {
+
+        //todo fix wrong width in neighbour item
+
         onClick = { position ->
             this.select(position)
             val photo = this.godList[position]
@@ -105,5 +114,4 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         tvSelectWord.isVisible = needSelectWord
         tvSelectPhoto.isVisible = !needSelectWord
     }
-
 }

@@ -3,6 +3,7 @@ package com.getz.setthegoal.datapart.datasource
 import com.getz.setthegoal.BuildConfig
 import com.getz.setthegoal.datapart.api.UnsplashApi
 import com.getz.setthegoal.datapart.entitylayer.SearchPhotoResponse
+import com.getz.setthegoal.datapart.entitylayer.customexception.ResultWasEmptyException
 
 class PhotoRemoteDS(
     val api: UnsplashApi
@@ -21,9 +22,7 @@ class PhotoRemoteDS(
 
         if (response.results.isNotEmpty()) {
             onResult(response)
-        } else {
-            throw Throwable("Result was empty.")
-        }
+        } else throw ResultWasEmptyException()
     }
 
     override suspend fun markAsDownloadedForUnsplash(incrementDownloadLink: String) {

@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
-import com.getz.setthegoal.presentationpart.util.addKeyboardListener
 import com.getz.setthegoal.presentationpart.util.addOnPageSelectedListener
-import com.getz.setthegoal.presentationpart.util.removeKeyboardListener
+import com.getz.setthegoal.presentationpart.util.say
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import com.getz.setthegoal.presentationpart.util.swipeLeft
 import com.getz.setthegoal.presentationpart.util.swipeRight
@@ -45,36 +43,36 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        println("GETTTZZZ.CreateGoalFragment.onViewCreated ---> ")
-
         vm.isForFamily = arguments?.getBoolean(IS_FAMILY_ARGS, false)!!
         setupViewPager()
         setupLD()
     }
 
-    override fun onResume() {
-        super.onResume()
-        //clRootCreateGoal.doOnLayout {}
-        keyboardListener = clRootCreateGoal.addKeyboardListener { isOpened ->
-            vm.keyboardListenerLD.value = isOpened
-
-            if (btnNext != null) {
-                btnNext.isVisible = !isOpened
-            }
-        }
-    }
-
-    override fun onPause() {
-        clRootCreateGoal.removeKeyboardListener(keyboardListener)
-        keyboardListener = null
-        super.onPause()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        //todo fix keyboard opening
+//        clRootCreateGoal.doOnLayout {}
+//        keyboardListener = clRootCreateGoal.addKeyboardListener { isOpened ->
+//            vm.keyboardListenerLD.value = isOpened
+//
+//            if (btnNext != null) {
+//                btnNext.isVisible = !isOpened
+//            }
+//        }
+//    }
+//
+//    override fun onPause() {
+//        clRootCreateGoal.removeKeyboardListener(keyboardListener)
+//        keyboardListener = null
+//        super.onPause()
+//    }
 
     private fun setupLD() {
         vm.nextButtonSharedLD.observe(this, Observer { enabled ->
             btnNext.isEnabled = enabled
         })
         vm.pressNextSharedLD.observe(this, Observer { btnNext.performClick() })
+        vm.errorLD.observe(this, Observer { this.say(it) })
     }
 
     private fun setupViewPager() {

@@ -1,6 +1,7 @@
 package com.getz.setthegoal.presentationpart.feature.creategoal
 
 import androidx.lifecycle.MutableLiveData
+import com.getz.setthegoal.datapart.entitylayer.customexception.ResultWasEmptyException
 import com.getz.setthegoal.domainpart.core.Gandalf
 import com.getz.setthegoal.domainpart.entitylayer.Goal
 import com.getz.setthegoal.domainpart.entitylayer.Photo
@@ -14,6 +15,7 @@ import com.getz.setthegoal.presentationpart.entitylayer.PhotoUI
 import com.getz.setthegoal.presentationpart.entitylayer.SubGoalUI
 import com.getz.setthegoal.presentationpart.entitylayer.WordUI
 import kotlinx.coroutines.launch
+import java.net.UnknownHostException
 import java.util.Locale
 
 class CreateGoalVM(
@@ -31,28 +33,44 @@ class CreateGoalVM(
     val keyboardListenerLD = MutableLiveData<Boolean>()
     val photosResultLD = MutableLiveData<List<PhotoUI>>()
     val loadingPhotosLD = MutableLiveData<Boolean>()
+    val loadingWordsLD = MutableLiveData<Boolean>()
+    val photoWasEmptyLD = MutableLiveData<Unit>()
 
     var isForFamily = false
-
     var writtenGoalText: String = ""
     var selectedPhoto: PhotoUI? = null
-    var selectedSubTasks: List<SubGoalUI> = listOf()
+    var selectedSubTasks: List<SubGoalUI> = arrayListOf()
     var selectedDeadline: String = ""
 
     fun recognizePartsOfSpeech() = launch {
-        getPartsOfSpeechUC.invoke(writtenGoalText, ::processError) { recognizedWords ->
+        loadingWordsLD.value = true
+        getPartsOfSpeechUC.invoke(writtenGoalText, { error ->
+            loadingWordsLD.value = false
+            when (error) {
+                is ResultWasEmptyException -> Unit
+                is UnknownHostException -> Unit
+                else -> errorLD.value = error.localizedMessage
+            }
+        }, { recognizedWords ->
+            loadingWordsLD.value = false
             recognizedWordsLD.value = gandalfWordsMapper.transform(recognizedWords)
-        }
+        })
     }
 
     fun getPhotos(selectedWord: String, default: Locale) = launch {
         loadingPhotosLD.value = true
         val request = Pair(selectedWord, default)
-        getPhotoUC.invoke(request, ::processError) { photos ->
-            println("GETTTZZZ.CreateGoalVM.getPhotos ---> photos=$photos")
+        getPhotoUC.invoke(request, { error ->
+            loadingPhotosLD.value = false
+            when (error) {
+                is ResultWasEmptyException -> photoWasEmptyLD.value = Unit
+                is UnknownHostException -> Unit
+                else -> errorLD.value = error.localizedMessage
+            }
+        }, { photos ->
             photosResultLD.value = gandalfPhotosMapper.transform(photos)
             loadingPhotosLD.value = false
-        }
+        })
     }
 
     fun saveGoal() = launch {
@@ -69,5 +87,11 @@ class CreateGoalVM(
         val goalDomain = toDomainGoalMapper.transform(goalUI)
 
         createGoalUC.invoke(goalDomain, ::processError) {}
+
+        writtenGoalText = ""
+        selectedPhoto = null
+        selectedSubTasks = arrayListOf()
+        selectedDeadline = ""
+        isForFamily = false
     }
 }
