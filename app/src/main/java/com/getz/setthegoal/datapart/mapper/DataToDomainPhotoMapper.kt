@@ -23,7 +23,7 @@ class DataToDomainPhotoMapper : Gandalf<SearchPhotoResponse, List<Photo>> {
                 Photo(
                     urls = urlsForUI,
                     incrementDownloadLink = result.links.downloadLocation,
-                    userName = result.user.username,
+                    userName = result.user.name,
                     profileLink = result.user.links.html
                 )
             )
