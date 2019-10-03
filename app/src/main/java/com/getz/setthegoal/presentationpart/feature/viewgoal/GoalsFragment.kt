@@ -58,6 +58,10 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         vm.loadRandomQuote(Locale.getDefault())
     }
 
+    fun scrollToAppropriateTab(isForFamily: Boolean) {
+        vpGoals.currentItem = if (isForFamily) 0 else 1
+    }
+
     private fun setupUserIcon() {
         FirebaseAuth.getInstance().currentUser?.let { user ->
             if (!user.isAnonymous) {

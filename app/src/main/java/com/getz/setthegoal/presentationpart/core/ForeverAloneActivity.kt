@@ -23,6 +23,9 @@ import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_forever_alone.*
 
+const val TAG_GOALS_FRAGMENT = "TAG_GOALS_FRAGMENT"
+const val TAG_CREATE_GOAL_FRAGMENT = "TAG_CREATE_GOAL_FRAGMENT"
+
 class ForeverAloneActivity :
     AppCompatActivity(R.layout.activity_forever_alone),
     GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge {
@@ -70,10 +73,16 @@ class ForeverAloneActivity :
         supportFragmentManager.popBackStack()
     }
 
+    override fun scrollToAppropriateTab(isForFamily: Boolean) {
+        val goalsFragment =
+            supportFragmentManager.findFragmentByTag(TAG_GOALS_FRAGMENT) as? GoalsFragment
+        goalsFragment?.scrollToAppropriateTab(isForFamily)
+    }
+
     override fun openCreateGoalScreen(isForFamily: Boolean) {
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flMain, CreateGoalFragment.getInstance(isForFamily), "createGoalFragment")
+            .add(R.id.flMain, CreateGoalFragment.getInstance(isForFamily), TAG_CREATE_GOAL_FRAGMENT)
             .addToBackStack(null) //possibility to return back to GoalsFragment()
             .commit()
     }
@@ -92,7 +101,7 @@ class ForeverAloneActivity :
     private fun openMainScreen() {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.flMain, GoalsFragment(), "goalsFragment")
+            .replace(R.id.flMain, GoalsFragment(), TAG_GOALS_FRAGMENT)
             .commit()
     }
 

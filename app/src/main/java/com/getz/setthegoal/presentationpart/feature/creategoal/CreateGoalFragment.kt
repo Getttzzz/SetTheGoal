@@ -116,6 +116,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
                 btnNext.setSingleClickListener {
                     vm.saveGoal()
                     vpCreateGoal.swipeRight(position)
+                    bridge.scrollToAppropriateTab(vm.isForFamily)
                 }
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
