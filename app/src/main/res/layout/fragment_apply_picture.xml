@@ -144,7 +144,7 @@
             android:indeterminateTint="@color/colorPrimary"
             android:indeterminateTintMode="src_atop"
             android:padding="12dp"
-            android:rotation="90"
+            android:rotation="-45"
 
             android:visibility="gone"
 

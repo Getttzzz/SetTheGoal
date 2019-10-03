@@ -9,6 +9,8 @@ import com.getz.setthegoal.domainpart.interactorlayer.IGetGoalsUC
 import com.getz.setthegoal.domainpart.interactorlayer.IGetQuoteUC
 import com.getz.setthegoal.presentationpart.core.BaseVm
 import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
+import com.getz.setthegoal.presentationpart.feature.creategoal.CONST_FAMILY
+import com.getz.setthegoal.presentationpart.feature.creategoal.CONST_MYSELF
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -21,7 +23,8 @@ class GoalsVM(
 
     val quoteLD = MutableLiveData<Quote>()
 
-    val goalsLD = MutableLiveData<List<GoalUI>>()
+    val goalsForFamilyLD = MutableLiveData<List<GoalUI>>()
+    val goalsForMyselfLD = MutableLiveData<List<GoalUI>>()
 
     fun loadRandomQuote(locale: Locale) = launch {
         getQuoteUC.invoke(locale, ::processError) { quote ->
@@ -31,7 +34,11 @@ class GoalsVM(
 
     fun loadGoals() {
         getGoalsUC.invoke(Unit, ::processError) { goals ->
-            goalsLD.value = presentationToDomainGoalMapper.transform(goals)
+            val goalsUI = presentationToDomainGoalMapper.transform(goals)
+            val goalsForFamily = goalsUI.filter { it.forWhom == CONST_FAMILY }
+            val goalsForMyself = goalsUI.filter { it.forWhom == CONST_MYSELF }
+            goalsForFamilyLD.value = goalsForFamily
+            goalsForMyselfLD.value = goalsForMyself
         }
     }
 

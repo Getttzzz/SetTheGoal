@@ -93,5 +93,6 @@
     <string name="you_are_offline">Вы вне сети</string>
     <string name="sub_goals_done">Подцелей выполнено: %1$d/%2$d</string>
     <string name="close">Закрыть</string>
+    <string name="goals_for_myself">Цели для себя</string>
 
 </resources>

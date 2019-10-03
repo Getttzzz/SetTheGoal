@@ -1,9 +1,20 @@
 package com.getz.setthegoal.presentationpart.feature.viewgoal
 
+import android.os.Bundle
+import android.view.View
+import androidx.lifecycle.Observer
 import com.getz.setthegoal.R
-import com.getz.setthegoal.presentationpart.core.BaseFragment
+import kotlinx.android.synthetic.main.fragment_goals_for_someone.*
 
-class GoalsForMyselfFragment : BaseFragment(R.layout.fragment_goals_for_mysefl) {
+class GoalsForMyselfFragment : BaseGoalsForSomeone() {
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        tvGoalsFor.text = getString(R.string.goals_for_myself)
+        vm.goalsForMyselfLD.observe(this, Observer { goals ->
+            goalAdapter.replace(goals)
+        })
+//        vm.loadGoals()
+    }
 
 }

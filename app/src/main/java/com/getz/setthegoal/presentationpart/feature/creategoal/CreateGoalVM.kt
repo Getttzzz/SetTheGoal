@@ -18,6 +18,9 @@ import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 import java.util.Locale
 
+const val CONST_FAMILY = "family"
+const val CONST_MYSELF = "myself"
+
 class CreateGoalVM(
     private val getPartsOfSpeechUC: IGetPartsOfSpeechUC,
     private val getPhotoUC: IGetPhotoUC,
@@ -80,7 +83,7 @@ class CreateGoalVM(
             photo = selectedPhoto,
             subGoals = selectedSubTasks,
             deadline = selectedDeadline,
-            forWhom = if (isForFamily) "family" else "myself",
+            forWhom = if (isForFamily) CONST_FAMILY else CONST_MYSELF,
             done = false
         )
 

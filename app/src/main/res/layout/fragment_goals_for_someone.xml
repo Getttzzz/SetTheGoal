@@ -7,20 +7,20 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvGoalsForMyFamily"
+        android:id="@+id/tvGoalsFor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/goals_for_my_family"
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Goals for..." />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGoalsForFamily"
+        android:id="@+id/rvGoalsFor"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -30,8 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGoalsForMyFamily"
+        app:layout_constraintTop_toBottomOf="@+id/tvGoalsFor"
         tools:listitem="@layout/item_goal" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
