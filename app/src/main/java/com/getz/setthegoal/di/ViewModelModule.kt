@@ -3,7 +3,7 @@ package com.getz.setthegoal.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
-import com.getz.setthegoal.presentationpart.feature.viewgoal.GoalsVM
+import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsVM
 import org.kodein.di.Kodein
 import org.kodein.di.TT
 import org.kodein.di.direct

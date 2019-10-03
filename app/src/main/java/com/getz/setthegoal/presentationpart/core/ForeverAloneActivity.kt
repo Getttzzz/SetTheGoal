@@ -10,14 +10,17 @@ import androidx.core.view.isVisible
 import com.getz.setthegoal.R
 import com.getz.setthegoal.di.EXTRA_ONLINE_STATUS
 import com.getz.setthegoal.di.GET_CONNECTION_STATUS_ACTION
+import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
 import com.getz.setthegoal.presentationpart.feature.auth.AuthBridge
 import com.getz.setthegoal.presentationpart.feature.auth.AuthFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalBridge
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalFragment
 import com.getz.setthegoal.presentationpart.feature.profile.ProfileBridge
 import com.getz.setthegoal.presentationpart.feature.profile.ProfileFragment
-import com.getz.setthegoal.presentationpart.feature.viewgoal.GoalsBridge
-import com.getz.setthegoal.presentationpart.feature.viewgoal.GoalsFragment
+import com.getz.setthegoal.presentationpart.feature.viewgoaldetails.ViewGoalFragment
+import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsBridge
+import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsFragment
+import com.getz.setthegoal.presentationpart.feature.viewgoals.ViewGoalBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +31,7 @@ const val TAG_CREATE_GOAL_FRAGMENT = "TAG_CREATE_GOAL_FRAGMENT"
 
 class ForeverAloneActivity :
     AppCompatActivity(R.layout.activity_forever_alone),
-    GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge {
+    GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge, ViewGoalBridge {
 
     private lateinit var connectionBroReceiver: BroadcastReceiver
 
@@ -65,6 +68,14 @@ class ForeverAloneActivity :
         supportFragmentManager
             .beginTransaction()
             .add(R.id.flMain, ProfileFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun wantToSeeObjective(goal: GoalUI) {
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flMain, ViewGoalFragment.getInstance(goal))
             .addToBackStack(null)
             .commit()
     }

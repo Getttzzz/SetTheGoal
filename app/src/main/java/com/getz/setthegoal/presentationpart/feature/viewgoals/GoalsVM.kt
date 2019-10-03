@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentationpart.feature.viewgoal
+package com.getz.setthegoal.presentationpart.feature.viewgoals
 
 import androidx.lifecycle.MutableLiveData
 import com.getz.setthegoal.domainpart.core.Gandalf

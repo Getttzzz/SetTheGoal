@@ -1,5 +1,6 @@
-package com.getz.setthegoal.presentationpart.feature.viewgoal
+package com.getz.setthegoal.presentationpart.feature.viewgoals
 
+import android.content.Context
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +13,13 @@ import org.kodein.di.generic.instance
 abstract class BaseGoalsForSomeone : BaseFragment(R.layout.fragment_goals_for_someone) {
 
     lateinit var vm: GoalsVM
+    lateinit var viewGoalBridge: ViewGoalBridge
     val goalAdapter: GoalAdapter by lazy { setupGoalAdapter() }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewGoalBridge = context as ViewGoalBridge
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +32,7 @@ abstract class BaseGoalsForSomeone : BaseFragment(R.layout.fragment_goals_for_so
         rvGoalsFor.adapter = this
         onClick = { position ->
             val goalUI = this.godList[position]
+            viewGoalBridge.wantToSeeObjective(goalUI)
         }
         onOptionsClick = { position ->
             val goalUI = this.godList[position]

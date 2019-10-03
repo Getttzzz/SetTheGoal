@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentationpart.feature.viewgoal
+package com.getz.setthegoal.presentationpart.feature.viewgoals
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clRootViewGoal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlackOpacity15"
+    android:clickable="true"
+    android:focusable="true">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvViewGoal"
+        android:layout_width="@dimen/base_card_width"
+        android:layout_height="560dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/StyleCreateGoalCardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivPhotoView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/colorGrayTheLightestWinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/pbPhotoView"
+                style="?android:progressBarStyleHorizontal"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/colorPrimary"
+                android:indeterminateTintMode="src_atop"
+                android:padding="12dp"
+                android:rotation="-45"
+                app:layout_constraintBottom_toBottomOf="@id/ivPhotoView"
+                app:layout_constraintEnd_toEndOf="@id/ivPhotoView"
+                app:layout_constraintStart_toStartOf="@id/ivPhotoView"
+                app:layout_constraintTop_toTopOf="@id/ivPhotoView" />
+
+            <!--todo perhaps, need to implement scroll view-->
+            <TextView
+                android:id="@+id/tvGoalView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorAccentLight"
+                android:fontFamily="sans-serif-medium"
+                android:padding="16dp"
+                android:scrollbars="vertical"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivPhotoView"
+                tools:text="@string/mini_motivation" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clGoalsContainerView"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/colorGrayLight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvGoalView">
+
+                <ImageView
+                    android:id="@+id/ivBeeIdle"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:alpha="0.3"
+                    android:src="@drawable/ic_bee"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSubGoal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_sub_goal"
+                    tools:orientation="vertical" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvYouHaveChosen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="You've chosen"
+                app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
+                app:layout_constraintEnd_toStartOf="@+id/mcvDeadlineView"
+                app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvDeadlineView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checkable="true"
+                app:cardBackgroundColor="@color/colorAccentLight"
+                app:cardElevation="0dp"
+                app:checkedIcon="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clGoalsContainerView"
+                app:shapeAppearance="@style/MaterialCardViewCut6dp"
+                app:strokeColor="@color/selector_deadline_stroke"
+                app:strokeWidth="1dp">
+
+                <TextView
+                    android:id="@+id/tvDeadlineView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp"
+                    tools:text="One year" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvDeadlineDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="as a deadline"
+                app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
+                app:layout_constraintStart_toEndOf="@+id/mcvDeadlineView"
+                app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
+
+            <TextView
+                android:id="@+id/tvTimeRemain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="You have 12 days to get it done"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcvDeadlineView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClose"
+                style="?materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/close"
+                android:theme="@style/AppTheme.Yellow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:shapeAppearance="@style/StyleCornerOutlinedButton" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="14dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:shapeAppearance="@style/MaterialCardViewCut6dp"
+                app:strokeColor="@color/selector_deadline_stroke"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/ic_edit" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
