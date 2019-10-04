@@ -36,5 +36,16 @@ enum class DeadlineEnum(val timeRange: String, @StringRes val strRes: Int) {
     ONE_MONTH("one_month", R.string.one_month),
     THREE_MONTHS("three_months", R.string.three_months),
     SIX_MONTHS("six_months", R.string.six_months),
-    ONE_YEAR("one_year", R.string.one_year)
+    ONE_YEAR("one_year", R.string.one_year);
+
+    companion object {
+        fun getStrResByTimeRange(timeRange: String) = when (timeRange) {
+            ONE_WEEK.timeRange -> ONE_WEEK
+            ONE_MONTH.timeRange -> ONE_MONTH
+            THREE_MONTHS.timeRange -> THREE_MONTHS
+            SIX_MONTHS.timeRange -> SIX_MONTHS
+            ONE_YEAR.timeRange -> ONE_YEAR
+            else -> throw IllegalStateException("There's no enum object by this time range, which is $timeRange")
+        }
+    }
 }

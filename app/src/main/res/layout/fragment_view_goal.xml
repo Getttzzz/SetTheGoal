@@ -132,11 +132,15 @@
 
             <TextView
                 android:id="@+id/tvYouHaveChosen"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="You've chosen"
+                android:layout_marginStart="4dp"
+                android:gravity="end"
                 android:textColor="@color/colorText"
+                android:text="@string/you_have_chosen"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
                 app:layout_constraintEnd_toStartOf="@+id/mcvDeadlineView"
                 app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
@@ -154,7 +158,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vSeparator2"
                 app:shapeAppearance="@style/MaterialCardViewCut6dp"
-                app:strokeColor="@color/selector_deadline_stroke"
+                app:strokeColor="@color/colorAccent"
                 app:strokeWidth="1dp">
 
                 <TextView
@@ -173,11 +177,14 @@
 
             <TextView
                 android:id="@+id/tvDeadlineDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="as a deadline"
+                android:layout_marginEnd="4dp"
+                android:text="@string/as_a_deadline"
                 android:textColor="@color/colorText"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
                 app:layout_constraintStart_toEndOf="@+id/mcvDeadlineView"
                 app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
@@ -190,6 +197,7 @@
                 android:layout_marginBottom="16dp"
                 android:text="You have 12 days to get it done"
                 android:textColor="@color/colorText"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/btnClose"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

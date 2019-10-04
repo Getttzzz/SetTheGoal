@@ -8,6 +8,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.core.GlideApp
+import com.getz.setthegoal.presentationpart.entitylayer.DeadlineEnum
 import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
 import com.getz.setthegoal.presentationpart.util.getHideableListener
 import kotlinx.android.synthetic.main.fragment_view_goal.*
@@ -44,6 +45,8 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
         vSeparator1.isVisible = goal.subGoals.isNotEmpty()
 
         subGoalAdapter.replace(goal.subGoals)
+
+        tvDeadlineView.text = getString(DeadlineEnum.getStrResByTimeRange(goal.deadline).strRes)
     }
 
     private fun setupAdapter() = ViewSubGoalAdapter().apply {

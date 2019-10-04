@@ -96,5 +96,7 @@
     <string name="goals_for_myself">Goals for myself</string>
     <string name="sub_goal">sub-goal</string>
     <string name="your_goal">Your goal</string>
+    <string name="you_have_chosen">You\'ve chosen</string>
+    <string name="as_a_deadline">as a deadline</string>
 
 </resources>
