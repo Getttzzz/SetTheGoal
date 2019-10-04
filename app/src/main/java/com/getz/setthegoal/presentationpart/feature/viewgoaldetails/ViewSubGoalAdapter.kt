@@ -26,6 +26,7 @@ class ViewSubGoalAdapter : BaseAdapter<SubGoalUI, ViewSubGoalAdapter.VH>() {
 
         holder.view.mcvSubGoalView.isChecked = subGoal.done
         holder.view.cbSubGoalDone.isChecked = subGoal.done
+        holder.view.mcvDone.isChecked = subGoal.done
     }
 
     fun checkOneItem(position: Int) {

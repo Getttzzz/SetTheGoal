@@ -12,7 +12,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcvViewGoal"
         android:layout_width="@dimen/base_card_width"
-        android:layout_height="560dp"
+        android:layout_height="wrap_content"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,15 +24,42 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:hint="@string/your_goal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/StyleCreateGoalEditText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etGoal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccentLight"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLength="@integer/max_length_of_goal"
+                    android:minHeight="100dp"
+                    android:textColor="@color/colorText"
+                    android:textSize="16sp"
+                    app:shapeAppearance="@style/StyleCreateGoalEditText"
+                    tools:text="Видите двойные линии? Это границы между слоями. Разделение между слоями Entities и UseCases не показаны, так как в видео основной упор делался на том, что вся логика (приложения и бизнеса) отгорожена от внешнего мира. C Boundaries мы уже знакомы, интерфейс Gateway – это то же самое. Request/Response" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <ImageView
                 android:id="@+id/ivPhotoView"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginTop="16dp"
                 android:background="@color/colorGrayTheLightestWinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/tilGoal" />
 
             <ProgressBar
                 android:id="@+id/pbPhotoView"
@@ -49,21 +76,14 @@
                 app:layout_constraintStart_toStartOf="@id/ivPhotoView"
                 app:layout_constraintTop_toTopOf="@id/ivPhotoView" />
 
-            <!--todo perhaps, need to implement scroll view-->
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvGoalView"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/colorAccentLight"
-                android:fontFamily="sans-serif-medium"
-                android:padding="16dp"
-                android:scrollbars="vertical"
-                android:textColor="@color/colorText"
-                android:textSize="18sp"
+            <View
+                android:id="@+id/vSeparator1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/colorGrayDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivPhotoView"
-                tools:text="@string/mini_motivation" />
+                app:layout_constraintTop_toBottomOf="@+id/ivPhotoView" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clGoalsContainerView"
@@ -72,7 +92,7 @@
                 android:background="@color/colorGrayLight"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvGoalView">
+                app:layout_constraintTop_toBottomOf="@+id/vSeparator1">
 
                 <ImageView
                     android:id="@+id/ivBeeIdle"
@@ -97,9 +117,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_sub_goal"
+                    tools:listitem="@layout/item_view_sub_goal"
                     tools:orientation="vertical" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/vSeparator2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/colorGrayDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clGoalsContainerView" />
 
             <TextView
                 android:id="@+id/tvYouHaveChosen"
@@ -107,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="You've chosen"
+                android:textColor="@color/colorText"
                 app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
                 app:layout_constraintEnd_toStartOf="@+id/mcvDeadlineView"
                 app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
@@ -122,7 +152,7 @@
                 app:checkedIcon="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/clGoalsContainerView"
+                app:layout_constraintTop_toBottomOf="@+id/vSeparator2"
                 app:shapeAppearance="@style/MaterialCardViewCut6dp"
                 app:strokeColor="@color/selector_deadline_stroke"
                 app:strokeWidth="1dp">
@@ -147,6 +177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="as a deadline"
+                android:textColor="@color/colorText"
                 app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
                 app:layout_constraintStart_toEndOf="@+id/mcvDeadlineView"
                 app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
@@ -156,7 +187,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:text="You have 12 days to get it done"
+                android:textColor="@color/colorText"
+                app:layout_constraintBottom_toTopOf="@+id/btnClose"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mcvDeadlineView" />

@@ -15,7 +15,7 @@
     app:cardPreventCornerOverlap="false"
     app:checkedIcon="@null"
     app:shapeAppearance="@style/MaterialCardViewCut6dp"
-    app:strokeColor="@color/colorPrimary"
+    app:strokeColor="@color/selector_sub_goal_view_stroke"
     app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,12 +43,13 @@
             android:layout_width="50dp"
             android:layout_height="0dp"
             android:backgroundTint="@color/colorGrayTheLightestWinner"
+            android:checkable="true"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearance="@style/MaterialCardViewCut6dpWithoutStart"
-            app:strokeColor="@color/colorPrimary"
+            app:strokeColor="@color/selector_sub_goal_view_stroke"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -63,7 +64,7 @@
                     android:checked="true"
                     android:clickable="false"
                     android:focusable="false"
-                    android:theme="@style/AppTheme.Yellow" />
+                    android:theme="@style/AppTheme.Green" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

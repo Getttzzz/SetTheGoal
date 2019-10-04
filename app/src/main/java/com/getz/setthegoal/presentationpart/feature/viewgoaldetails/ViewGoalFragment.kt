@@ -2,6 +2,7 @@ package com.getz.setthegoal.presentationpart.feature.viewgoaldetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.request.RequestOptions
 import com.getz.setthegoal.R
@@ -37,7 +38,10 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
             .error(R.drawable.layer_list_bee)
             .into(ivPhotoView)
 
-        tvGoalView.text = goal.text
+        etGoal.setText(goal.text)
+
+        clGoalsContainerView.isVisible = goal.subGoals.isNotEmpty()
+        vSeparator1.isVisible = goal.subGoals.isNotEmpty()
 
         subGoalAdapter.replace(goal.subGoals)
     }

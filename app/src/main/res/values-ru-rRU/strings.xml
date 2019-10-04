@@ -95,5 +95,6 @@
     <string name="close">Закрыть</string>
     <string name="goals_for_myself">Цели для себя</string>
     <string name="sub_goal">подцель</string>
+    <string name="your_goal">Ваша цель</string>
 
 </resources>

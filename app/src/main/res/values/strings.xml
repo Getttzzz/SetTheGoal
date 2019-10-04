@@ -95,5 +95,6 @@
     <string name="close">Close</string>
     <string name="goals_for_myself">Goals for myself</string>
     <string name="sub_goal">sub-goal</string>
+    <string name="your_goal">Your goal</string>
 
 </resources>

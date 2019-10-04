@@ -34,6 +34,14 @@
         <item name="colorSecondary">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Green">
+        <item name="colorPrimary">@color/colorGreenAccent</item>
+        <item name="colorPrimaryVariant">@color/colorGreenAccent</item>
+        <item name="colorPrimaryDark">@color/colorGreenAccent</item>
+        <item name="colorAccent">@color/colorGreenAccent</item>
+        <item name="colorSecondary">@color/colorGreenAccent</item>
+    </style>
+
     <style name="ThemeGoodQuoteCardView" parent="Widget.MaterialComponents.CardView">
         <item name="shapeAppearance">@style/StyleGoodQuoteCardView</item>
     </style>
