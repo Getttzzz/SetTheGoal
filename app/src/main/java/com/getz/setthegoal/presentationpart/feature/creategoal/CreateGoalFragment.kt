@@ -121,7 +121,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_FINISH_TAB_POSITION -> {
-                btnNext.text = getString(R.string.finish)
+                btnNext.text = getString(R.string.done)
                 btnPrevious.text = getString(R.string.close)
 
                 btnNext.setSingleClickListener { bridge.closeCreateFragment() }

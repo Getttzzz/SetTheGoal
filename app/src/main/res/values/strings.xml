@@ -45,7 +45,7 @@
     <string name="suggestions">Suggestions</string>
     <string name="next">Next</string>
     <string name="previous">Prev</string>
-    <string name="finish">Done</string>
+    <string name="done">Done</string>
     <string name="select_one_word">Select one word\nwhich describes your goal</string>
     <string name="inspiration_source_unsplash_com">Inspiration source is Unsplash.com</string>
     <string name="unsplash_url"><![CDATA[https://unsplash.com/?utm_source=SetTheGoal&utm_medium=referral]]></string>
@@ -94,5 +94,6 @@
     <string name="sub_goals_done">Sub goals done: %1$d/%2$d</string>
     <string name="close">Close</string>
     <string name="goals_for_myself">Goals for myself</string>
+    <string name="sub_goal">sub-goal</string>
 
 </resources>

@@ -81,6 +81,14 @@
         <item name="cornerSize">6dp</item>
     </style>
 
+    <style name="MaterialCardViewCut6dpWithoutStart" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeTopRight">6dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">6dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
     <style name="MaterialCardViewCutEnd" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">cut</item>
         <item name="cornerSizeTopRight">10dp</item>

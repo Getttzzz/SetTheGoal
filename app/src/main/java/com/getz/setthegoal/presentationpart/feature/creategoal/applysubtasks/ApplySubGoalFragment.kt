@@ -34,11 +34,9 @@ class ApplySubGoalFragment : BaseFragment(R.layout.fragment_apply_sub_goal) {
         vm.selectedSubTasks = subGoalAdapter.godList
     }
 
-    private fun setupSubGoalAdapter(): SubGoalAdapter {
-        val subGoalAdapter = SubGoalAdapter()
+    private fun setupSubGoalAdapter() = SubGoalAdapter().apply {
         rvSubGoal.setHasFixedSize(true)
         rvSubGoal.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        rvSubGoal.adapter = subGoalAdapter
-        return subGoalAdapter
+        rvSubGoal.adapter = this
     }
 }

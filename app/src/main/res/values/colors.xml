@@ -13,6 +13,7 @@
     <color name="colorGrayTheLightestWinner">#F7F8FA</color>
     <color name="colorGrayTheLightest">#F3F3F3</color>
     <color name="colorGrayLight">#E9E9E9</color>
+    <color name="colorGrayNotSoLight">#D5D5D5</color>
     <color name="colorGrayDark">#929292</color>
 
     <color name="colorBlackOpacity15">#99000000</color>
