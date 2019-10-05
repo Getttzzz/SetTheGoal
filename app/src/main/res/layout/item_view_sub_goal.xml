@@ -30,7 +30,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/colorAccentLight"
-            android:hint="@string/sub_goal"
+            android:hint="@string/sub_goal_text"
             android:textColor="@color/colorText"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,6 +45,7 @@
             android:backgroundTint="@color/colorGrayTheLightestWinner"
             android:checkable="true"
             app:cardElevation="0dp"
+            app:checkedIcon="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -61,9 +62,7 @@
                     android:id="@+id/cbSubGoalDone"
                     android:layout_width="32dp"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:clickable="false"
-                    android:focusable="false"
+                    android:checked="false"
                     android:theme="@style/AppTheme.Green" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

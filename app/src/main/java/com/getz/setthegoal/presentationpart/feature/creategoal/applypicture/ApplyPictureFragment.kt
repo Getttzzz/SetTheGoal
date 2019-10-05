@@ -72,7 +72,10 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
             rvWords?.let { it.isVisible = !loading }
             loadingWords?.let { it.isVisible = loading }
         })
-        vm.photoWasEmptyLD.observe(this, Observer { showFoundNothingView(true) })
+        vm.photoWasEmptyLD.observe(this, Observer { show ->
+            photoAdapter.clean()
+            showFoundNothingView(show)
+        })
     }
 
     private fun showFoundNothingView(show: Boolean) {

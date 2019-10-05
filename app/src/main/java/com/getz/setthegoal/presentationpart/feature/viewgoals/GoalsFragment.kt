@@ -31,8 +31,8 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
     private val fabRotateClock: Animation by lazy {
         AnimationUtils.loadAnimation(activity, R.anim.fab_rotate_clock)
     }
-    private val fabRotateOpositeClock: Animation by lazy {
-        AnimationUtils.loadAnimation(activity, R.anim.fab_rotate_oposite_clock)
+    private val fabRotateOppositeClock: Animation by lazy {
+        AnimationUtils.loadAnimation(activity, R.anim.fab_rotate_opposite_clock)
     }
 
     override fun onAttach(context: Context) {
@@ -109,7 +109,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         fabAddNewGoal.setSingleClickListener {
             isOpened = if (isOpened) {
                 //hide two fab buttons
-                fabAddNewGoal.startAnimation(fabRotateOpositeClock)
+                fabAddNewGoal.startAnimation(fabRotateOppositeClock)
                 fabCreateForMyself.hide()
                 fabCreateForFamily.hide()
                 mcvCreateForMyself.visibility = View.GONE
@@ -128,7 +128,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
     }
 
     private fun immediatelyHideFab() {
-        fabAddNewGoal.startAnimation(fabRotateOpositeClock)
+        fabAddNewGoal.startAnimation(fabRotateOppositeClock)
         fabCreateForMyself.visibility = View.INVISIBLE
         fabCreateForFamily.visibility = View.INVISIBLE
         mcvCreateForMyself.visibility = View.GONE

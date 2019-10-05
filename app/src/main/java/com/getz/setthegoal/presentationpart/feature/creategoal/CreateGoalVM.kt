@@ -16,6 +16,7 @@ import com.getz.setthegoal.presentationpart.entitylayer.SubGoalUI
 import com.getz.setthegoal.presentationpart.entitylayer.WordUI
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
+import java.util.Date
 import java.util.Locale
 
 const val CONST_FAMILY = "family"
@@ -37,7 +38,7 @@ class CreateGoalVM(
     val photosResultLD = MutableLiveData<List<PhotoUI>>()
     val loadingPhotosLD = MutableLiveData<Boolean>()
     val loadingWordsLD = MutableLiveData<Boolean>()
-    val photoWasEmptyLD = MutableLiveData<Unit>()
+    val photoWasEmptyLD = MutableLiveData<Boolean>()
 
     var isForFamily = false
     var writtenGoalText: String = ""
@@ -62,11 +63,12 @@ class CreateGoalVM(
 
     fun getPhotos(selectedWord: String, default: Locale) = launch {
         loadingPhotosLD.value = true
+        photoWasEmptyLD.value = false
         val request = Pair(selectedWord, default)
         getPhotoUC.invoke(request, { error ->
             loadingPhotosLD.value = false
             when (error) {
-                is ResultWasEmptyException -> photoWasEmptyLD.value = Unit
+                is ResultWasEmptyException -> photoWasEmptyLD.value = true
                 is UnknownHostException -> Unit
                 else -> errorLD.value = error.localizedMessage
             }
@@ -84,7 +86,9 @@ class CreateGoalVM(
             subGoals = selectedSubTasks,
             deadline = selectedDeadline,
             forWhom = if (isForFamily) CONST_FAMILY else CONST_MYSELF,
-            done = false
+            done = false,
+            createdAt = Date(),
+            updatedAt = Date()
         )
 
         val goalDomain = toDomainGoalMapper.transform(goalUI)

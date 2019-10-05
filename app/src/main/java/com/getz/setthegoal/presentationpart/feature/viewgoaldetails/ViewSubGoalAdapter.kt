@@ -40,6 +40,14 @@ class ViewSubGoalAdapter : BaseAdapter<SubGoalUI, ViewSubGoalAdapter.VH>() {
                 if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
                 checkOneItem(adapterPosition)
             }
+            view.mcvDone.setSingleClickListener {
+                if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
+                checkOneItem(adapterPosition)
+            }
+            view.cbSubGoalDone.setSingleClickListener {
+                if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
+                checkOneItem(adapterPosition)
+            }
         }
     }
 }

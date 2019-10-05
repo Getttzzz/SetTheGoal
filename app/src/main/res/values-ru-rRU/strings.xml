@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SetTheGoal</string>
     <string name="for_family">Для семьи</string>
     <string name="for_myself">Для себя</string>
@@ -12,7 +12,7 @@
     <string name="write_your_goal_here">Напишите здесь свою цель</string>
 
     <string name="s_food">есть только здоровую еду</string>
-    <string name="s_apartment">купить квартиру</string>
+    <string name="s_apartment">купить жилье</string>
     <string name="s_books">дарить книги</string>
     <string name="s_car">купить машину</string>
     <string name="s_clothes">купить новую одежду</string>
@@ -46,14 +46,14 @@
     <string name="previous">Пред.</string>
     <string name="done">Готово</string>
     <string name="i_want_to">Я хочу %1$s</string>
-    <string name="select_one_word">Выберите одно слово,\nкоторое описывает вашу цель</string>
+    <string name="select_one_word">Выберите слово,\nописывающее вашу цель</string>
     <string name="inspiration_source_unsplash_com">Источник вдохновения Unsplash.com</string>
     <string name="unsplash_url"><![CDATA[https://unsplash.com/?utm_source=SetTheGoal&utm_medium=referral]]></string>
     <string name="found_nothing">Ничего не найдено</string>
     <string name="find_another_pictures">Найти другие картинки?</string>
     <string name="inspiration_source">Источник вдохновения</string>
     <string name="unsplash_com">Unsplash.com</string>
-    <string name="select_photo">Выберите одно фото,\nкоторое описывает вашу цель</string>
+    <string name="select_photo">Выберите фото,\nописывающее вашу цель</string>
     <string name="one_week">Одна неделя</string>
     <string name="one_month">Один месяц</string>
     <string name="three_months">Три месяца</string>
@@ -68,7 +68,7 @@
     <string name="mae_croissant">Вы просто шикарны! Перекусите и приступайте к цели!</string>
     <string name="mae_bear">Этот медведь полностью согласен с вашей целью! Так держать!</string>
     <string name="str_with_dot">%1$d.</string>
-    <string name="write_a_few_sub_goals">Write a few sub-goalsНапишите несколько подцелей</string>
+    <string name="write_a_few_sub_goals">Напишите подцели</string>
     <string name="add_sub_goal">Добавить подцель</string>
     <string name="congratulation_your_goal_is_ready">Поздравляем!\nВаша цель готова!</string>
     <string name="goals_for_my_family">Цели ради семьи</string>
@@ -94,9 +94,22 @@
     <string name="sub_goals_done">Подцелей выполнено: %1$d/%2$d</string>
     <string name="close">Закрыть</string>
     <string name="goals_for_myself">Цели для себя</string>
-    <string name="sub_goal">подцель</string>
+    <string name="sub_goal_text">заполнить текст подцели</string>
     <string name="your_goal">Ваша цель</string>
     <string name="you_have_chosen">Вы выбрали</string>
     <string name="as_a_deadline">в роли deadline</string>
+    <string name="to_get_it_done">чтобы достигнуть цель</string>
+    <plurals name="days_plural">
+        <item quantity="one">%1$d день</item>
+        <item quantity="few">%1$d дня</item>
+        <item quantity="many">%1$d дней</item>
+        <item quantity="other">%1$d дней</item>
+    </plurals>
+    <plurals name="you_have_plural">
+        <item quantity="one" tools:ignore="ImpliedQuantity">У вас остался</item>
+        <item quantity="few">У вас осталось</item>
+        <item quantity="many">У вас осталось</item>
+        <item quantity="other">У вас осталось</item>
+    </plurals>
 
 </resources>

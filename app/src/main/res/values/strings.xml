@@ -94,9 +94,21 @@
     <string name="sub_goals_done">Sub goals done: %1$d/%2$d</string>
     <string name="close">Close</string>
     <string name="goals_for_myself">Goals for myself</string>
-    <string name="sub_goal">sub-goal</string>
+    <string name="sub_goal_text">fill a sub-goal</string>
     <string name="your_goal">Your goal</string>
     <string name="you_have_chosen">You\'ve chosen</string>
     <string name="as_a_deadline">as a deadline</string>
+    <string name="to_get_it_done">to get it done</string>
+    <plurals name="days_plural">
+        <item quantity="zero">%1$d days</item>
+        <item quantity="one">%1$d day</item>
+        <item quantity="two">%1$d days</item>
+        <item quantity="few">%1$d days</item>
+        <item quantity="many">%1$d days</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+    <plurals name="you_have_plural">
+        <item quantity="other">You have</item>
+    </plurals>
 
 </resources>

@@ -25,7 +25,7 @@
             android:layout_marginBottom="4dp"
             android:background="@null"
             android:backgroundTint="@color/colorAccentLight"
-            android:hint="@string/sub_goal"
+            android:hint="@string/sub_goal_text"
             android:textColor="@color/colorText"
             android:textSize="16sp"
             android:maxLines="4"

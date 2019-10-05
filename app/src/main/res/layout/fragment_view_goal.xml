@@ -49,7 +49,7 @@
                     android:textColor="@color/colorText"
                     android:textSize="16sp"
                     app:shapeAppearance="@style/StyleCreateGoalEditText"
-                    tools:text="Видите двойные линии? Это границы между слоями. Разделение между слоями Entities и UseCases не показаны, так как в видео основной упор делался на том, что вся логика (приложения и бизнеса) отгорожена от внешнего мира. C Boundaries мы уже знакомы, интерфейс Gateway – это то же самое. Request/Response" />
+                    tools:text="@string/mini_motivation" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
@@ -86,7 +86,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/ivPhotoView" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clGoalsContainerView"
+                android:id="@+id/clSubGoalsContainerView"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:background="@color/colorGrayLight"
@@ -128,21 +128,21 @@
                 android:background="@color/colorGrayDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/clGoalsContainerView" />
+                app:layout_constraintTop_toBottomOf="@+id/clSubGoalsContainerView" />
 
             <TextView
                 android:id="@+id/tvYouHaveChosen"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="4dp"
                 android:gravity="end"
-                android:textColor="@color/colorText"
                 android:text="@string/you_have_chosen"
+                android:textColor="@color/colorText"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
                 app:layout_constraintEnd_toStartOf="@+id/mcvDeadlineView"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
 
             <com.google.android.material.card.MaterialCardView
@@ -165,13 +165,15 @@
                     android:id="@+id/tvDeadlineView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:maxWidth="98dp"
                     android:paddingStart="10dp"
                     android:paddingTop="3dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="3dp"
                     android:textColor="@color/colorText"
-                    android:textSize="18sp"
-                    tools:text="One year" />
+                    android:textSize="16sp"
+                    tools:text="Шесть месяцев" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -180,28 +182,33 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/as_a_deadline"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/mcvDeadlineView"
                 app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
 
             <TextView
                 android:id="@+id/tvTimeRemain"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:text="You have 12 days to get it done"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/btnClose"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mcvDeadlineView" />
+                app:layout_constraintTop_toBottomOf="@+id/mcvDeadlineView"
+                tools:text="You have 12 days to get it done" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnClose"

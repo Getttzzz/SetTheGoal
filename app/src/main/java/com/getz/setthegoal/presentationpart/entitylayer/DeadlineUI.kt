@@ -39,7 +39,7 @@ enum class DeadlineEnum(val timeRange: String, @StringRes val strRes: Int) {
     ONE_YEAR("one_year", R.string.one_year);
 
     companion object {
-        fun getStrResByTimeRange(timeRange: String) = when (timeRange) {
+        fun getEnumByTimeRange(timeRange: String) = when (timeRange) {
             ONE_WEEK.timeRange -> ONE_WEEK
             ONE_MONTH.timeRange -> ONE_MONTH
             THREE_MONTHS.timeRange -> THREE_MONTHS

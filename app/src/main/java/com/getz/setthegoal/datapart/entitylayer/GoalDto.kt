@@ -2,6 +2,7 @@ package com.getz.setthegoal.datapart.entitylayer
 
 import com.getz.setthegoal.domainpart.entitylayer.Photo
 import com.getz.setthegoal.domainpart.entitylayer.SubGoal
+import java.util.Date
 
 /**
  * This class is used as Firestore model.
@@ -16,5 +17,7 @@ data class GoalDto(
     val subGoals: List<SubGoal> = arrayListOf(),
     val deadline: String = "",
     val forWhom: String = "",
-    val done: Boolean = false
+    val done: Boolean = false,
+    val createdAt: Date = Date(),
+    val updatedAt: Date = Date()
 )

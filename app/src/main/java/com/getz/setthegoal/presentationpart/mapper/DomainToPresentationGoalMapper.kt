@@ -52,7 +52,9 @@ class DomainToPresentationGoalMapper : Gandalf<List<Goal>, List<GoalUI>> {
                     subGoals = subGoals,
                     deadline = goal.deadline,
                     forWhom = goal.forWhom,
-                    done = goal.done
+                    done = goal.done,
+                    createdAt = goal.createdAt,
+                    updatedAt = goal.updatedAt
                 )
             )
         }

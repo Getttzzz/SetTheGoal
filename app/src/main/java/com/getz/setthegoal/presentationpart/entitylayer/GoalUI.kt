@@ -2,6 +2,7 @@ package com.getz.setthegoal.presentationpart.entitylayer
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.util.Date
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 data class GoalUI(
@@ -11,7 +12,9 @@ data class GoalUI(
     val subGoals: List<SubGoalUI>,
     val deadline: String,
     val forWhom: String,
-    val done: Boolean
+    val done: Boolean,
+    val createdAt: Date,
+    val updatedAt: Date
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -20,7 +23,9 @@ data class GoalUI(
         parcel.createTypedArrayList(SubGoalUI),
         parcel.readString(),
         parcel.readString(),
-        parcel.readByte() != 0.toByte()
+        parcel.readByte() != 0.toByte(),
+        parcel.readSerializable() as Date,
+        parcel.readSerializable() as Date
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -31,6 +36,8 @@ data class GoalUI(
         parcel.writeString(deadline)
         parcel.writeString(forWhom)
         parcel.writeByte(if (done) 1 else 0)
+        parcel.writeSerializable(createdAt)
+        parcel.writeSerializable(updatedAt)
     }
 
     override fun describeContents(): Int {
@@ -46,4 +53,5 @@ data class GoalUI(
             return arrayOfNulls(size)
         }
     }
+
 }
