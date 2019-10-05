@@ -1,5 +1,6 @@
 package com.getz.setthegoal.presentationpart.feature.viewgoaldetails
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.text.bold
@@ -14,17 +15,24 @@ import com.getz.setthegoal.presentationpart.entitylayer.DeadlineEnum
 import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
 import com.getz.setthegoal.presentationpart.util.getDaysIn
 import com.getz.setthegoal.presentationpart.util.getHideableListener
+import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_view_goal.*
 
 class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
 
     private lateinit var goal: GoalUI
+    private lateinit var bridge: ViewGoalBridge
     private val subGoalAdapter: ViewSubGoalAdapter by lazy { setupAdapter() }
 
     companion object {
         private const val PARCELABLE_GOAL = "PARCELABLE_GOAL"
         fun getInstance(goalUI: GoalUI) = ViewGoalFragment()
             .apply { arguments = Bundle().apply { this.putParcelable(PARCELABLE_GOAL, goalUI) } }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        bridge = context as ViewGoalBridge
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +47,8 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
         setupGoalText()
         setupSubGoals()
         setupDeadline()
+
+        btnClose.setSingleClickListener { bridge.closeViewGoalScreen() }
     }
 
     private fun setupDeadline() {

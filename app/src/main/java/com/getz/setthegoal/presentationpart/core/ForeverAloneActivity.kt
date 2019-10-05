@@ -17,10 +17,11 @@ import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalBridge
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalFragment
 import com.getz.setthegoal.presentationpart.feature.profile.ProfileBridge
 import com.getz.setthegoal.presentationpart.feature.profile.ProfileFragment
+import com.getz.setthegoal.presentationpart.feature.viewgoaldetails.ViewGoalBridge
 import com.getz.setthegoal.presentationpart.feature.viewgoaldetails.ViewGoalFragment
 import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsBridge
 import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsFragment
-import com.getz.setthegoal.presentationpart.feature.viewgoals.ViewGoalBridge
+import com.getz.setthegoal.presentationpart.feature.viewgoals.ViewAllGoalsBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -31,7 +32,8 @@ const val TAG_CREATE_GOAL_FRAGMENT = "TAG_CREATE_GOAL_FRAGMENT"
 
 class ForeverAloneActivity :
     AppCompatActivity(R.layout.activity_forever_alone),
-    GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge, ViewGoalBridge {
+    GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge, ViewAllGoalsBridge,
+    ViewGoalBridge {
 
     private lateinit var connectionBroReceiver: BroadcastReceiver
 
@@ -81,6 +83,10 @@ class ForeverAloneActivity :
     }
 
     override fun closeCreateFragment() {
+        supportFragmentManager.popBackStack()
+    }
+
+    override fun closeViewGoalScreen() {
         supportFragmentManager.popBackStack()
     }
 

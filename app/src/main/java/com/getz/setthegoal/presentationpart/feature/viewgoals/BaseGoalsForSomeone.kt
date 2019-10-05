@@ -13,12 +13,12 @@ import org.kodein.di.generic.instance
 abstract class BaseGoalsForSomeone : BaseFragment(R.layout.fragment_goals_for_someone) {
 
     lateinit var vm: GoalsVM
-    lateinit var viewGoalBridge: ViewGoalBridge
+    lateinit var viewGoalBridge: ViewAllGoalsBridge
     val goalAdapter: GoalAdapter by lazy { setupGoalAdapter() }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewGoalBridge = context as ViewGoalBridge
+        viewGoalBridge = context as ViewAllGoalsBridge
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
