@@ -19,6 +19,13 @@ class GoalRemoteDS(
         onResult(task.isSuccessful)
     }
 
+    override suspend fun updateGoal(goalDto: GoalDto, onResult: suspend (Boolean) -> Unit) {
+        val docRef = firestore.collection(COLLECTION_GOALS).document(goalDto.goalId)
+        val task = docRef.set(goalDto)
+        Tasks.await(task)
+        onResult(task.isSuccessful)
+    }
+
     /**
      * Interesting fact: to delete created offline model, first of all, developer should
      * insert document ref (mean 'id') into the model. After that step, it's easy to delete

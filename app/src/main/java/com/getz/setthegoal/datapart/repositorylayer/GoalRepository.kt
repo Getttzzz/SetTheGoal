@@ -21,6 +21,12 @@ class GoalRepository(
         }
     }
 
+    override suspend fun updateGoal(goal: Goal, onResult: suspend (Boolean) -> Unit) {
+        goalDS.updateGoal(domainToDataGoalMapper.transform(goal)) { success ->
+            onResult(success)
+        }
+    }
+
     override suspend fun deleteGoal(goalId: String, onResult: suspend (Boolean) -> Unit) {
         goalDS.deleteGoal(goalId, onResult)
     }

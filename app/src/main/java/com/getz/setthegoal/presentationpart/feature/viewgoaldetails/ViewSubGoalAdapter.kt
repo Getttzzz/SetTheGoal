@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.item_view_sub_goal.view.*
 
 class ViewSubGoalAdapter : BaseAdapter<SubGoalUI, ViewSubGoalAdapter.VH>() {
 
+    lateinit var onClick: (Int) -> Unit
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         VH(LayoutInflater.from(parent.context).inflate(R.layout.item_view_sub_goal, parent, false))
 
@@ -39,14 +41,17 @@ class ViewSubGoalAdapter : BaseAdapter<SubGoalUI, ViewSubGoalAdapter.VH>() {
             view.setSingleClickListener {
                 if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
                 checkOneItem(adapterPosition)
+                onClick(adapterPosition)
             }
             view.mcvDone.setSingleClickListener {
                 if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
                 checkOneItem(adapterPosition)
+                onClick(adapterPosition)
             }
             view.cbSubGoalDone.setSingleClickListener {
                 if (adapterPosition == RecyclerView.NO_POSITION) return@setSingleClickListener
                 checkOneItem(adapterPosition)
+                onClick(adapterPosition)
             }
         }
     }

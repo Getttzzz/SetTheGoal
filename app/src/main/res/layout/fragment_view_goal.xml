@@ -198,48 +198,117 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="16dp"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="2"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/btnClose"
+                app:layout_constraintBottom_toTopOf="@+id/btnDidIt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mcvDeadlineView"
                 tools:text="You have 12 days to get it done" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnClose"
+                android:id="@+id/btnDidIt"
                 style="?materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/close"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/achieved"
                 android:theme="@style/AppTheme.Yellow"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:shapeAppearance="@style/StyleCornerOutlinedButton" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvEdit"
+                android:id="@+id/mcvClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="14dp"
                 android:layout_marginBottom="14dp"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:shapeAppearance="@style/MaterialCardViewCut6dp"
                 app:strokeColor="@color/selector_deadline_stroke"
                 app:strokeWidth="1dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/ic_close"
+                    android:tint="@color/colorAccent" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="14dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mcvClose"
+                app:shapeAppearance="@style/MaterialCardViewCut6dp"
+                app:strokeColor="@color/selector_deadline_stroke"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/ic_share"
+                    android:tint="@color/colorAccent" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="14dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mcvShare"
+                app:shapeAppearance="@style/MaterialCardViewCut6dp"
+                app:strokeColor="@color/selector_deadline_stroke"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/ic_delete"
+                    android:tint="@color/colorAccent" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="14dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mcvDelete"
+                app:shapeAppearance="@style/MaterialCardViewCut6dp"
+                app:strokeColor="@color/selector_deadline_stroke"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:layout_margin="4dp"
                     android:src="@drawable/ic_edit" />
 

@@ -12,7 +12,7 @@ data class GoalUI(
     val subGoals: List<SubGoalUI>,
     val deadline: String,
     val forWhom: String,
-    val done: Boolean,
+    var done: Boolean,
     val createdAt: Date,
     val updatedAt: Date
 ) : Parcelable {

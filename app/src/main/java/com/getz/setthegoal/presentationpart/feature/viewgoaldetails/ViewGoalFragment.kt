@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.request.RequestOptions
 import com.getz.setthegoal.R
@@ -17,11 +18,14 @@ import com.getz.setthegoal.presentationpart.util.getDaysIn
 import com.getz.setthegoal.presentationpart.util.getHideableListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_view_goal.*
+import org.kodein.di.direct
+import org.kodein.di.generic.instance
 
 class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
 
     private lateinit var goal: GoalUI
     private lateinit var bridge: ViewGoalBridge
+    private lateinit var vm: ViewGoalVM
     private val subGoalAdapter: ViewSubGoalAdapter by lazy { setupAdapter() }
 
     companion object {
@@ -37,6 +41,7 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        vm = ViewModelProviders.of(this, direct.instance()).get(ViewGoalVM::class.java)
         arguments?.let { goal = it.getParcelable(PARCELABLE_GOAL) as GoalUI }
     }
 
@@ -47,8 +52,8 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
         setupGoalText()
         setupSubGoals()
         setupDeadline()
-
-        btnClose.setSingleClickListener { bridge.closeViewGoalScreen() }
+        mcvClose.setSingleClickListener { bridge.closeViewGoalScreen() }
+        btnDidIt.setSingleClickListener { vm.markGoalAsDone(goal) }
     }
 
     private fun setupDeadline() {
@@ -100,6 +105,7 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
     }
 
     private fun setupAdapter() = ViewSubGoalAdapter().apply {
+        onClick = { vm.updateSubGoals(goal, godList) }
         rvSubGoal.setHasFixedSize(true)
         rvSubGoal.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvSubGoal.adapter = this

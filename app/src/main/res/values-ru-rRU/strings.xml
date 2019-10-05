@@ -99,6 +99,7 @@
     <string name="you_have_chosen">Вы выбрали</string>
     <string name="as_a_deadline">в роли deadline</string>
     <string name="to_get_it_done">чтобы достигнуть цель</string>
+    <string name="achieved">Готово!</string>
     <plurals name="days_plural">
         <item quantity="one">%1$d день</item>
         <item quantity="few">%1$d дня</item>
