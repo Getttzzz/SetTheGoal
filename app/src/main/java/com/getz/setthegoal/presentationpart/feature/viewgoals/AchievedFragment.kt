@@ -4,14 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 
-class GoalsForMyselfFragment : BaseGoalsForSomeone() {
-
+class AchievedFragment : BaseGoalsForSomeone() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vm.goalsForMyselfLD.observe(this, Observer { goals ->
+        vm.achievedLD.observe(this, Observer { goals ->
             goalAdapter.replace(goals)
         })
-//        vm.loadGoals()
     }
-
 }

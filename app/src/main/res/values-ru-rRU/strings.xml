@@ -71,7 +71,7 @@
     <string name="write_a_few_sub_goals">Напишите подцели</string>
     <string name="add_sub_goal">Добавить подцель</string>
     <string name="congratulation_your_goal_is_ready">Поздравляем!\nВаша цель готова!</string>
-    <string name="goals_for_my_family">Цели ради семьи</string>
+    <string name="goals_for_my_family">Для семьи</string>
     <string name="auth_as">Авторизоваться используя</string>
     <string name="google">гугле</string>
     <string name="or_be">или будьте</string>
@@ -92,14 +92,15 @@
     <string name="save">Сохр.</string>
     <string name="you_are_offline">Вы вне сети</string>
     <string name="sub_goals_done">Подцелей выполнено: %1$d/%2$d</string>
-    <string name="close">Закрыть</string>
-    <string name="goals_for_myself">Цели для себя</string>
+    <string name="close">Закр.</string>
+    <string name="goals_for_myself">Для себя</string>
     <string name="sub_goal_text">заполнить текст подцели</string>
     <string name="your_goal">Ваша цель</string>
     <string name="you_have_chosen">Вы выбрали</string>
     <string name="as_a_deadline">в роли deadline</string>
     <string name="to_get_it_done">чтобы достигнуть цель</string>
     <string name="achieved">Готово!</string>
+    <string name="achieved_tab_title">Достижения</string>
     <plurals name="days_plural">
         <item quantity="one">%1$d день</item>
         <item quantity="few">%1$d дня</item>

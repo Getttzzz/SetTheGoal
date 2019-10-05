@@ -96,10 +96,10 @@ class ForeverAloneActivity :
         goalsFragment?.scrollToAppropriateTab(isForFamily)
     }
 
-    override fun openCreateGoalScreen(isForFamily: Boolean) {
+    override fun openCreateGoalScreen() {
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flMain, CreateGoalFragment.getInstance(isForFamily), TAG_CREATE_GOAL_FRAGMENT)
+            .add(R.id.flMain, CreateGoalFragment.getInstance(), TAG_CREATE_GOAL_FRAGMENT)
             .addToBackStack(null) //possibility to return back to GoalsFragment()
             .commit()
     }

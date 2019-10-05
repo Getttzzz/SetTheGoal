@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
-import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.getz.setthegoal.R
@@ -25,10 +24,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
     private var keyboardListener: ViewTreeObserver.OnGlobalLayoutListener? = null
 
     companion object {
-        const val IS_FAMILY_ARGS = "IS_FAMILY_ARGS"
-
-        fun getInstance(isForFamily: Boolean) = CreateGoalFragment()
-            .apply { arguments = bundleOf(IS_FAMILY_ARGS to isForFamily) }
+        fun getInstance() = CreateGoalFragment()
     }
 
     override fun onAttach(context: Context) {
@@ -43,7 +39,6 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vm.isForFamily = arguments?.getBoolean(IS_FAMILY_ARGS, false)!!
         setupViewPager()
         setupLD()
     }

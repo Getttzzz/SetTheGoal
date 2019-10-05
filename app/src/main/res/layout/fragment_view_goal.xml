@@ -247,7 +247,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvShare"
+                android:id="@+id/mcvMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -264,7 +264,7 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_margin="4dp"
-                    android:src="@drawable/ic_share"
+                    android:src="@drawable/ic_options"
                     android:tint="@color/colorAccent" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -278,7 +278,7 @@
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/mcvShare"
+                app:layout_constraintStart_toEndOf="@+id/mcvMore"
                 app:shapeAppearance="@style/MaterialCardViewCut6dp"
                 app:strokeColor="@color/selector_deadline_stroke"
                 app:strokeWidth="1dp">

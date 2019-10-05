@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorPapa"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -90,119 +91,26 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/AppTheme.Yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardMotivation"
+            app:tabIndicatorFullWidth="false" />
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vpGoals"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardMotivation" />
-
-        <include layout="@layout/layout_floating_buttons" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:backgroundTint="@color/colorPrimaryDark"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        app:fabAlignmentMode="center"
-        app:fabAnimationMode="scale"
-        app:fabCradleMargin="7dp"
-        app:fabCradleRoundedCornerRadius="2dp"
-        app:fabCradleVerticalOffset="0dp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="67dp"
-        android:layout_gravity="bottom">
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvFamily"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/colorPrimary"
-            app:cardElevation="10dp"
-            app:layout_constraintEnd_toStartOf="@id/guidelineMiddle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearance="@style/StyleBottomCardView">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|top"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ivFamily"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/selector_goals_for_family" />
-
-                <TextView
-                    android:id="@+id/tvFamily"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-4dp"
-                    android:text="@string/for_family"
-                    android:textColor="@color/colorText"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvMyself"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/colorPrimary"
-            app:cardElevation="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guidelineMiddle"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearance="@style/StyleBottomCardView">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center|top"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ivMyself"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/selector_goals_for_myself" />
-
-                <TextView
-                    android:id="@+id/tvMyself"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-4dp"
-                    android:text="@string/for_myself"
-                    android:textColor="@color/colorText"
-                    android:textSize="11sp" />
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineMiddle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintTop_toBottomOf="@+id/tabs" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -210,10 +118,11 @@
         android:id="@+id/fabAddNewGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="30dp"
         android:src="@drawable/ic_add"
         android:theme="@style/AppTheme.Yellow"
-        app:elevation="8dp"
-        app:layout_anchor="@id/bottomBar" />
+        app:elevation="8dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

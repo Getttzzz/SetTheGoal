@@ -54,6 +54,10 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
         setupDeadline()
         mcvClose.setSingleClickListener { bridge.closeViewGoalScreen() }
         btnDidIt.setSingleClickListener { vm.markGoalAsDone(goal) }
+        mcvMore.setSingleClickListener {
+            //todo show custom spinner (don't use standard awful spinner) with options:
+            //todo 1.Share 2.Generate pdf with the goal and send it to social network.
+        }
     }
 
     private fun setupDeadline() {

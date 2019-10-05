@@ -25,6 +25,7 @@ class GoalsVM(
 
     val goalsForFamilyLD = MutableLiveData<List<GoalUI>>()
     val goalsForMyselfLD = MutableLiveData<List<GoalUI>>()
+    val achievedLD = MutableLiveData<List<GoalUI>>()
 
     fun loadRandomQuote(locale: Locale) = launch {
         getQuoteUC.invoke(locale, ::processError) { quote ->
@@ -35,10 +36,12 @@ class GoalsVM(
     fun loadGoals() {
         getGoalsUC.invoke(Unit, ::processError) { goals ->
             val goalsUI = presentationToDomainGoalMapper.transform(goals)
-            val goalsForFamily = goalsUI.filter { it.forWhom == CONST_FAMILY }
-            val goalsForMyself = goalsUI.filter { it.forWhom == CONST_MYSELF }
+            val goalsForFamily = goalsUI.filter { it.forWhom == CONST_FAMILY && !it.done }
+            val goalsForMyself = goalsUI.filter { it.forWhom == CONST_MYSELF && !it.done }
+            val achieved = goalsUI.filter { it.done }
             goalsForFamilyLD.value = goalsForFamily
             goalsForMyselfLD.value = goalsForMyself
+            achievedLD.value = achieved
         }
     }
 
