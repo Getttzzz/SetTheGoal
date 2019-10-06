@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
 import android.os.Build
+import android.os.Handler
 import androidx.core.content.ContextCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import org.kodein.di.Kodein
@@ -21,6 +22,14 @@ val connectionModule = Kodein.Module(ModulesNames.CONNECTION_MODULE) {
         val cm = ContextCompat.getSystemService(instance(), ConnectivityManager::class.java)
                 as ConnectivityManager
 
+        val isConnected = cm.activeNetworkInfo?.isConnected == true
+
+        Handler().postDelayed({
+            sendInternetStatus(instance(), isConnected)
+            triggerFirestoreOfflineMode(isConnected, instance())
+        }, 3000)
+
+
         val firestoreNetListener = FirestoreNetListener(instance(), instance())
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             cm.registerDefaultNetworkCallback(firestoreNetListener)
@@ -29,6 +38,14 @@ val connectionModule = Kodein.Module(ModulesNames.CONNECTION_MODULE) {
         }
 
         cm
+    }
+}
+
+private fun triggerFirestoreOfflineMode(isConnected: Boolean, firestore: FirebaseFirestore) {
+    if (isConnected) {
+        firestore.enableNetwork().addOnSuccessListener { }
+    } else {
+        firestore.disableNetwork().addOnSuccessListener { }
     }
 }
 

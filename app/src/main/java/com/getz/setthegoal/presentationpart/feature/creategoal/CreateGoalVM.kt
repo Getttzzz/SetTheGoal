@@ -51,8 +51,8 @@ class CreateGoalVM(
         getPartsOfSpeechUC.invoke(writtenGoalText, { error ->
             loadingWordsLD.value = false
             when (error) {
-                is ResultWasEmptyException -> Unit
-                is UnknownHostException -> Unit
+                is ResultWasEmptyException -> loadingWordsLD.value = false
+                is UnknownHostException -> loadingWordsLD.value = false
                 else -> errorLD.value = error.localizedMessage
             }
         }, { recognizedWords ->
@@ -69,7 +69,7 @@ class CreateGoalVM(
             loadingPhotosLD.value = false
             when (error) {
                 is ResultWasEmptyException -> photoWasEmptyLD.value = true
-                is UnknownHostException -> Unit
+                is UnknownHostException -> loadingPhotosLD.value = false
                 else -> errorLD.value = error.localizedMessage
             }
         }, { photos ->

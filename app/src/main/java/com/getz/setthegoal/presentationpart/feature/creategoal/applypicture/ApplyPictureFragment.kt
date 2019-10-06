@@ -41,6 +41,10 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         btnFindAnotherPicture.setSingleClickListener {
             //todo implement get random pictures from unsplash request
         }
+
+        //todo fix bug: adapter is clean but UI isn't (view pager saves state, even notifyDataSetChanged() doesn't work in onResume())
+        photoAdapter.clean()
+        wordAdapter.clean()
     }
 
     override fun onResume() {
@@ -59,7 +63,6 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
 
     private fun setupLD() {
         vm.recognizedWordsLD.observe(this, Observer { words ->
-            photoAdapter.clean()
             changeDescriptionState(true)
             wordAdapter.replace(words)
         })
