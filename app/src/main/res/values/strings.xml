@@ -99,8 +99,9 @@
     <string name="you_have_chosen">You\'ve chosen</string>
     <string name="as_a_deadline">as a deadline</string>
     <string name="to_get_it_done">to get it done</string>
-    <string name="achieved">Did it!</string>
+    <string name="did_it">Did it!</string>
     <string name="achieved_tab_title">Achieved</string>
+    <string name="undo">Undo</string>
     <plurals name="days_plural">
         <item quantity="zero">%1$d days</item>
         <item quantity="one">%1$d day</item>

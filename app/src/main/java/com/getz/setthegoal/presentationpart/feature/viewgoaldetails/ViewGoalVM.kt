@@ -17,8 +17,8 @@ class ViewGoalVM(
 
 
     //todo Think of what to update in UI after mark as done.
-    fun markGoalAsDone(goalUI: GoalUI) = launch {
-        goalUI.done = true
+    fun markGoalAsDone(goalUI: GoalUI, done: Boolean) = launch {
+        goalUI.done = done
         updateGoalUC(presentationToDomainGoalMapper.transform(goalUI), ::processError) {}
     }
 

@@ -1,8 +1,13 @@
 package com.getz.setthegoal.presentationpart.feature.viewgoaldetails
 
+import android.animation.ArgbEvaluator
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AccelerateInterpolator
+import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
@@ -21,11 +26,13 @@ import kotlinx.android.synthetic.main.fragment_view_goal.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
 
+
 class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
 
     private lateinit var goal: GoalUI
     private lateinit var bridge: ViewGoalBridge
     private lateinit var vm: ViewGoalVM
+    private var isGoalDone = false
     private val subGoalAdapter: ViewSubGoalAdapter by lazy { setupAdapter() }
 
     companion object {
@@ -42,7 +49,10 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         vm = ViewModelProviders.of(this, direct.instance()).get(ViewGoalVM::class.java)
-        arguments?.let { goal = it.getParcelable(PARCELABLE_GOAL) as GoalUI }
+        arguments?.let {
+            goal = it.getParcelable(PARCELABLE_GOAL) as GoalUI
+            isGoalDone = goal.done
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,12 +62,26 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
         setupGoalText()
         setupSubGoals()
         setupDeadline()
+        setupDoneButton(isGoalDone)
         mcvClose.setSingleClickListener { bridge.closeViewGoalScreen() }
-        btnDidIt.setSingleClickListener { vm.markGoalAsDone(goal) }
+        btnDidIt.setSingleClickListener(1000) {
+            isGoalDone = if (!isGoalDone) {
+                markAsDoneAnimation()
+                true
+            } else {
+                false
+            }
+            setupDoneButton(isGoalDone)
+            vm.markGoalAsDone(goal, isGoalDone)
+        }
         mcvMore.setSingleClickListener {
             //todo show custom spinner (don't use standard awful spinner) with options:
             //todo 1.Share 2.Generate pdf with the goal and send it to social network.
         }
+    }
+
+    private fun setupDoneButton(isDone: Boolean) {
+        btnDidIt.text = if (isDone) getString(R.string.undo) else getString(R.string.did_it)
     }
 
     private fun setupDeadline() {
@@ -113,5 +137,20 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
         rvSubGoal.setHasFixedSize(true)
         rvSubGoal.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvSubGoal.adapter = this
+    }
+
+    private fun markAsDoneAnimation() {
+        val objectAnimator = ObjectAnimator.ofObject(
+            clRootViewGoal,
+            "backgroundColor",
+            ArgbEvaluator(),
+            ContextCompat.getColor(context!!, R.color.colorBlackOpacity15),
+            ContextCompat.getColor(context!!, R.color.colorGreenAccent)
+        )
+        objectAnimator.repeatCount = 1
+        objectAnimator.repeatMode = ValueAnimator.REVERSE
+        objectAnimator.duration = 2000
+        objectAnimator.interpolator = AccelerateInterpolator()
+        objectAnimator.start()
     }
 }
