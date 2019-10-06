@@ -46,6 +46,7 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
     override fun onResume() {
         super.onResume()
         hideKeyboard(tvUnsplash)
+        vm.validatePhoto()
     }
 
     private fun setupUnsplashView() {

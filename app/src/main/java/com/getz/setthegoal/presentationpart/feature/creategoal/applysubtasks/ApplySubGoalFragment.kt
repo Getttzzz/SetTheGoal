@@ -34,6 +34,11 @@ class ApplySubGoalFragment : BaseFragment(R.layout.fragment_apply_sub_goal) {
         vm.selectedSubTasks = subGoalAdapter.godList
     }
 
+    override fun onResume() {
+        super.onResume()
+        vm.validateSubGoal()
+    }
+
     private fun setupSubGoalAdapter() = SubGoalAdapter().apply {
         rvSubGoal.setHasFixedSize(true)
         rvSubGoal.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

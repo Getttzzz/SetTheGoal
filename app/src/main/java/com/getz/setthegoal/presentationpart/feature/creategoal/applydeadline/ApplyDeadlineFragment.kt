@@ -26,11 +26,13 @@ class ApplyDeadlineFragment : BaseFragment(R.layout.fragment_apply_deadline) {
         val deadlineAdapter = setupDeadlineAdapter()
         val deadlines = DeadlineUI.generateDeadlines(context!!)
         deadlineAdapter.replace(deadlines)
+        vm.selectedDeadline = ""
     }
 
     override fun onResume() {
         super.onResume()
         lottieWaiting.playAnimation()
+        vm.validateDeadline()
     }
 
     override fun onPause() {
@@ -38,16 +40,15 @@ class ApplyDeadlineFragment : BaseFragment(R.layout.fragment_apply_deadline) {
         lottieWaiting.pauseAnimation()
     }
 
-    private fun setupDeadlineAdapter(): DeadlineAdapter {
-        val deadlineAdapter = DeadlineAdapter()
-            .apply {
-                onClick = { position ->
-                    this.select(position)
-                    vm.selectedDeadline = DeadlineUI.getEnumByPosition(position).timeRange
-                }
-            }
+    private fun setupDeadlineAdapter() = DeadlineAdapter().apply {
+        onClick = { position ->
+            this.select(position)
+            vm.selectedDeadline = DeadlineUI.getEnumByPosition(position).timeRange
+            vm.validateDeadline()
+        }
         rvDeadline.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        rvDeadline.adapter = deadlineAdapter
-        return deadlineAdapter
+        rvDeadline.adapter = this
     }
+
+
 }

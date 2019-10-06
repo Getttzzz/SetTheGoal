@@ -101,4 +101,16 @@ class CreateGoalVM(
         selectedDeadline = ""
         isForFamily = false
     }
+
+    fun validateDeadline() {
+        nextButtonSharedLD.value = selectedDeadline.isNotEmpty()
+    }
+
+    fun validateSubGoal() {
+        nextButtonSharedLD.value = true
+    }
+
+    fun validatePhoto() {
+        nextButtonSharedLD.value = true
+    }
 }
