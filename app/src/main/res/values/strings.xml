@@ -102,6 +102,9 @@
     <string name="did_it">Did it!</string>
     <string name="achieved_tab_title">Achieved</string>
     <string name="undo">Undo</string>
+    <string name="do_you_want_to_delete">Are you sure you want to Delete it?</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
     <plurals name="days_plural">
         <item quantity="zero">%1$d days</item>
         <item quantity="one">%1$d day</item>

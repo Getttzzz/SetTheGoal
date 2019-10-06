@@ -22,6 +22,7 @@ import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
 import com.getz.setthegoal.presentationpart.util.getDaysIn
 import com.getz.setthegoal.presentationpart.util.getHideableListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
+import com.getz.setthegoal.presentationpart.util.showDeleteDialog
 import kotlinx.android.synthetic.main.fragment_view_goal.*
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
@@ -77,6 +78,12 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
         mcvMore.setSingleClickListener {
             //todo show custom spinner (don't use standard awful spinner) with options:
             //todo 1.Share 2.Generate pdf with the goal and send it to social network.
+        }
+        mcvDelete.setSingleClickListener {
+            showDeleteDialog(context!!) {
+                vm.deleteGoal(goal.goalId)
+                bridge.closeViewGoalScreen()
+            }
         }
     }
 

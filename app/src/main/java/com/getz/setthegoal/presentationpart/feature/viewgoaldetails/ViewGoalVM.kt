@@ -15,8 +15,6 @@ class ViewGoalVM(
     private val presentationToDomainGoalMapper: Gandalf<GoalUI, Goal>
 ) : BaseVm() {
 
-
-    //todo Think of what to update in UI after mark as done.
     fun markGoalAsDone(goalUI: GoalUI, done: Boolean) = launch {
         goalUI.done = done
         updateGoalUC(presentationToDomainGoalMapper.transform(goalUI), ::processError) {}
@@ -27,5 +25,9 @@ class ViewGoalVM(
         goalUI.subGoals.clear()
         goalUI.subGoals.addAll(newSubGoals)
         updateGoalUC(presentationToDomainGoalMapper.transform(goalUI), ::processError) {}
+    }
+
+    fun deleteGoal(goalId: String) = launch {
+        deleteGoalUC(goalId, ::processError) {}
     }
 }

@@ -115,4 +115,17 @@
         <item name="cornerSize">6dp</item>
     </style>
 
+    <style name="AlertDialogThemeCut" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="alertDialogStyle">@style/AppMaterialAlertDialog</item>
+    </style>
+
+    <style name="AppMaterialAlertDialog" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/ShapeAlertDialogCut</item>
+    </style>
+
+    <style name="ShapeAlertDialogCut" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">6dp</item>
+    </style>
+
 </resources>
