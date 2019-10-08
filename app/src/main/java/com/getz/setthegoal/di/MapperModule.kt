@@ -41,8 +41,8 @@ val mapperModule = Kodein.Module(ModulesNames.MAPPER_MODULE) {
  * */
 private val dataToDomain = Kodein.Module(ModulesNames.DATA_TO_DOMAIN_MAPPER_MODULE) {
     bind<Gandalf<QuoteDto, Quote>>() with provider { DataToDomainQuoteMapper() }
-    bind<Gandalf<ResponsePOS, List<Word>>>() with provider { DataToDomainPartOfSpeechMapper() }
-    bind<Gandalf<List<Word>, List<Word>>>() with provider { DataToDomainPartOfSpeechFilter() }
+    bind<Gandalf<ResponsePOS, List<Word>>>(tag = DataToDomainPartOfSpeechMapper::class.java.simpleName) with provider { DataToDomainPartOfSpeechMapper() }
+    bind<Gandalf<List<Word>, List<Word>>>(tag = DataToDomainPartOfSpeechFilter::class.java.simpleName) with provider { DataToDomainPartOfSpeechFilter() }
     bind<Gandalf<SearchPhotoResponse, List<Photo>>>() with provider { DataToDomainPhotoMapper() }
     bind<Gandalf<List<GoalDto>, List<Goal>>>() with provider { DataToDomainGoalMapper() }
 }

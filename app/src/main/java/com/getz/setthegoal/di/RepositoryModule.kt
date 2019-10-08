@@ -1,5 +1,7 @@
 package com.getz.setthegoal.di
 
+import com.getz.setthegoal.datapart.mapper.DataToDomainPartOfSpeechFilter
+import com.getz.setthegoal.datapart.mapper.DataToDomainPartOfSpeechMapper
 import com.getz.setthegoal.datapart.repositorylayer.GoalRepository
 import com.getz.setthegoal.datapart.repositorylayer.PartOfSpeechRepository
 import com.getz.setthegoal.datapart.repositorylayer.PhotoRepository
@@ -18,7 +20,11 @@ import org.kodein.di.generic.singleton
 val repositoryModule = Kodein.Module(ModulesNames.REPOSITORY_MODULE) {
     bind<IQuoteRepository>() with singleton { QuoteRepository(instance(), instance()) }
     bind<IPartOfSpeechRepository>() with singleton {
-        PartOfSpeechRepository(instance(), instance(), instance())
+        PartOfSpeechRepository(
+            instance(),
+            instance(tag = DataToDomainPartOfSpeechMapper::class.java.simpleName),
+            instance(tag = DataToDomainPartOfSpeechFilter::class.java.simpleName)
+        )
     }
     bind<IPhotoRepository>() with singleton { PhotoRepository(instance(), instance()) }
     bind<ITranslatorRepository>() with singleton { TranslatorRepository(instance()) }
