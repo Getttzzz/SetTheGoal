@@ -7,6 +7,7 @@ import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.entitylayer.DeadlineUI
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
+import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_apply_deadline.*
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.on
@@ -20,6 +21,10 @@ class ApplyDeadlineFragment : BaseFragment(R.layout.fragment_apply_deadline) {
         val deadlineAdapter = setupDeadlineAdapter()
         val deadlines = DeadlineUI.generateDeadlines(context!!)
         deadlineAdapter.replace(deadlines)
+        lottieWaiting.speed = 0.8f
+        lottieWaiting.setSingleClickListener {
+            lottieWaiting.playAnimation()
+        }
     }
 
     override fun onResume() {

@@ -7,6 +7,7 @@ import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.entitylayer.WhoUI
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
+import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_apply_who.*
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.on
@@ -19,6 +20,7 @@ class ApplyWhoFragment : BaseFragment(R.layout.fragment_apply_who) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter.replace(WhoUI.generateForWhom(context!!))
+        lottieWaiting.setSingleClickListener { lottieWaiting.playAnimation() }
     }
 
     override fun onResume() {

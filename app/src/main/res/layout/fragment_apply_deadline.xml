@@ -37,7 +37,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWhoDescription"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/plant" />
+        app:lottie_rawRes="@raw/dust_clock" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

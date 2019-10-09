@@ -20,6 +20,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieWaiting"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWhoDescription"
+        app:lottie_rawRes="@raw/scanning_person" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWho"
         android:layout_width="wrap_content"
@@ -30,14 +40,5 @@
         app:layout_constraintTop_toBottomOf="@+id/tvWhoDescription"
         tools:listitem="@layout/item_who" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieWaiting"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWhoDescription"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/plant" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

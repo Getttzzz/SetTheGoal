@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -60,6 +62,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
     val vm: CreateGoalVM by kodein.on(context = this).instance()
     lateinit var bridge: CreateGoalBridge
     private var keyboardListener: ViewTreeObserver.OnGlobalLayoutListener? = null
+    private lateinit var shakeAnim: Animation
 
     override fun provideOverridingModule() = getCreateGoalModule()
 
@@ -76,6 +79,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         super.onViewCreated(view, savedInstanceState)
         setupViewPager()
         setupLD()
+        shakeAnim = AnimationUtils.loadAnimation(context!!, R.anim.shake_it)
     }
 
 //    override fun onResume() {
@@ -103,6 +107,9 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         })
         vm.pressNextSharedLD.observe(this, Observer { btnNext.performClick() })
         vm.errorLD.observe(this, Observer { this.say(it) })
+        vm.shakeNextButtonLD.observe(this, Observer {
+            btnNext?.let { it.startAnimation(shakeAnim) }
+        })
     }
 
     private fun setupViewPager() {
@@ -181,6 +188,7 @@ class CreateGoalVM(
     }
 
     val nextButtonLD = MutableLiveData<Boolean>()
+    val shakeNextButtonLD = MutableLiveData<Unit>()
     val pressNextSharedLD = MutableLiveData<Unit>()
     val recognizedWordsLD = MutableLiveData<List<WordUI>>()
     val keyboardListenerLD = MutableLiveData<Boolean>()
@@ -246,7 +254,9 @@ class CreateGoalVM(
     }
 
     fun validateDeadline() {
-        nextButtonLD.value = selectedDeadline.isNotEmpty()
+        val isValid = selectedDeadline.isNotEmpty()
+        nextButtonLD.value = isValid
+        if (isValid) shakeNextButtonLD.value = Unit
     }
 
     fun validateSubGoal() {
@@ -258,14 +268,17 @@ class CreateGoalVM(
     }
 
     fun validateWho() {
-        nextButtonLD.value = who.isNotEmpty()
+        val isValid = who.isNotEmpty()
+        nextButtonLD.value = isValid
+        if (isValid) shakeNextButtonLD.value = Unit
     }
 
     fun validateText(): Boolean {
         val possibleWords = writtenGoalText.trim().split(" ")
-        val enabled = possibleWords.size >= 2
-        nextButtonLD.value = enabled
-        return enabled
+        val isValid = possibleWords.size >= 2
+        nextButtonLD.value = isValid
+        if (isValid) shakeNextButtonLD.value = Unit
+        return isValid
     }
 
     companion object {
