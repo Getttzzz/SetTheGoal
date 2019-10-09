@@ -21,42 +21,41 @@ import org.kodein.di.generic.on
 class ApplyTextFragment : BaseFragment(R.layout.fragment_apply_text_goal) {
     val vm: CreateGoalVM by kodein.on(context = this).instance()
 
+    private val suggestionAdapter: SuggestionAdapter by lazy { setupSuggestionAdapter() }
     private val smoothScrollHandler = Handler(Looper.getMainLooper())
-    private lateinit var runnable: () -> Unit
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("GETTTZZZ.ApplyTextFragment.onCreate ---> vm.hashCode=${vm.hashCode()}")
+    private val smoothScrollRunnable: Runnable by lazy {
+        Runnable {
+            rvSuggestions.smoothScrollBy(
+                6000,
+                0,
+                LinearInterpolator(),
+                90_000
+            )
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        vm.nextButtonSharedLD.value = false
-        btnNextSecondary.isEnabled = false
-
         setupLD()
         setupNextBtnValidation()
-        setupAdapter()
+        fillSuggestions()
         btnNextSecondary.setSingleClickListener { vm.pressNextSharedLD.value = Unit }
     }
 
     override fun onResume() {
         super.onResume()
-
+        vm.validateText()
         startAutoScrolling()
     }
 
     override fun onPause() {
         super.onPause()
-
         rvSuggestions.stopScroll()
     }
 
     override fun onStop() {
         super.onStop()
-
-        smoothScrollHandler.removeCallbacks(runnable)
+        smoothScrollHandler.removeCallbacks(smoothScrollRunnable)
     }
 
     private fun setupLD() {
@@ -69,37 +68,31 @@ class ApplyTextFragment : BaseFragment(R.layout.fragment_apply_text_goal) {
 
     private fun setupNextBtnValidation() {
         etGoal.addTextListener { inputText ->
-            val possibleWords = inputText.trim().split(" ")
-            val enabled = possibleWords.size >= 2
-            vm.nextButtonSharedLD.value = enabled
             vm.writtenGoalText = inputText
-            btnNextSecondary.isEnabled = enabled
+            val isValid = vm.validateText()
+            btnNextSecondary.isEnabled = isValid
             rvSuggestions.stopScroll()
         }
     }
 
-    private fun setupAdapter() {
-        val suggestions = GoalSuggestions.getSuggestions()
-
-        suggestions.shuffle()
-
-        val suggestionAdapter = SuggestionAdapter()
-            .apply {
-                onClick = { position ->
-                    val selectedStrResInt = this.godList[position]
-                    val selectedText = getString(selectedStrResInt)
-                    etGoal.setText(getString(R.string.i_want_to, selectedText))
-                }
-            }
+    private fun setupSuggestionAdapter() = SuggestionAdapter().apply {
+        onClick = { position ->
+            val selectedStrResInt = this.godList[position]
+            val selectedText = getString(selectedStrResInt)
+            etGoal.setText(getString(R.string.i_want_to, selectedText))
+        }
         rvSuggestions.layoutManager =
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
-        rvSuggestions.adapter = suggestionAdapter
+        rvSuggestions.adapter = this
+    }
 
+    private fun fillSuggestions() {
+        val suggestions = GoalSuggestions.getSuggestions()
+        suggestions.shuffle()
         suggestionAdapter.replace(suggestions)
     }
 
     private fun startAutoScrolling() {
-        runnable = { rvSuggestions.smoothScrollBy(6000, 0, LinearInterpolator(), 90_000) }
-        smoothScrollHandler.postDelayed(runnable, 400)
+        smoothScrollHandler.postDelayed(smoothScrollRunnable, 400)
     }
 }

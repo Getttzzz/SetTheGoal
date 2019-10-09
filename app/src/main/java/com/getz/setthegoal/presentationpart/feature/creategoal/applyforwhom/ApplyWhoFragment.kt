@@ -1,31 +1,30 @@
-package com.getz.setthegoal.presentationpart.feature.creategoal.applydeadline
+package com.getz.setthegoal.presentationpart.feature.creategoal.applyforwhom
 
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
-import com.getz.setthegoal.presentationpart.entitylayer.DeadlineUI
+import com.getz.setthegoal.presentationpart.entitylayer.WhoUI
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
-import kotlinx.android.synthetic.main.fragment_apply_deadline.*
+import kotlinx.android.synthetic.main.fragment_apply_who.*
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.on
 
-class ApplyDeadlineFragment : BaseFragment(R.layout.fragment_apply_deadline) {
+class ApplyWhoFragment : BaseFragment(R.layout.fragment_apply_who) {
+
     val vm: CreateGoalVM by kodein.on(context = this).instance()
+    val adapter: WhoAdapter by lazy { setupWhoAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val deadlineAdapter = setupDeadlineAdapter()
-        val deadlines = DeadlineUI.generateDeadlines(context!!)
-        deadlineAdapter.replace(deadlines)
+        adapter.replace(WhoUI.generateForWhom(context!!))
     }
 
     override fun onResume() {
         super.onResume()
         lottieWaiting.playAnimation()
-        vm.validateDeadline()
+        vm.validateWho()
     }
 
     override fun onPause() {
@@ -33,15 +32,13 @@ class ApplyDeadlineFragment : BaseFragment(R.layout.fragment_apply_deadline) {
         lottieWaiting.pauseAnimation()
     }
 
-    private fun setupDeadlineAdapter() = DeadlineAdapter().apply {
+    private fun setupWhoAdapter() = WhoAdapter().apply {
         onClick = { position ->
             this.select(position)
-            vm.selectedDeadline = DeadlineUI.getEnumByPosition(position).timeRange
-            vm.validateDeadline()
+            vm.who = WhoUI.getEnumByPosition(position).personName
+            vm.validateWho()
         }
-        rvDeadline.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        rvDeadline.adapter = this
+        rvWho.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvWho.adapter = this
     }
-
-
 }

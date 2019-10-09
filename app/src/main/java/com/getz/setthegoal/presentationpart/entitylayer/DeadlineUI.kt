@@ -12,7 +12,7 @@ data class DeadlineUI(val text: String, var deadlineEnum: DeadlineEnum, var isSe
             2 -> DeadlineEnum.THREE_MONTHS
             3 -> DeadlineEnum.SIX_MONTHS
             4 -> DeadlineEnum.ONE_YEAR
-            else -> throw IllegalStateException("There's no enum val by your position, which is $position")
+            else -> throw IllegalStateException("There's no enum val by your position.")
         }
 
         fun generateDeadlines(context: Context): List<DeadlineUI> {
@@ -45,7 +45,7 @@ enum class DeadlineEnum(val timeRange: String, @StringRes val strRes: Int) {
             THREE_MONTHS.timeRange -> THREE_MONTHS
             SIX_MONTHS.timeRange -> SIX_MONTHS
             ONE_YEAR.timeRange -> ONE_YEAR
-            else -> throw IllegalStateException("There's no enum object by this time range, which is $timeRange")
+            else -> throw IllegalStateException("There's no enum object by this query.")
         }
     }
 }

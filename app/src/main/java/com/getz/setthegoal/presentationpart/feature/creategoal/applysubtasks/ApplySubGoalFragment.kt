@@ -16,11 +16,6 @@ class ApplySubGoalFragment : BaseFragment(R.layout.fragment_apply_sub_goal) {
 
     val vm: CreateGoalVM by kodein.on(context = this).instance()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("GETTTZZZ.ApplySubGoalFragment.onCreate ---> vm.hashCode=${vm.hashCode()}")
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

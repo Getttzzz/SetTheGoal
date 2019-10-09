@@ -23,8 +23,7 @@ import com.getz.setthegoal.presentationpart.core.BaseVm
 import com.getz.setthegoal.presentationpart.core.GlideApp
 import com.getz.setthegoal.presentationpart.customview.ExpandableTextView
 import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
-import com.getz.setthegoal.presentationpart.feature.creategoal.CONST_FAMILY
-import com.getz.setthegoal.presentationpart.feature.creategoal.CONST_MYSELF
+import com.getz.setthegoal.presentationpart.entitylayer.WhoEnum
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_goals.*
@@ -68,8 +67,12 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
         vm.loadRandomQuote(Locale.getDefault())
     }
 
-    fun scrollToAppropriateTab(isForFamily: Boolean) {
-        vpGoals.currentItem = if (isForFamily) 0 else 1
+    fun scrollToAppropriateTab(who: String) {
+        vpGoals.currentItem = when (who) {
+            WhoEnum.FAMILY.personName -> 0
+            WhoEnum.MYSELF.personName -> 1
+            else -> 0
+        }
     }
 
     private fun setupUserIcon() {
@@ -164,8 +167,10 @@ class GoalsVM(
     fun loadGoals() {
         getGoalsUC.invoke(Unit, ::processError) { goals ->
             val goalsUI = presentationToDomainGoalMapper.transform(goals)
-            val goalsForFamily = goalsUI.filter { it.forWhom == CONST_FAMILY && !it.done }
-            val goalsForMyself = goalsUI.filter { it.forWhom == CONST_MYSELF && !it.done }
+            val goalsForFamily =
+                goalsUI.filter { it.forWhom == WhoEnum.FAMILY.personName && !it.done }
+            val goalsForMyself =
+                goalsUI.filter { it.forWhom == WhoEnum.MYSELF.personName && !it.done }
             val achieved = goalsUI.filter { it.done }
             goalsForFamilyLD.value = goalsForFamily
             goalsForMyselfLD.value = goalsForMyself

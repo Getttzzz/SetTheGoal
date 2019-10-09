@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/how_much_time_do_you_need"
+        android:text="@string/for_whom_do_you_want"
         android:textColor="@color/colorText"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,14 +21,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDeadline"
+        android:id="@+id/rvWho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWhoDescription"
-        tools:listitem="@layout/item_deadline" />
+        tools:listitem="@layout/item_who" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieWaiting"

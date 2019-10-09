@@ -90,10 +90,10 @@ class ForeverAloneActivity :
         supportFragmentManager.popBackStack()
     }
 
-    override fun scrollToAppropriateTab(isForFamily: Boolean) {
+    override fun scrollToAppropriateTab(who: String) {
         val goalsFragment =
             supportFragmentManager.findFragmentByTag(TAG_GOALS_FRAGMENT) as? GoalsFragment
-        goalsFragment?.scrollToAppropriateTab(isForFamily)
+        goalsFragment?.scrollToAppropriateTab(who)
     }
 
     override fun openCreateGoalScreen() {

@@ -44,8 +44,6 @@ import java.util.Date
 import java.util.Locale
 
 
-const val CONST_FAMILY = "family"
-const val CONST_MYSELF = "myself"
 private const val CREATE_GOAL_VM_MODULE = "CREATE_GOAL_VM_MODULE"
 
 fun getCreateGoalModule() = Kodein.Module(CREATE_GOAL_VM_MODULE) {
@@ -74,17 +72,6 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         bridge = context as CreateGoalBridge
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("GETTTZZZ.CreateGoalFragment.onCreate ---> vm=${vm} vm.hashCode=${vm.hashCode()}")
-//        val kit: Kitten by kodein.on(context = this).instance()
-//        val kitten = direct.instance<Kitten>() doesn't work with scope =((((
-//        direct.instance()
-//        kodein.instance()
-//        kodein.baseKodein.container.tree.bindings[]
-//        vm = ViewModelProviders.of(this, direct.instance()).get(CreateGoalVM::class.java)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewPager()
@@ -111,7 +98,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 //    }
 
     private fun setupLD() {
-        vm.nextButtonSharedLD.observe(this, Observer { enabled ->
+        vm.nextButtonLD.observe(this, Observer { enabled ->
             btnNext.isEnabled = enabled
         })
         vm.pressNextSharedLD.observe(this, Observer { btnNext.performClick() })
@@ -119,7 +106,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
     }
 
     private fun setupViewPager() {
-        selectPage(CreateGoalPagerAdapter.WRITE_GOAL_TAB_POSITION)
+        selectPage(CreateGoalPagerAdapter.APPLY_WHO_TAB_POSITION)
         vpCreateGoal.adapter = CreateGoalPagerAdapter(childFragmentManager)
         vpCreateGoal.addOnPageSelectedListener { position -> selectPage(position) }
         vpCreateGoal.offscreenPageLimit = STEPS_TO_CREATE
@@ -128,45 +115,46 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
     private fun selectPage(position: Int) {
         when (position) {
-            CreateGoalPagerAdapter.WRITE_GOAL_TAB_POSITION -> {
+            CreateGoalPagerAdapter.APPLY_WHO_TAB_POSITION -> {
                 btnNext.text = getString(R.string.next)
                 btnPrevious.text = getString(R.string.close)
-
+                btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
+                btnPrevious.setSingleClickListener { bridge.closeCreateFragment() }
+            }
+            CreateGoalPagerAdapter.APPLY_TEXT_TAB_POSITION -> {
+                btnNext.text = getString(R.string.next)
+                btnPrevious.text = getString(R.string.previous)
                 btnNext.setSingleClickListener {
                     vm.recognizePartsOfSpeech()
                     vpCreateGoal.swipeRight(position)
                 }
-                btnPrevious.setSingleClickListener { bridge.closeCreateFragment() }
+                btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_PICTURE_TAB_POSITION -> {
                 btnNext.text = getString(R.string.next)
                 btnPrevious.text = getString(R.string.previous)
-
                 btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_SUBTASKS_TAB_POSITION -> {
                 btnNext.text = getString(R.string.next)
                 btnPrevious.text = getString(R.string.previous)
-
                 btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_DEADLINE_TAB_POSITION -> {
                 btnNext.text = getString(R.string.save)
                 btnPrevious.text = getString(R.string.previous)
-
                 btnNext.setSingleClickListener {
                     vm.saveGoal()
                     vpCreateGoal.swipeRight(position)
-                    bridge.scrollToAppropriateTab(vm.isForFamily)
+                    bridge.scrollToAppropriateTab(vm.who)
                 }
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_FINISH_TAB_POSITION -> {
                 btnNext.text = getString(R.string.done)
                 btnPrevious.text = getString(R.string.close)
-
                 btnNext.setSingleClickListener { bridge.closeCreateFragment() }
                 btnPrevious.setSingleClickListener { bridge.closeCreateFragment() }
             }
@@ -192,7 +180,7 @@ class CreateGoalVM(
         println("GETTTZZZ.CreateGoalVM.onCleared ---> this=${this.hashCode()}")
     }
 
-    val nextButtonSharedLD = MutableLiveData<Boolean>()
+    val nextButtonLD = MutableLiveData<Boolean>()
     val pressNextSharedLD = MutableLiveData<Unit>()
     val recognizedWordsLD = MutableLiveData<List<WordUI>>()
     val keyboardListenerLD = MutableLiveData<Boolean>()
@@ -201,7 +189,7 @@ class CreateGoalVM(
     val loadingWordsLD = MutableLiveData<Boolean>()
     val photoWasEmptyLD = MutableLiveData<Boolean>()
 
-    var isForFamily = false
+    var who: String = ""
     var writtenGoalText: String = ""
     var selectedPhoto: PhotoUI? = null
     var selectedSubTasks: List<SubGoalUI> = arrayListOf()
@@ -246,7 +234,7 @@ class CreateGoalVM(
             photo = selectedPhoto,
             subGoals = selectedSubTasks,
             deadline = selectedDeadline,
-            forWhom = if (isForFamily) CONST_FAMILY else CONST_MYSELF,
+            forWhom = who,
             done = false,
             createdAt = Date(),
             updatedAt = Date()
@@ -254,25 +242,30 @@ class CreateGoalVM(
 
         val goalDomain = toDomainGoalMapper.transform(goalUI)
 
-        createGoalUC.invoke(goalDomain, ::processError) {}
-
-        writtenGoalText = ""
-        selectedPhoto = null
-        selectedSubTasks = arrayListOf()
-        selectedDeadline = ""
-        isForFamily = false
+        createGoalUC(goalDomain, ::processError) {}
     }
 
     fun validateDeadline() {
-        nextButtonSharedLD.value = selectedDeadline.isNotEmpty()
+        nextButtonLD.value = selectedDeadline.isNotEmpty()
     }
 
     fun validateSubGoal() {
-        nextButtonSharedLD.value = true
+        nextButtonLD.value = true
     }
 
     fun validatePhoto() {
-        nextButtonSharedLD.value = true
+        nextButtonLD.value = true
+    }
+
+    fun validateWho() {
+        nextButtonLD.value = who.isNotEmpty()
+    }
+
+    fun validateText(): Boolean {
+        val possibleWords = writtenGoalText.trim().split(" ")
+        val enabled = possibleWords.size >= 2
+        nextButtonLD.value = enabled
+        return enabled
     }
 
     companion object {

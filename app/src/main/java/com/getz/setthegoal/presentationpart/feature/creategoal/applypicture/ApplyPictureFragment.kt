@@ -25,11 +25,6 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
     private val photoAdapter: PhotoAdapter by lazy { setupPhotoAdapter() }
     private val wordAdapter: WordAdapter by lazy { setupWordAdapter() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("GETTTZZZ.ApplyPictureFragment.onCreate ---> vm.hashCode=${vm.hashCode()}")
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,10 +35,6 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         btnFindAnotherPicture.setSingleClickListener {
             //todo implement get random pictures from unsplash request
         }
-
-        //todo fix bug: adapter is clean but UI isn't (view pager saves state, even notifyDataSetChanged() doesn't work in onResume())
-        photoAdapter.clean()
-        wordAdapter.clean()
     }
 
     override fun onResume() {
@@ -64,6 +55,8 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         vm.recognizedWordsLD.observe(this, Observer { words ->
             changeDescriptionState(true)
             wordAdapter.replace(words)
+            photoAdapter.clean()
+            vm.selectedPhoto = null
         })
         vm.photosResultLD.observe(this, Observer { photos -> photoAdapter.replace(photos) })
         vm.loadingPhotosLD.observe(this, Observer { loading ->
