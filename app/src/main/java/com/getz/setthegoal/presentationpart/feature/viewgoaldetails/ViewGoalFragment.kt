@@ -117,20 +117,19 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
     private fun setupDeadline() {
         if (goal.deadline.isNotEmpty()) {
             val timeRange = DeadlineEnum.getEnumByTimeRange(goal.deadline)
-            tvDeadlineView.text = getString(timeRange.strRes)
-
             val daysRemain = goal.createdAt.getDaysIn(timeRange)
 
+            tvYouHaveChosen.text = resources.getQuantityText(R.plurals.you_have_plural, daysRemain)
+            tvDeadlineView.text =
+                resources.getQuantityString(R.plurals.days_plural, daysRemain, daysRemain)
+            tvDeadlineDescription.text = getString(R.string.to_get_it_done)
+
             tvTimeRemain.text = buildSpannedString {
-                append(resources.getQuantityText(R.plurals.you_have_plural, daysRemain))
+                append(getString(R.string.you_have_chosen))
                 append(" ")
-                bold {
-                    append(
-                        resources.getQuantityString(R.plurals.days_plural, daysRemain, daysRemain)
-                    )
-                }
+                bold { append(getString(timeRange.strRes)) }
                 append(" ")
-                append(getString(R.string.to_get_it_done))
+                append(getString(R.string.as_a_deadline))
             }
         }
     }

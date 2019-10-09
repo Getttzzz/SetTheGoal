@@ -136,14 +136,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:gravity="end"
-                android:text="@string/you_have_chosen"
+                android:gravity="center"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
                 app:layout_constraintEnd_toStartOf="@+id/mcvDeadlineView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
+                app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView"
+                tools:text="You have" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mcvDeadlineView"
@@ -165,6 +165,7 @@
                     android:id="@+id/tvDeadlineView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
                     android:gravity="center"
                     android:maxWidth="98dp"
                     android:paddingStart="10dp"
@@ -173,7 +174,7 @@
                     android:paddingBottom="3dp"
                     android:textColor="@color/colorText"
                     android:textSize="16sp"
-                    tools:text="Шесть месяцев" />
+                    tools:text="12 days" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -183,13 +184,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@string/as_a_deadline"
+                android:gravity="center"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/mcvDeadlineView"
-                app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView" />
+                app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView"
+                tools:text="to get it done" />
 
             <TextView
                 android:id="@+id/tvTimeRemain"
@@ -208,7 +210,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mcvDeadlineView"
-                tools:text="You have 12 days to get it done" />
+                tools:text="You have chosen One year as a deadline" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDidIt"
