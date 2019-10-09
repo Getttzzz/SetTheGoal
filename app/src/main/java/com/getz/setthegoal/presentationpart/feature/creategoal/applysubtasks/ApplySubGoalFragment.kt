@@ -2,7 +2,6 @@ package com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
@@ -10,16 +9,16 @@ import com.getz.setthegoal.presentationpart.entitylayer.SubGoalUI
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_apply_sub_goal.*
-import org.kodein.di.direct
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.on
 
 class ApplySubGoalFragment : BaseFragment(R.layout.fragment_apply_sub_goal) {
 
-    private lateinit var vm: CreateGoalVM
+    val vm: CreateGoalVM by kodein.on(context = this).instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vm = ViewModelProviders.of(this, direct.instance()).get(CreateGoalVM::class.java)
+        println("GETTTZZZ.ApplySubGoalFragment.onCreate ---> vm.hashCode=${vm.hashCode()}")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

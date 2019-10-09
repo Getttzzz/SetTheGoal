@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentationpart.feature.creategoal.writegoal
+package com.getz.setthegoal.presentationpart.feature.creategoal.applytext
 
 import android.view.LayoutInflater
 import android.view.View

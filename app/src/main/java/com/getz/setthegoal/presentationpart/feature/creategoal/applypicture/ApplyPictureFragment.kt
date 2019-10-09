@@ -6,7 +6,6 @@ import androidx.core.text.buildSpannedString
 import androidx.core.text.underline
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
@@ -16,19 +15,19 @@ import com.getz.setthegoal.presentationpart.util.openLink
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_apply_picture.*
 import kotlinx.android.synthetic.main.layout_found_nothing.*
-import org.kodein.di.direct
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.on
 import java.util.Locale
 
 class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
 
-    private lateinit var vm: CreateGoalVM
+    val vm: CreateGoalVM by kodein.on(context = this).instance()
     private val photoAdapter: PhotoAdapter by lazy { setupPhotoAdapter() }
     private val wordAdapter: WordAdapter by lazy { setupWordAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vm = ViewModelProviders.of(this, direct.instance()).get(CreateGoalVM::class.java)
+        println("GETTTZZZ.ApplyPictureFragment.onCreate ---> vm.hashCode=${vm.hashCode()}")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,9 +87,6 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
     }
 
     private fun setupPhotoAdapter() = PhotoAdapter().apply {
-
-        //todo fix wrong width in neighbour item
-
         onClick = { position ->
             this.select(position)
             val photo = this.godList[position]

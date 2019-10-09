@@ -7,7 +7,7 @@ import com.getz.setthegoal.presentationpart.feature.creategoal.applydeadline.App
 import com.getz.setthegoal.presentationpart.feature.creategoal.applyfinish.ApplyFinishFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.applypicture.ApplyPictureFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks.ApplySubGoalFragment
-import com.getz.setthegoal.presentationpart.feature.creategoal.writegoal.WriteGoalFragment
+import com.getz.setthegoal.presentationpart.feature.creategoal.applytext.ApplyTextFragment
 
 const val STEPS_TO_CREATE = 5
 
@@ -23,7 +23,7 @@ class CreateGoalPagerAdapter(fm: FragmentManager) :
     }
 
     override fun getItem(position: Int): Fragment = when (position) {
-        WRITE_GOAL_TAB_POSITION -> WriteGoalFragment()
+        WRITE_GOAL_TAB_POSITION -> ApplyTextFragment()
         APPLY_PICTURE_TAB_POSITION -> ApplyPictureFragment()
         APPLY_SUBTASKS_TAB_POSITION -> ApplySubGoalFragment()
         APPLY_DEADLINE_TAB_POSITION -> ApplyDeadlineFragment()

@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentationpart.feature.creategoal.writegoal
+package com.getz.setthegoal.presentationpart.feature.creategoal.applytext
 
 import android.os.Bundle
 import android.os.Handler
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.datapart.entitylayer.GoalSuggestions
@@ -15,19 +14,19 @@ import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalVM
 import com.getz.setthegoal.presentationpart.util.addTextListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
-import kotlinx.android.synthetic.main.fragment_write_goal.*
-import org.kodein.di.direct
+import kotlinx.android.synthetic.main.fragment_apply_text_goal.*
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.on
 
-class WriteGoalFragment : BaseFragment(R.layout.fragment_write_goal) {
-    private lateinit var vm: CreateGoalVM
+class ApplyTextFragment : BaseFragment(R.layout.fragment_apply_text_goal) {
+    val vm: CreateGoalVM by kodein.on(context = this).instance()
 
     private val smoothScrollHandler = Handler(Looper.getMainLooper())
     private lateinit var runnable: () -> Unit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vm = ViewModelProviders.of(this, direct.instance()).get(CreateGoalVM::class.java)
+        println("GETTTZZZ.ApplyTextFragment.onCreate ---> vm.hashCode=${vm.hashCode()}")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
