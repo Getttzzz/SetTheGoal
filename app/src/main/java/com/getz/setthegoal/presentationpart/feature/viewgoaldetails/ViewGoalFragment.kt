@@ -11,28 +11,50 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.request.RequestOptions
 import com.getz.setthegoal.R
+import com.getz.setthegoal.di.AndroidScope
+import com.getz.setthegoal.domainpart.core.Gandalf
+import com.getz.setthegoal.domainpart.entitylayer.Goal
+import com.getz.setthegoal.domainpart.interactorlayer.IDeleteGoalUC
+import com.getz.setthegoal.domainpart.interactorlayer.IUpdateGoalUC
 import com.getz.setthegoal.presentationpart.core.BaseFragment
+import com.getz.setthegoal.presentationpart.core.BaseVm
 import com.getz.setthegoal.presentationpart.core.GlideApp
 import com.getz.setthegoal.presentationpart.entitylayer.DeadlineEnum
 import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
+import com.getz.setthegoal.presentationpart.entitylayer.SubGoalUI
 import com.getz.setthegoal.presentationpart.util.getDaysIn
 import com.getz.setthegoal.presentationpart.util.getHideableListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import com.getz.setthegoal.presentationpart.util.showDeleteDialog
 import kotlinx.android.synthetic.main.fragment_view_goal.*
-import org.kodein.di.direct
+import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.on
+import org.kodein.di.generic.scoped
+import org.kodein.di.generic.singleton
 
+const val VIEW_GOAL_VM_MODULE = "VIEW_GOAL_VM_MODULE"
+
+fun getViewGoalModule() = Kodein.Module(VIEW_GOAL_VM_MODULE) {
+    bind<ViewGoalVM>() with scoped<Fragment>(AndroidScope).singleton {
+        ViewGoalVM.getInstance(instance(), ViewGoalVMF(instance(), instance(), instance()))
+    }
+}
 
 class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
 
+    val vm: ViewGoalVM by kodein.on(context = this).instance()
     private lateinit var goal: GoalUI
     private lateinit var bridge: ViewGoalBridge
-    private lateinit var vm: ViewGoalVM
     private var isGoalDone = false
     private val subGoalAdapter: ViewSubGoalAdapter by lazy { setupAdapter() }
 
@@ -42,6 +64,8 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
             .apply { arguments = Bundle().apply { this.putParcelable(PARCELABLE_GOAL, goalUI) } }
     }
 
+    override fun provideOverridingModule() = getViewGoalModule()
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         bridge = context as ViewGoalBridge
@@ -49,7 +73,6 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vm = ViewModelProviders.of(this, direct.instance()).get(ViewGoalVM::class.java)
         arguments?.let {
             goal = it.getParcelable(PARCELABLE_GOAL) as GoalUI
             isGoalDone = goal.done
@@ -160,4 +183,50 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
         objectAnimator.interpolator = AccelerateInterpolator()
         objectAnimator.start()
     }
+}
+
+class ViewGoalVM(
+    private val updateGoalUC: IUpdateGoalUC,
+    private val deleteGoalUC: IDeleteGoalUC,
+    private val presentationToDomainGoalMapper: Gandalf<GoalUI, Goal>
+) : BaseVm() {
+
+    init {
+        println("GETTTZZZ.ViewGoalVM.init ---> this.hashCode=${this.hashCode()}")
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        println("GETTTZZZ.ViewGoalVM.onCleared ---> this.hashCode=${this.hashCode()}")
+    }
+
+    fun markGoalAsDone(goalUI: GoalUI, done: Boolean) = launch {
+        goalUI.done = done
+        updateGoalUC(presentationToDomainGoalMapper.transform(goalUI), ::processError) {}
+    }
+
+    fun updateSubGoals(goalUI: GoalUI, newSubGoals: ArrayList<SubGoalUI>) = launch {
+        goalUI.subGoals as ArrayList
+        goalUI.subGoals.clear()
+        goalUI.subGoals.addAll(newSubGoals)
+        updateGoalUC(presentationToDomainGoalMapper.transform(goalUI), ::processError) {}
+    }
+
+    fun deleteGoal(goalId: String) = launch {
+        deleteGoalUC(goalId, ::processError) {}
+    }
+
+    companion object {
+        fun getInstance(fragment: Fragment, factory: ViewGoalVMF) =
+            ViewModelProviders.of(fragment, factory)[ViewGoalVM::class.java]
+    }
+}
+
+class ViewGoalVMF(
+    private val updateGoalUC: IUpdateGoalUC,
+    private val deleteGoalUC: IDeleteGoalUC,
+    private val presentationToDomainGoalMapper: Gandalf<GoalUI, Goal>
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+        ViewGoalVM(updateGoalUC, deleteGoalUC, presentationToDomainGoalMapper) as T
 }
