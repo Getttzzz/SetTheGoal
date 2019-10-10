@@ -103,6 +103,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
 
     private fun setupLD() {
         vm.nextButtonLD.observe(this, Observer { enabled ->
+            println("GETTTZZZ.CreateGoalFragment.setupLD ---> enabled=$enabled")
             btnNext.isEnabled = enabled
         })
         vm.pressNextSharedLD.observe(this, Observer { btnNext.performClick() })
@@ -146,10 +147,19 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
             CreateGoalPagerAdapter.APPLY_SUBTASKS_TAB_POSITION -> {
                 btnNext.text = getString(R.string.next)
                 btnPrevious.text = getString(R.string.previous)
-                btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
+                btnNext.setSingleClickListener {
+                    println("GETTTZZZ.CreateGoalFragment.selectPage --->vpCreateGoal.swipeRight(position) pos=$position ")
+                    vpCreateGoal.swipeRight(position)
+                }
                 btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
             }
             CreateGoalPagerAdapter.APPLY_DEADLINE_TAB_POSITION -> {
+                btnNext.text = getString(R.string.next)
+                btnPrevious.text = getString(R.string.previous)
+                btnNext.setSingleClickListener { vpCreateGoal.swipeRight(position) }
+                btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
+            }
+            CreateGoalPagerAdapter.APPLY_WORRY_TAB_POSITION -> {
                 btnNext.text = getString(R.string.save)
                 btnPrevious.text = getString(R.string.previous)
                 btnNext.setSingleClickListener {
@@ -168,6 +178,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         }
     }
 }
+
 
 class CreateGoalVM(
     private val getPartsOfSpeechUC: IGetPartsOfSpeechUC,
@@ -202,6 +213,7 @@ class CreateGoalVM(
     var selectedPhoto: PhotoUI? = null
     var selectedSubTasks: List<SubGoalUI> = arrayListOf()
     var selectedDeadline: String = ""
+    var selectedWorry: String = ""
 
     fun recognizePartsOfSpeech() = launch {
         loadingWordsLD.value = true
@@ -254,26 +266,38 @@ class CreateGoalVM(
     }
 
     fun validateDeadline() {
+        println("GETTTZZZ.CreateGoalVM.validateDeadline ---> ")
         val isValid = selectedDeadline.isNotEmpty()
         nextButtonLD.value = isValid
         if (isValid) shakeNextButtonLD.value = Unit
     }
 
+    fun validateWorry() {
+        println("GETTTZZZ.CreateGoalVM.validateWorry ---> ")
+        val isValid = selectedWorry.isNotEmpty()
+        nextButtonLD.value = isValid
+        if (isValid) shakeNextButtonLD.value = Unit
+    }
+
     fun validateSubGoal() {
+        println("GETTTZZZ.CreateGoalVM.validateSubGoal ---> ")
         nextButtonLD.value = true
     }
 
     fun validatePhoto() {
+        println("GETTTZZZ.CreateGoalVM.validatePhoto ---> ")
         nextButtonLD.value = true
     }
 
     fun validateWho() {
+        println("GETTTZZZ.CreateGoalVM.validateWho ---> ")
         val isValid = who.isNotEmpty()
         nextButtonLD.value = isValid
         if (isValid) shakeNextButtonLD.value = Unit
     }
 
     fun validateText(): Boolean {
+        println("GETTTZZZ.CreateGoalVM.validateText ---> ")
         val possibleWords = writtenGoalText.trim().split(" ")
         val isValid = possibleWords.size >= 2
         nextButtonLD.value = isValid

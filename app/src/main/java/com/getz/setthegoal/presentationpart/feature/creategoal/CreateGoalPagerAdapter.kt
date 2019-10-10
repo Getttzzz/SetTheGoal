@@ -9,8 +9,9 @@ import com.getz.setthegoal.presentationpart.feature.creategoal.applyforwhom.Appl
 import com.getz.setthegoal.presentationpart.feature.creategoal.applypicture.ApplyPictureFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.applysubtasks.ApplySubGoalFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.applytext.ApplyTextFragment
+import com.getz.setthegoal.presentationpart.feature.creategoal.applyworry.ApplyWorryFragment
 
-const val STEPS_TO_CREATE = 6
+const val STEPS_TO_CREATE = 7
 
 class CreateGoalPagerAdapter(fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
@@ -21,7 +22,8 @@ class CreateGoalPagerAdapter(fm: FragmentManager) :
         const val APPLY_PICTURE_TAB_POSITION = 2
         const val APPLY_SUBTASKS_TAB_POSITION = 3
         const val APPLY_DEADLINE_TAB_POSITION = 4
-        const val APPLY_FINISH_TAB_POSITION = 5
+        const val APPLY_WORRY_TAB_POSITION = 5
+        const val APPLY_FINISH_TAB_POSITION = 6
     }
 
     override fun getItem(position: Int): Fragment = when (position) {
@@ -30,6 +32,7 @@ class CreateGoalPagerAdapter(fm: FragmentManager) :
         APPLY_PICTURE_TAB_POSITION -> ApplyPictureFragment()
         APPLY_SUBTASKS_TAB_POSITION -> ApplySubGoalFragment()
         APPLY_DEADLINE_TAB_POSITION -> ApplyDeadlineFragment()
+        APPLY_WORRY_TAB_POSITION -> ApplyWorryFragment()
         APPLY_FINISH_TAB_POSITION -> ApplyFinishFragment()
         else -> throw IllegalArgumentException("Wrong position.")
     }

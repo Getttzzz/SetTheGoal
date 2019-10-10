@@ -107,6 +107,12 @@
     <string name="cancel">Cancel</string>
     <string name="for_whom_do_you_want">For whom do you want to achieve the objective?</string>
     <string name="tap_to_change_your_life">Tap to change your life</string>
+    <string name="how_often_can_i_worry_you">How often can I worry you about the objective?</string>
+    <string name="once_a_day">Once a day</string>
+    <string name="once_every_three_days">Once every 3 days</string>
+    <string name="once_every_week">Once every week</string>
+    <string name="once_every_month">Once every month</string>
+    <string name="once_every_two_months">Once every 2 months</string>
     <plurals name="days_plural">
         <item quantity="zero">%1$d days</item>
         <item quantity="one">%1$d day</item>

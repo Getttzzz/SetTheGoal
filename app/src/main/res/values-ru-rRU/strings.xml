@@ -107,6 +107,12 @@
     <string name="cancel">Отменить</string>
     <string name="for_whom_do_you_want">Для кого ты хочешь достигнуть цель?</string>
     <string name="tap_to_change_your_life">Кликни, чтобы изменить жизнь</string>
+    <string name="how_often_can_i_worry_you">Как часто я могу напоминать тебе о цели?</string>
+    <string name="once_a_day">Раз в день</string>
+    <string name="once_every_three_days">Раз в 3 дня</string>
+    <string name="once_every_week">Раз в неделю</string>
+    <string name="once_every_month">Раз в месяц</string>
+    <string name="once_every_two_months">Раз в 2 месяца</string>
     <plurals name="days_plural">
         <item quantity="one">%1$d день</item>
         <item quantity="few">%1$d дня</item>
