@@ -106,6 +106,7 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="for_whom_do_you_want">For whom do you want to achieve the objective?</string>
+    <string name="tap_to_change_your_life">Tap to change your life</string>
     <plurals name="days_plural">
         <item quantity="zero">%1$d days</item>
         <item quantity="one">%1$d day</item>

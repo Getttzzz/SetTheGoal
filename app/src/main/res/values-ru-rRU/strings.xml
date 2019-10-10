@@ -106,6 +106,7 @@
     <string name="ok">Да</string>
     <string name="cancel">Отменить</string>
     <string name="for_whom_do_you_want">Для кого ты хочешь достигнуть цель?</string>
+    <string name="tap_to_change_your_life">Кликни, чтобы изменить жизнь</string>
     <plurals name="days_plural">
         <item quantity="one">%1$d день</item>
         <item quantity="few">%1$d дня</item>
