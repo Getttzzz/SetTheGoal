@@ -130,31 +130,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/clSubGoalsContainerView" />
 
-            <TextView
-                android:id="@+id/tvYouHaveChosen"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="center"
-                android:textColor="@color/colorText"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
-                app:layout_constraintEnd_toStartOf="@+id/mcvDeadlineView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView"
-                tools:text="You have" />
-
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mcvDeadlineView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
                 android:layout_marginTop="16dp"
                 android:checkable="true"
                 app:cardBackgroundColor="@color/colorAccentLight"
                 app:cardElevation="0dp"
                 app:checkedIcon="@null"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vSeparator2"
                 app:shapeAppearance="@style/MaterialCardViewCut6dp"
@@ -184,7 +169,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:gravity="center"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxLines="2"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/mcvDeadlineView"
@@ -193,24 +180,57 @@
                 app:layout_constraintTop_toTopOf="@+id/mcvDeadlineView"
                 tools:text="to get it done" />
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvWorryView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:checkable="true"
+                app:cardBackgroundColor="@color/colorAccentLight"
+                app:cardElevation="0dp"
+                app:checkedIcon="@null"
+                app:layout_constraintBottom_toTopOf="@+id/btnDidIt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcvDeadlineView"
+                app:shapeAppearance="@style/MaterialCardViewCut6dp"
+                app:strokeColor="@color/colorAccent"
+                app:strokeWidth="1dp">
+
+                <TextView
+                    android:id="@+id/tvWorryView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/colorText"
+                    android:textSize="16sp"
+                    tools:text="2 months" />
+
+            </com.google.android.material.card.MaterialCardView>
+
             <TextView
-                android:id="@+id/tvTimeRemain"
+                android:id="@+id/tvWorryDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
                 android:ellipsize="end"
-                android:gravity="center"
+                android:gravity="start"
                 android:maxLines="2"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/btnDidIt"
+                app:layout_constraintBottom_toBottomOf="@+id/mcvWorryView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mcvDeadlineView"
-                tools:text="You have chosen One year as a deadline" />
+                app:layout_constraintStart_toEndOf="@+id/mcvWorryView"
+                app:layout_constraintTop_toTopOf="@+id/mcvWorryView"
+                tools:text="you will be notified" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDidIt"

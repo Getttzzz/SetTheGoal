@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.ContextCompat
-import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -29,6 +28,7 @@ import com.getz.setthegoal.presentationpart.core.GlideApp
 import com.getz.setthegoal.presentationpart.entitylayer.DeadlineEnum
 import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
 import com.getz.setthegoal.presentationpart.entitylayer.SubGoalUI
+import com.getz.setthegoal.presentationpart.entitylayer.WorryEnum
 import com.getz.setthegoal.presentationpart.util.getDaysIn
 import com.getz.setthegoal.presentationpart.util.getHideableListener
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
@@ -117,20 +117,20 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
     private fun setupDeadline() {
         if (goal.deadline.isNotEmpty()) {
             val timeRange = DeadlineEnum.getEnumByTimeRange(goal.deadline)
+            val worryTime = WorryEnum.getEnumByWorryName(goal.worry)
             val daysRemain = goal.createdAt.getDaysIn(timeRange)
 
-            tvYouHaveChosen.text = resources.getQuantityText(R.plurals.you_have_plural, daysRemain)
             tvDeadlineView.text =
                 resources.getQuantityString(R.plurals.days_plural, daysRemain, daysRemain)
-            tvDeadlineDescription.text = getString(R.string.to_get_it_done)
+            tvDeadlineDescription.text =
+                resources.getQuantityText(R.plurals.you_have_plural, daysRemain)
 
-            tvTimeRemain.text = buildSpannedString {
-                append(getString(R.string.you_have_chosen))
+            tvWorryView.text = buildSpannedString {
+                append(getString(R.string.once_every_without_colon))
                 append(" ")
-                bold { append(getString(timeRange.strRes)) }
-                append(" ")
-                append(getString(R.string.as_a_deadline))
+                append(getString(worryTime.strRes))
             }
+            tvWorryDescription.text = getString(R.string.you_will_be_notified)
         }
     }
 

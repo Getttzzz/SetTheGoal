@@ -254,6 +254,7 @@ class CreateGoalVM(
             photo = selectedPhoto,
             subGoals = selectedSubTasks,
             deadline = selectedDeadline,
+            worry = selectedWorry,
             forWhom = who,
             done = false,
             createdAt = Date(),

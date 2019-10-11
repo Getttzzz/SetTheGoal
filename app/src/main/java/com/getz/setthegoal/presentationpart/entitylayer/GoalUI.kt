@@ -11,6 +11,7 @@ data class GoalUI(
     val photo: PhotoUI?,
     val subGoals: List<SubGoalUI>,
     val deadline: String,
+    val worry: String,
     val forWhom: String,
     var done: Boolean,
     val createdAt: Date,
@@ -21,6 +22,7 @@ data class GoalUI(
         parcel.readString(),
         parcel.readParcelable(PhotoUI::class.java.classLoader),
         parcel.createTypedArrayList(SubGoalUI),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readByte() != 0.toByte(),
@@ -34,6 +36,7 @@ data class GoalUI(
         parcel.writeParcelable(photo, flags)
         parcel.writeTypedList(subGoals)
         parcel.writeString(deadline)
+        parcel.writeString(worry)
         parcel.writeString(forWhom)
         parcel.writeByte(if (done) 1 else 0)
         parcel.writeSerializable(createdAt)

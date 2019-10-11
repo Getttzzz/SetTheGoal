@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/how_often_can_i_worry_you"
+        android:text="@string/how_often_can_i_send_you_a_notification"
         android:textColor="@color/colorText"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,13 +22,13 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieWaiting"
-        android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWorryDescription"
-        app:lottie_rawRes="@raw/scanning_person" />
+        app:lottie_rawRes="@raw/send_notification" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWorry"
@@ -39,6 +39,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWorryDescription"
         tools:listitem="@layout/item_worry" />
+
+    <TextView
+        android:id="@+id/tvOnceEvery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/once_every"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/rvWorry"
+        app:layout_constraintStart_toStartOf="@+id/rvWorry" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

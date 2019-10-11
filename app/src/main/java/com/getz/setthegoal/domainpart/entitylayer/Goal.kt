@@ -8,6 +8,7 @@ data class Goal(
     val photo: Photo?,
     val subGoals: List<SubGoal>,
     val deadline: String,
+    val worry: String,
     val forWhom: String,
     val done: Boolean,
     val createdAt: Date,

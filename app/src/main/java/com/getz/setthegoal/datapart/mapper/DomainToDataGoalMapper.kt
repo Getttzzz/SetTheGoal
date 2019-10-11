@@ -19,6 +19,7 @@ class DomainToDataGoalMapper(
             photo = source.photo,
             subGoals = source.subGoals,
             deadline = source.deadline,
+            worry = source.worry,
             forWhom = source.forWhom,
             done = source.done,
             createdAt = source.createdAt,

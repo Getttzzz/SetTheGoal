@@ -51,6 +51,7 @@ class DomainToPresentationGoalMapper : Gandalf<List<Goal>, List<GoalUI>> {
                     photo = photoUI,
                     subGoals = subGoals,
                     deadline = goal.deadline,
+                    worry = goal.worry,
                     forWhom = goal.forWhom,
                     done = goal.done,
                     createdAt = goal.createdAt,

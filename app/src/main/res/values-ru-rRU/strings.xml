@@ -96,9 +96,6 @@
     <string name="goals_for_myself">Для себя</string>
     <string name="sub_goal_text">заполнить текст подцели</string>
     <string name="your_goal">Ваша цель</string>
-    <string name="you_have_chosen">Вы выбрали</string>
-    <string name="as_a_deadline">в роли deadline</string>
-    <string name="to_get_it_done">чтобы достигнуть цель</string>
     <string name="did_it">Готово!</string>
     <string name="achieved_tab_title">Достижения</string>
     <string name="undo">Отмена</string>
@@ -107,12 +104,15 @@
     <string name="cancel">Отменить</string>
     <string name="for_whom_do_you_want">Для кого ты хочешь достигнуть цель?</string>
     <string name="tap_to_change_your_life">Кликни, чтобы изменить жизнь</string>
-    <string name="how_often_can_i_worry_you">Как часто я могу напоминать тебе о цели?</string>
-    <string name="once_a_day">Раз в день</string>
-    <string name="once_every_three_days">Раз в 3 дня</string>
-    <string name="once_every_week">Раз в неделю</string>
-    <string name="once_every_month">Раз в месяц</string>
-    <string name="once_every_two_months">Раз в 2 месяца</string>
+    <string name="how_often_can_i_send_you_a_notification">Как часто я могу присылать тебе уведомление о цели?</string>
+    <string name="once_a_day">1 день</string>
+    <string name="once_every_three_days">3 дня</string>
+    <string name="once_every_week">1 неделю</string>
+    <string name="once_every_month">1 месяц</string>
+    <string name="once_every_two_months">2 месяца</string>
+    <string name="once_every">Раз в:</string>
+    <string name="once_every_without_colon">Раз в</string>
+    <string name="you_will_be_notified">вы будете уведомлены о целе</string>
     <plurals name="days_plural">
         <item quantity="one">%1$d день</item>
         <item quantity="few">%1$d дня</item>
@@ -120,10 +120,10 @@
         <item quantity="other">%1$d дней</item>
     </plurals>
     <plurals name="you_have_plural">
-        <item quantity="one" tools:ignore="ImpliedQuantity">У вас остался</item>
-        <item quantity="few">У вас осталось</item>
-        <item quantity="many">У вас осталось</item>
-        <item quantity="other">У вас осталось</item>
+        <item quantity="one" tools:ignore="ImpliedQuantity">остался для достижения цели</item>
+        <item quantity="few">осталось для достижения цели</item>
+        <item quantity="many">осталось для достижения цели</item>
+        <item quantity="other">осталось для достижения цели</item>
     </plurals>
 
 </resources>

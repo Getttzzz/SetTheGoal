@@ -48,6 +48,7 @@ class PresentationToDomainGoalMapper : Gandalf<GoalUI, Goal> {
             photo = photoDomain,
             subGoals = subGoalsDomain,
             deadline = source.deadline,
+            worry = source.worry,
             forWhom = source.forWhom,
             done = source.done,
             createdAt = source.createdAt,

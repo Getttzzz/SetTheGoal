@@ -20,6 +20,7 @@ class ApplyWorryFragment : BaseFragment(R.layout.fragment_apply_worry) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lottieWaiting.speed = 0.6f
         lottieWaiting.setSingleClickListener { lottieWaiting.playAnimation() }
     }
 

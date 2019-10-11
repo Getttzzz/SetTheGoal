@@ -17,6 +17,7 @@ class DataToDomainGoalMapper : Gandalf<List<GoalDto>, List<Goal>> {
                     photo = dto.photo,
                     subGoals = dto.subGoals,
                     deadline = dto.deadline,
+                    worry = dto.worry,
                     forWhom = dto.forWhom,
                     done = dto.done,
                     createdAt = dto.createdAt,

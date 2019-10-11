@@ -96,9 +96,6 @@
     <string name="goals_for_myself">For myself</string>
     <string name="sub_goal_text">fill a sub-goal</string>
     <string name="your_goal">Your goal</string>
-    <string name="you_have_chosen">You\'ve chosen</string>
-    <string name="as_a_deadline">as a deadline</string>
-    <string name="to_get_it_done">to get it done</string>
     <string name="did_it">Did it!</string>
     <string name="achieved_tab_title">Achieved</string>
     <string name="undo">Undo</string>
@@ -107,12 +104,15 @@
     <string name="cancel">Cancel</string>
     <string name="for_whom_do_you_want">For whom do you want to achieve the objective?</string>
     <string name="tap_to_change_your_life">Tap to change your life</string>
-    <string name="how_often_can_i_worry_you">How often can I worry you about the objective?</string>
-    <string name="once_a_day">Once a day</string>
-    <string name="once_every_three_days">Once every 3 days</string>
-    <string name="once_every_week">Once every week</string>
-    <string name="once_every_month">Once every month</string>
-    <string name="once_every_two_months">Once every 2 months</string>
+    <string name="how_often_can_i_send_you_a_notification">How often can I send you a notification about the goal?</string>
+    <string name="once_a_day">1 day</string>
+    <string name="once_every_three_days">3 days</string>
+    <string name="once_every_week">1 week</string>
+    <string name="once_every_month">1 month</string>
+    <string name="once_every_two_months">2 months</string>
+    <string name="once_every">Once every:</string>
+    <string name="once_every_without_colon">Once every</string>
+    <string name="you_will_be_notified">you will be notified</string>
     <plurals name="days_plural">
         <item quantity="zero">%1$d days</item>
         <item quantity="one">%1$d day</item>
@@ -122,7 +122,7 @@
         <item quantity="other">%1$d days</item>
     </plurals>
     <plurals name="you_have_plural">
-        <item quantity="other">You have</item>
+        <item quantity="other">left to get it done</item>
     </plurals>
 
 </resources>

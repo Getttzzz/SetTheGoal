@@ -16,6 +16,7 @@ data class GoalDto(
     val photo: Photo? = null,
     val subGoals: List<SubGoal> = arrayListOf(),
     val deadline: String = "",
+    val worry: String = "",
     val forWhom: String = "",
     val done: Boolean = false,
     val createdAt: Date = Date(),
