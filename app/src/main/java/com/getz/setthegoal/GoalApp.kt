@@ -30,7 +30,7 @@ class GoalApp() : Application(), KodeinAware {
         import(dataSourceModule)
         import(useCaseModule)
         import(translatorModule)
-        import(firestoreModule)
-        import(connectionModule)
+        import(firestoreModule) //eagerSingleton (load after onCreate)
+        import(connectionModule) //eagerSingleton (load after onCreate)
     }
 }

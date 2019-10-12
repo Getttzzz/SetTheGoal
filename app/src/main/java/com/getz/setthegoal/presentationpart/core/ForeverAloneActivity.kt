@@ -92,7 +92,7 @@ class ForeverAloneActivity :
 
         val oneTimeRequest = OneTimeWorkRequestBuilder<SendNotificationWorker>()
             .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
-            .setInitialDelay(20, TimeUnit.SECONDS)
+            .setInitialDelay(10, TimeUnit.SECONDS)
             .build()
 
         WorkManager.getInstance(this)

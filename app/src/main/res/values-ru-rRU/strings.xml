@@ -113,6 +113,13 @@
     <string name="once_every">Раз в:</string>
     <string name="once_every_without_colon">Раз в</string>
     <string name="you_will_be_notified">вы будете уведомлены о целе</string>
+    <string name="and_others">и другие…</string>
+    <plurals name="goals_for_notification_plurals">
+        <item quantity="one" tools:ignore="ImpliedQuantity">Не забудьте про свою цель на сегодня</item>
+        <item quantity="few">Не забудьте про свои цели на сегодня</item>
+        <item quantity="many">Не забудьте про свои цели на сегодня</item>
+        <item quantity="other">Не забудьте про свои цели на сегодня</item>
+    </plurals>
     <plurals name="days_plural">
         <item quantity="one">%1$d день</item>
         <item quantity="few">%1$d дня</item>
