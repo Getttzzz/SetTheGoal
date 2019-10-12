@@ -9,7 +9,6 @@ class DataToDomainGoalMapper : Gandalf<List<GoalDto>, List<Goal>> {
         val result = arrayListOf<Goal>()
 
         source.forEach { dto ->
-            println("GETTTZZZ.DataToDomainGoalMapper.transform ---> dto.createdAt=${dto.createdAt}")
             result.add(
                 Goal(
                     goalId = dto.goalId,

@@ -7,6 +7,9 @@ import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.di.EXTRA_ONLINE_STATUS
 import com.getz.setthegoal.di.GET_CONNECTION_STATUS_ACTION
@@ -24,11 +27,18 @@ import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsFragment
 import com.getz.setthegoal.presentationpart.feature.viewgoals.ViewAllGoalsBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeFragment
+import com.getz.setthegoal.presentationpart.workmanager.SendNotificationWorker
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_forever_alone.*
+import org.joda.time.DateTime
+import org.joda.time.Duration
+import java.util.concurrent.TimeUnit
 
 const val TAG_GOALS_FRAGMENT = "TAG_GOALS_FRAGMENT"
 const val TAG_CREATE_GOAL_FRAGMENT = "TAG_CREATE_GOAL_FRAGMENT"
+const val TAG_PERIODIC_SEND_NOTIFICATION_WORKER = "TAG_PERIODIC_SEND_NOTIFICATION_WORKER"
+
+const val REMINDER_HOUR = 8
 
 class ForeverAloneActivity :
     AppCompatActivity(R.layout.activity_forever_alone),
@@ -40,14 +50,57 @@ class ForeverAloneActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        scheduleEverydayWorker()
+
         val currentUser = FirebaseAuth.getInstance().currentUser
-        println("GETTTZZZ.ForeverAloneActivity.onCreate ---> currentUser=$currentUser")
 
         if (currentUser != null) {
             openMainScreen()
         } else {
             openWelcomeScreen()
         }
+    }
+
+    private fun scheduleEverydayWorker() {
+        println("GETTTZZZ.ForeverAloneActivity.scheduleEverydayWorker ---> ")
+        val delayMinutes = if (DateTime.now().hourOfDay > REMINDER_HOUR)
+            Duration(
+                DateTime.now(),
+                DateTime.now().withTimeAtStartOfDay().plusHours(REMINDER_HOUR)
+            ).standardMinutes
+        else
+            Duration(
+                DateTime.now(),
+                DateTime.now().withTimeAtStartOfDay().plusDays(1).plusHours(REMINDER_HOUR)
+            ).standardMinutes
+
+//        val periodicRequest = PeriodicWorkRequestBuilder<SendNotificationWorker>(
+//            repeatInterval = 24,
+//            repeatIntervalTimeUnit = TimeUnit.HOURS,
+//            flexTimeInterval = PeriodicWorkRequest.MIN_PERIODIC_FLEX_MILLIS,
+//            flexTimeIntervalUnit = TimeUnit.MILLISECONDS
+//        )
+////            .setInitialDelay(delayMinutes, TimeUnit.MINUTES)//todo uncomment before commit!!!
+//            .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
+//            .build()
+//        WorkManager.getInstance(this)
+//            .enqueueUniquePeriodicWork(
+//                TAG_PERIODIC_SEND_NOTIFICATION_WORKER,
+//                ExistingPeriodicWorkPolicy.REPLACE,
+//                periodicRequest
+//            )
+
+        val oneTimeRequest = OneTimeWorkRequestBuilder<SendNotificationWorker>()
+            .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
+            .setInitialDelay(20, TimeUnit.SECONDS)
+            .build()
+
+        WorkManager.getInstance(this)
+            .enqueueUniqueWork(
+                TAG_PERIODIC_SEND_NOTIFICATION_WORKER,
+                ExistingWorkPolicy.REPLACE,
+                oneTimeRequest
+            )
     }
 
     override fun onResume() {

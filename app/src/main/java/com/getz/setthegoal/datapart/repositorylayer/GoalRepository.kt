@@ -31,9 +31,17 @@ class GoalRepository(
         goalDS.deleteGoal(goalId, onResult)
     }
 
-    override fun getGoals(onResult: (List<Goal>) -> Unit) {
+    override suspend fun getUnfinishedGoals(onResult: suspend (List<Goal>) -> Unit) {
         val uid = auth.currentUser?.uid ?: "no_id"
-        goalDS.getGoals(uid) {
+        goalDS.getUnfinishedGoals(uid) {
+            val mapped = dataToDomainGoalMapper.transform(it)
+            onResult(mapped)
+        }
+    }
+
+    override fun subscribeOnGoals(onResult: (List<Goal>) -> Unit) {
+        val uid = auth.currentUser?.uid ?: "no_id"
+        goalDS.subscribeOnGoals(uid) {
             val mapped = dataToDomainGoalMapper.transform(it)
             onResult(mapped)
         }

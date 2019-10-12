@@ -7,6 +7,7 @@ import android.net.Network
 import android.net.NetworkRequest
 import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import androidx.core.content.ContextCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import org.kodein.di.Kodein
@@ -24,11 +25,16 @@ val connectionModule = Kodein.Module(ModulesNames.CONNECTION_MODULE) {
 
         val isConnected = cm.activeNetworkInfo?.isConnected == true
 
-        Handler().postDelayed({
-            sendInternetStatus(instance(), isConnected)
+        if (Looper.getMainLooper() == Looper.myLooper()) {
+            println("GETTTZZZ.connectionModule ---> main looper, sendInternetStatus and triggerFirestoreOfflineMode")
+            Handler().postDelayed({
+                sendInternetStatus(instance(), isConnected)
+                triggerFirestoreOfflineMode(isConnected, instance())
+            }, 3000)
+        } else {
+            println("GETTTZZZ.connectionModule ---> bg thread, triggerFirestoreOfflineMode")
             triggerFirestoreOfflineMode(isConnected, instance())
-        }, 3000)
-
+        }
 
         val firestoreNetListener = FirestoreNetListener(instance(), instance())
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

@@ -5,7 +5,7 @@ import com.getz.setthegoal.domainpart.entitylayer.Goal
 import com.getz.setthegoal.domainpart.interactorlayer.IGetGoalsUC
 import com.getz.setthegoal.domainpart.repositorylayer.IGoalRepository
 
-class GetGoalsUC(
+class SubscribeOnGoalsUC(
     private val repo: IGoalRepository
 ) : BaseUseCase(), IGetGoalsUC {
 
@@ -15,7 +15,7 @@ class GetGoalsUC(
         onResult: (List<Goal>) -> Unit
     ) {
         try {
-            repo.getGoals { onResult(it) }
+            repo.subscribeOnGoals { onResult(it) }
         } catch (e: Throwable) {
             onError(e)
         }

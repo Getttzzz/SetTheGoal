@@ -5,7 +5,8 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestore
 
 const val COLLECTION_GOALS = "goals"
-const val OWNER_ID = "ownerId"
+const val FIELD_OWNER_ID = "ownerId"
+const val FIELD_DONE = "done"
 
 class GoalRemoteDS(
     private val firestore: FirebaseFirestore
@@ -41,9 +42,27 @@ class GoalRemoteDS(
         onResult(task.isSuccessful)
     }
 
-    override fun getGoals(uid: String, onResult: (List<GoalDto>) -> Unit) {
+    override suspend fun getUnfinishedGoals(
+        uid: String,
+        onResult: suspend (List<GoalDto>) -> Unit
+    ) {
+        val task = firestore.collection(COLLECTION_GOALS)
+            .whereEqualTo(FIELD_OWNER_ID, uid)
+            .whereEqualTo(FIELD_DONE, false)
+            .get()
+        Tasks.await(task)
+        val result = arrayListOf<GoalDto>()
+        task.result?.let { querySnapshot ->
+            querySnapshot.documents.forEach { goalSnapshot ->
+                goalSnapshot.toObject(GoalDto::class.java)?.let { goalDto -> result.add(goalDto) }
+            }
+        }
+        onResult(result)
+    }
+
+    override fun subscribeOnGoals(uid: String, onResult: (List<GoalDto>) -> Unit) {
         firestore.collection(COLLECTION_GOALS)
-            .whereEqualTo(OWNER_ID, uid)
+            .whereEqualTo(FIELD_OWNER_ID, uid)
             .addSnapshotListener { querySnapshot, e ->
                 val result = arrayListOf<GoalDto>()
 

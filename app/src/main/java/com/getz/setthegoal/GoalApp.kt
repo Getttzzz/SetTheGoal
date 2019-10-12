@@ -9,11 +9,18 @@ import com.getz.setthegoal.di.networkModule
 import com.getz.setthegoal.di.repositoryModule
 import com.getz.setthegoal.di.translatorModule
 import com.getz.setthegoal.di.useCaseModule
+import net.danlew.android.joda.JodaTimeAndroid
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
 
 class GoalApp() : Application(), KodeinAware {
+
+    override fun onCreate() {
+        super.onCreate()
+        println("GETTTZZZ.GoalApp.onCreate ---> ")
+        JodaTimeAndroid.init(this)
+    }
 
     override val kodein: Kodein = Kodein.lazy {
         import(androidXModule(this@GoalApp))
