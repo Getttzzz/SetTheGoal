@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
+import androidx.work.WorkManager
 import com.bumptech.glide.request.RequestOptions
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseAuthFragment
@@ -43,6 +44,7 @@ class ProfileFragment : BaseAuthFragment(R.layout.fragment_profile) {
             }
         }
         btnSignOut.setSingleClickListener {
+            WorkManager.getInstance(context!!).cancelAllWork()
             makeSignOutFromFirebase()
             bridge.onSignedOutFromProfile()
         }

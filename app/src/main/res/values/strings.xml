@@ -113,7 +113,7 @@
     <string name="once_every">Once every:</string>
     <string name="once_every_without_colon">Once every</string>
     <string name="you_will_be_notified">you will be notified</string>
-    <string name="and_others">and others...</string>
+    <string name="and_others">and others…</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one">Don\'t forget about your goal</item>
         <item quantity="other">Don\'t forget about your goals</item>

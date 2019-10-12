@@ -2,7 +2,9 @@ package com.getz.setthegoal.presentationpart.workmanager
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -11,6 +13,7 @@ import androidx.work.WorkerParameters
 import com.getz.setthegoal.R
 import com.getz.setthegoal.domainpart.entitylayer.Goal
 import com.getz.setthegoal.domainpart.interactorlayer.IGetUnfinishedGoalsUC
+import com.getz.setthegoal.presentationpart.core.ForeverAloneActivity
 import com.getz.setthegoal.presentationpart.entitylayer.WorryEnum
 import org.joda.time.DateTime
 import org.joda.time.Period
@@ -24,6 +27,8 @@ const val GOAL_NOTIFICATION_CHANNEL_NAME = "Show unfinished goals"
 const val GOAL_NOTIFICATION_CHANNEL_DESCR = "Channel to show unfinished goals"
 const val GOAL_CHANNEL_ID = "GOAL_CHANNEL_1"
 const val GOAL_NOTIFICATION_ID = 1
+const val GOAL_PENDING_INTENT_REQUEST_CODE = 327
+const val EXTRA_IS_FROM_NOTIFICATION = "EXTRA_IS_FROM_NOTIFICATION"
 
 class SendNotificationWorker(
     context: Context,
@@ -45,7 +50,6 @@ class SendNotificationWorker(
      * 6 month -> ONCE_EVERY_MONTH or ONCE_EVERY_TWO_MONTHS (3 or 6 notifs)
      * 1 year -> ONCE_EVERY_MONTH or ONCE_EVERY_TWO_MONTHS (6 or 12 notifs)
      *
-     * Todo: send notification that You have a goal(goals)
      * Example:
      *
      * (logo) YouTube Music
@@ -139,10 +143,23 @@ class SendNotificationWorker(
             notificationManager?.createNotificationChannel(channel)
         }
 
+        val intentMainActivity =
+            Intent(applicationContext, ForeverAloneActivity::class.java).apply {
+                putExtra(EXTRA_IS_FROM_NOTIFICATION, true)
+            }
+        val pendingIntent = PendingIntent.getActivity(
+            applicationContext,
+            GOAL_PENDING_INTENT_REQUEST_CODE,
+            intentMainActivity,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
         val builder = NotificationCompat.Builder(context, GOAL_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_bee_app_icon)
             .setContentTitle(title)
             .setContentText(message)
+            .setContentIntent(pendingIntent)
+//            .setAutoCancel(true) //todo uncomment before commit!!!
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         NotificationManagerCompat.from(context).notify(GOAL_NOTIFICATION_ID, builder.build())

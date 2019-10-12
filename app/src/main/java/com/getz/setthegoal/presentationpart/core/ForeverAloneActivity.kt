@@ -27,12 +27,12 @@ import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsFragment
 import com.getz.setthegoal.presentationpart.feature.viewgoals.ViewAllGoalsBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeFragment
+import com.getz.setthegoal.presentationpart.workmanager.EXTRA_IS_FROM_NOTIFICATION
 import com.getz.setthegoal.presentationpart.workmanager.SendNotificationWorker
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_forever_alone.*
 import org.joda.time.DateTime
 import org.joda.time.Duration
-import java.util.concurrent.TimeUnit
 
 const val TAG_GOALS_FRAGMENT = "TAG_GOALS_FRAGMENT"
 const val TAG_CREATE_GOAL_FRAGMENT = "TAG_CREATE_GOAL_FRAGMENT"
@@ -50,15 +50,31 @@ class ForeverAloneActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        scheduleEverydayWorker()
-
         val currentUser = FirebaseAuth.getInstance().currentUser
-
         if (currentUser != null) {
-            openMainScreen()
+            val isFromNotification = intent.getBooleanExtra(EXTRA_IS_FROM_NOTIFICATION, false)
+            if (isFromNotification) {
+                openWordByWordScreen()
+            } else {
+                scheduleEverydayWorker()
+                openMainScreen()
+            }
         } else {
             openWelcomeScreen()
         }
+    }
+
+    /**
+     * Need if user clicks on notification when app is opened.
+     * */
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val isFromNotification = intent?.getBooleanExtra(EXTRA_IS_FROM_NOTIFICATION, false) ?: false
+        if (isFromNotification) openWordByWordScreen()
+    }
+
+    private fun openWordByWordScreen() {
+        //todo create this screen
     }
 
     private fun scheduleEverydayWorker() {
@@ -92,7 +108,7 @@ class ForeverAloneActivity :
 
         val oneTimeRequest = OneTimeWorkRequestBuilder<SendNotificationWorker>()
             .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
-            .setInitialDelay(10, TimeUnit.SECONDS)
+//            .setInitialDelay(20, TimeUnit.SECONDS)
             .build()
 
         WorkManager.getInstance(this)

@@ -16,6 +16,7 @@
         <!--Flag adjustPan is needed for keyboard opened listener. -->
         <activity
             android:name="com.getz.setthegoal.presentationpart.core.ForeverAloneActivity"
+            android:launchMode="singleInstance"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
