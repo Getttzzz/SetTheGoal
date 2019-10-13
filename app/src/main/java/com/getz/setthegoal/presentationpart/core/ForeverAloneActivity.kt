@@ -27,6 +27,8 @@ import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsFragment
 import com.getz.setthegoal.presentationpart.feature.viewgoals.ViewAllGoalsBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeFragment
+import com.getz.setthegoal.presentationpart.feature.wordbyword.WordByWordFragment
+import com.getz.setthegoal.presentationpart.workmanager.EXTRA_GOALS_FOR_TODAY
 import com.getz.setthegoal.presentationpart.workmanager.EXTRA_IS_FROM_NOTIFICATION
 import com.getz.setthegoal.presentationpart.workmanager.SendNotificationWorker
 import com.google.firebase.auth.FirebaseAuth
@@ -54,7 +56,9 @@ class ForeverAloneActivity :
         if (currentUser != null) {
             val isFromNotification = intent.getBooleanExtra(EXTRA_IS_FROM_NOTIFICATION, false)
             if (isFromNotification) {
-                openWordByWordScreen()
+                val goals = intent?.getParcelableArrayListExtra(EXTRA_GOALS_FOR_TODAY)
+                    ?: emptyList<GoalUI>()
+                openWordByWordScreen(goals)
             } else {
                 scheduleEverydayWorker()
                 openMainScreen()
@@ -70,11 +74,17 @@ class ForeverAloneActivity :
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         val isFromNotification = intent?.getBooleanExtra(EXTRA_IS_FROM_NOTIFICATION, false) ?: false
-        if (isFromNotification) openWordByWordScreen()
+        val goals = intent?.getParcelableArrayListExtra(EXTRA_GOALS_FOR_TODAY)
+            ?: emptyList<GoalUI>()
+
+        if (isFromNotification) openWordByWordScreen(goals)
     }
 
-    private fun openWordByWordScreen() {
-        //todo create this screen
+    private fun openWordByWordScreen(goals: List<GoalUI>) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.flMain, WordByWordFragment.getInstance(goals))
+            .commit()
     }
 
     private fun scheduleEverydayWorker() {

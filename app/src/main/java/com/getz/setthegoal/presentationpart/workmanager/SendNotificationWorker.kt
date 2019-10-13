@@ -11,9 +11,11 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.getz.setthegoal.R
+import com.getz.setthegoal.domainpart.core.Gandalf
 import com.getz.setthegoal.domainpart.entitylayer.Goal
 import com.getz.setthegoal.domainpart.interactorlayer.IGetUnfinishedGoalsUC
 import com.getz.setthegoal.presentationpart.core.ForeverAloneActivity
+import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
 import com.getz.setthegoal.presentationpart.entitylayer.WorryEnum
 import org.joda.time.DateTime
 import org.joda.time.Period
@@ -29,6 +31,7 @@ const val GOAL_CHANNEL_ID = "GOAL_CHANNEL_1"
 const val GOAL_NOTIFICATION_ID = 1
 const val GOAL_PENDING_INTENT_REQUEST_CODE = 327
 const val EXTRA_IS_FROM_NOTIFICATION = "EXTRA_IS_FROM_NOTIFICATION"
+const val EXTRA_GOALS_FOR_TODAY = "EXTRA_GOALS_FOR_TODAY"
 
 class SendNotificationWorker(
     context: Context,
@@ -37,6 +40,7 @@ class SendNotificationWorker(
 
     override val kodein: Kodein by kodein(applicationContext)
     private val getUnfinishedGoalsUC: IGetUnfinishedGoalsUC by instance()
+    private val domainToPresentationMapper: Gandalf<List<Goal>, List<GoalUI>> by instance()
 
     init {
         println("GETTTZZZ.SendNotificationWorker.init ---> this.hashCode=${this.hashCode()}")
@@ -80,7 +84,6 @@ class SendNotificationWorker(
             Result.failure()
         }, { goals ->
             goals.forEach { goal ->
-                println("GETTTZZZ.SendNotificationWorker.doWork ---> goal=$goal")
                 //check each goal, whether current day suits to show a notification with this goal.
                 //createdAt plus interval
 
@@ -93,16 +96,18 @@ class SendNotificationWorker(
                 }
             }
 
-            if (goals.isNotEmpty()) {
+            println("GETTTZZZ.SendNotificationWorker.doWork ---> goalsToShow=$goalsToShow")
+            if (goalsToShow.isNotEmpty()) {
                 val title = applicationContext.resources.getQuantityString(
                     R.plurals.goals_for_notification_plurals,
-                    goals.size
+                    goalsToShow.size
                 )
                 val msg = buildString {
-                    append(goals[0].text)
-                    if (goals.size > 1) append(" ").append(applicationContext.getString(R.string.and_others))
+                    append(goalsToShow[0].text)
+                    if (goalsToShow.size > 1) append(" ").append(applicationContext.getString(R.string.and_others))
                 }
-                showGoalNotification(title, msg, applicationContext)
+                val mapped = ArrayList(domainToPresentationMapper.transform(goalsToShow))
+                showGoalNotification(title, msg, mapped, applicationContext)
             }
         })
 
@@ -121,13 +126,17 @@ class SendNotificationWorker(
         val period = Period(DateTime(goal.createdAt), DateTime.now())
         val diffDays = period.days
         val reminder = diffDays.rem(eachDay)
-        println("GETTTZZZ.SendNotificationWorker.doWork ---> period=$period")
         println("GETTTZZZ.SendNotificationWorker.doWork ---> diffDays=$diffDays")
         println("GETTTZZZ.SendNotificationWorker.doWork ---> reminder=$reminder")
         if (reminder == 0) goalsToShow.add(goal)
     }
 
-    private fun showGoalNotification(title: String, message: String, context: Context) {
+    private fun showGoalNotification(
+        title: String,
+        message: String,
+        goals: ArrayList<GoalUI>,
+        context: Context
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Create the NotificationChannel, but only on API 26+ because
             // the NotificationChannel class is new and not in the support library
@@ -146,6 +155,7 @@ class SendNotificationWorker(
         val intentMainActivity =
             Intent(applicationContext, ForeverAloneActivity::class.java).apply {
                 putExtra(EXTRA_IS_FROM_NOTIFICATION, true)
+                putParcelableArrayListExtra(EXTRA_GOALS_FOR_TODAY, goals)
             }
         val pendingIntent = PendingIntent.getActivity(
             applicationContext,
@@ -159,7 +169,7 @@ class SendNotificationWorker(
             .setContentTitle(title)
             .setContentText(message)
             .setContentIntent(pendingIntent)
-//            .setAutoCancel(true) //todo uncomment before commit!!!
+            .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         NotificationManagerCompat.from(context).notify(GOAL_NOTIFICATION_ID, builder.build())
