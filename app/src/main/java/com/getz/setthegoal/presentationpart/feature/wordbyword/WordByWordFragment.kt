@@ -1,6 +1,10 @@
 package com.getz.setthegoal.presentationpart.feature.wordbyword
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.TypedValue
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -30,7 +34,7 @@ import java.util.LinkedList
 
 
 const val WORD_BY_WORD_VM_MODULE = "WORD_BY_WORD_VM_MODULE"
-const val INTERVAR_BETWEEN_WORDS = 1000L
+const val DELAY_BETWEEN_WORDS = 600L
 
 fun getWordByWordModule() = Kodein.Module(WORD_BY_WORD_VM_MODULE) {
     bind<WordByWordVM>() with scoped<Fragment>(AndroidScope).singleton {
@@ -42,6 +46,9 @@ fun getWordByWordModule() = Kodein.Module(WORD_BY_WORD_VM_MODULE) {
 class WordByWordFragment : BaseFragment(R.layout.fragment_word_by_word) {
 
     val vm: WordByWordVM by kodein.on(context = this).instance()
+    private lateinit var bridge: WordByWordBridge
+    private val scrollHandler = Handler(Looper.getMainLooper())
+    private val scrollRunnable = Runnable { svWords?.let { it.smoothScrollBy(0, 9000) } }
 
     override fun provideOverridingModule() = getWordByWordModule()
 
@@ -50,6 +57,11 @@ class WordByWordFragment : BaseFragment(R.layout.fragment_word_by_word) {
         fun getInstance(goals: List<GoalUI>) = WordByWordFragment().apply {
             arguments = bundleOf(EXTRA_GOALS_FOR_TODAY_LOCAL to goals)
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        bridge = context as WordByWordBridge
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,20 +75,24 @@ class WordByWordFragment : BaseFragment(R.layout.fragment_word_by_word) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vm.wordLD.observe(this, Observer { word ->
-            println("GETTTZZZ.WordByWordFragment.onViewCreated ---> word=$word")
-            tvWord.text = word
-        })
+        vm.wordLD.observe(this, Observer { word -> tvWord.text = word })
         vm.seeOthersLD.observe(this, Observer { btnSeeOthers.isVisible = it })
         vm.thisIsTheEnd.observe(this, Observer {
-
+            tvWord.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18F)
             tvThisIsTheEnd.isVisible = true
+            scrollHandler.postDelayed(scrollRunnable, 1500)
         })
         vm.errorLD.observe(this, Observer { this.say(it) })
 
         vm.seeNextGoal()
 
         btnSeeOthers.setSingleClickListener { vm.seeNextGoal() }
+        btnGotIt.setSingleClickListener { bridge.closeWordByWordScreen() }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        scrollHandler.removeCallbacks(scrollRunnable)
     }
 }
 
@@ -108,19 +124,21 @@ class WordByWordVM : BaseVm() {
         val words = firstGoal.text.split(" ")
 
         for (i in words.indices) {
-            println("GETTTZZZ.WordByWordVM.showNextWord ---> i=$i word[i]=${words[i]}")
-            delay(INTERVAR_BETWEEN_WORDS)
+            delay(DELAY_BETWEEN_WORDS)
 
 
             if (i == words.size - 1) {
 
                 wordLD.postValue(words[i])
-                delay(INTERVAR_BETWEEN_WORDS)
+                delay(DELAY_BETWEEN_WORDS)
 
                 wordLD.postValue(firstGoal.text)
                 if (goals.size == 0) {
                     val allText = StringBuilder()
-                    bufferGoals.forEach { g ->
+                    for (j in bufferGoals.indices) {
+                        val g = bufferGoals[j]
+                        allText.append(j + 1)
+                        allText.append(". ")
                         allText.append(g.text)
                         allText.append("\n")
                     }

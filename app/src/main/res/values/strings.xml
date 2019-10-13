@@ -115,8 +115,8 @@
     <string name="you_will_be_notified">you will be notified</string>
     <string name="and_others">and others…</string>
     <string name="got_it">Got it</string>
-    <string name="see_others">See others</string>
-    <string name="it_were_all_goals_for_today">It were all goals for today</string>
+    <string name="see_next_goal">See next goal</string>
+    <string name="these_goals_are_for_today">These goals are for today</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one">Don\'t forget about your goal</item>
         <item quantity="other">Don\'t forget about your goals</item>

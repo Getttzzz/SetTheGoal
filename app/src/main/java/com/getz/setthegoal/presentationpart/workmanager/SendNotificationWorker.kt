@@ -80,7 +80,6 @@ class SendNotificationWorker(
         val goalsToShow = arrayListOf<Goal>()
 
         getUnfinishedGoalsUC.invoke(Unit, {
-            println("GETTTZZZ.SendNotificationWorker.doWork ---> getUnfinishedGoalsUC error=$it")
             Result.failure()
         }, { goals ->
             goals.forEach { goal ->
@@ -96,7 +95,6 @@ class SendNotificationWorker(
                 }
             }
 
-            println("GETTTZZZ.SendNotificationWorker.doWork ---> goalsToShow=$goalsToShow")
             if (goalsToShow.isNotEmpty()) {
                 val title = applicationContext.resources.getQuantityString(
                     R.plurals.goals_for_notification_plurals,

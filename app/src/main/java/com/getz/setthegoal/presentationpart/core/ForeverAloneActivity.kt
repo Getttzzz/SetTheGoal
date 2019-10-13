@@ -7,8 +7,9 @@ import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.work.ExistingWorkPolicy
-import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.getz.setthegoal.R
 import com.getz.setthegoal.di.EXTRA_ONLINE_STATUS
@@ -27,6 +28,7 @@ import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsFragment
 import com.getz.setthegoal.presentationpart.feature.viewgoals.ViewAllGoalsBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeFragment
+import com.getz.setthegoal.presentationpart.feature.wordbyword.WordByWordBridge
 import com.getz.setthegoal.presentationpart.feature.wordbyword.WordByWordFragment
 import com.getz.setthegoal.presentationpart.workmanager.EXTRA_GOALS_FOR_TODAY
 import com.getz.setthegoal.presentationpart.workmanager.EXTRA_IS_FROM_NOTIFICATION
@@ -35,17 +37,18 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_forever_alone.*
 import org.joda.time.DateTime
 import org.joda.time.Duration
+import java.util.concurrent.TimeUnit
 
 const val TAG_GOALS_FRAGMENT = "TAG_GOALS_FRAGMENT"
 const val TAG_CREATE_GOAL_FRAGMENT = "TAG_CREATE_GOAL_FRAGMENT"
 const val TAG_PERIODIC_SEND_NOTIFICATION_WORKER = "TAG_PERIODIC_SEND_NOTIFICATION_WORKER"
 
-const val REMINDER_HOUR = 8
+const val REMINDER_AT_HOUR_AM = 8
 
 class ForeverAloneActivity :
     AppCompatActivity(R.layout.activity_forever_alone),
     GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge, ViewAllGoalsBridge,
-    ViewGoalBridge {
+    ViewGoalBridge, WordByWordBridge {
 
     private lateinit var connectionBroReceiver: BroadcastReceiver
 
@@ -87,46 +90,49 @@ class ForeverAloneActivity :
             .commit()
     }
 
+    override fun closeWordByWordScreen() {
+        openMainScreen()
+    }
+
     private fun scheduleEverydayWorker() {
-        println("GETTTZZZ.ForeverAloneActivity.scheduleEverydayWorker ---> ")
-        val delayMinutes = if (DateTime.now().hourOfDay > REMINDER_HOUR)
+        val delayMinutes = if (DateTime.now().hourOfDay > REMINDER_AT_HOUR_AM)
             Duration(
                 DateTime.now(),
-                DateTime.now().withTimeAtStartOfDay().plusHours(REMINDER_HOUR)
+                DateTime.now().withTimeAtStartOfDay().plusHours(REMINDER_AT_HOUR_AM)
             ).standardMinutes
         else
             Duration(
                 DateTime.now(),
-                DateTime.now().withTimeAtStartOfDay().plusDays(1).plusHours(REMINDER_HOUR)
+                DateTime.now().withTimeAtStartOfDay().plusDays(1).plusHours(REMINDER_AT_HOUR_AM)
             ).standardMinutes
 
-//        val periodicRequest = PeriodicWorkRequestBuilder<SendNotificationWorker>(
-//            repeatInterval = 24,
-//            repeatIntervalTimeUnit = TimeUnit.HOURS,
-//            flexTimeInterval = PeriodicWorkRequest.MIN_PERIODIC_FLEX_MILLIS,
-//            flexTimeIntervalUnit = TimeUnit.MILLISECONDS
-//        )
-////            .setInitialDelay(delayMinutes, TimeUnit.MINUTES)//todo uncomment before commit!!!
-//            .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
-//            .build()
-//        WorkManager.getInstance(this)
-//            .enqueueUniquePeriodicWork(
-//                TAG_PERIODIC_SEND_NOTIFICATION_WORKER,
-//                ExistingPeriodicWorkPolicy.REPLACE,
-//                periodicRequest
-//            )
-
-        val oneTimeRequest = OneTimeWorkRequestBuilder<SendNotificationWorker>()
+        val periodicRequest = PeriodicWorkRequestBuilder<SendNotificationWorker>(
+            repeatInterval = 24,
+            repeatIntervalTimeUnit = TimeUnit.HOURS,
+            flexTimeInterval = PeriodicWorkRequest.MIN_PERIODIC_FLEX_MILLIS,
+            flexTimeIntervalUnit = TimeUnit.MILLISECONDS
+        )
+            .setInitialDelay(delayMinutes, TimeUnit.MINUTES)
             .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
-//            .setInitialDelay(20, TimeUnit.SECONDS)
             .build()
 
         WorkManager.getInstance(this)
-            .enqueueUniqueWork(
+            .enqueueUniquePeriodicWork(
                 TAG_PERIODIC_SEND_NOTIFICATION_WORKER,
-                ExistingWorkPolicy.REPLACE,
-                oneTimeRequest
+                ExistingPeriodicWorkPolicy.KEEP,
+                periodicRequest
             )
+
+//        val oneTimeRequest = OneTimeWorkRequestBuilder<SendNotificationWorker>()
+//            .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
+////            .setInitialDelay(20, TimeUnit.SECONDS)
+//            .build()
+//        WorkManager.getInstance(this)
+//            .enqueueUniqueWork(
+//                TAG_PERIODIC_SEND_NOTIFICATION_WORKER,
+//                ExistingWorkPolicy.REPLACE,
+//                oneTimeRequest
+//            )
     }
 
     override fun onResume() {

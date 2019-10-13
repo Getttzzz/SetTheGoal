@@ -114,9 +114,9 @@
     <string name="once_every_without_colon">Раз в</string>
     <string name="you_will_be_notified">вы будете уведомлены о целе</string>
     <string name="and_others">и другие…</string>
-    <string name="got_it">Ну да, я понял</string>
-    <string name="see_others">Просмотреть остальные</string>
-    <string name="it_were_all_goals_for_today">Это были все задачи на сегодня</string>
+    <string name="got_it">Ага, понял</string>
+    <string name="see_next_goal">Просмотреть следующую цель</string>
+    <string name="these_goals_are_for_today">Это были все цели на сегодня</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one" tools:ignore="ImpliedQuantity">Не забудьте про свою цель на сегодня</item>
         <item quantity="few">Не забудьте про свои цели на сегодня</item>
