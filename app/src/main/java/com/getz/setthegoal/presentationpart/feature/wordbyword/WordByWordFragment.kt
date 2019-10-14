@@ -106,8 +106,8 @@ class WordByWordVM : BaseVm() {
     val seeOthersLD = MutableLiveData<Boolean>()
     val thisIsTheEnd = MutableLiveData<Unit>()
 
-    val cachedGoals = LinkedList<GoalUI>()
-    val bufferGoals = ArrayList<GoalUI>()
+    private val cachedGoals = LinkedList<GoalUI>()
+    private val bufferGoals = ArrayList<GoalUI>()
 
     fun seeNextGoal() = launch {
         if (cachedGoals.isNotEmpty()) {
