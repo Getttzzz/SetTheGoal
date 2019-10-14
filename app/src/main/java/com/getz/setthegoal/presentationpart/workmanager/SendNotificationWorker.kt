@@ -109,7 +109,7 @@ class SendNotificationWorker(
             }
         })
 
-        println("GETTTZZZ.SendNotificationWorker.doWork ---> Result.success()")
+        println("GETTTZZZ.SendNotificationWorker.doWork ---> Result.success() goalsToShow=$goalsToShow")
         Result.success()
     } catch (e: Exception) {
         println("GETTTZZZ.SendNotificationWorker.doWork ---> Result.failure() error=$e")
@@ -120,7 +120,7 @@ class SendNotificationWorker(
     private fun calculateInterval(eachDay: Int, goal: Goal, goalsToShow: ArrayList<Goal>) {
         //get diff between Today and createdAtDay
         //12-8=4
-        //4 mod 3 == 0
+        //4 mod 3 == 1
         val period = Period(DateTime(goal.createdAt), DateTime.now())
         val diffDays = period.days
         val reminder = diffDays.rem(eachDay)

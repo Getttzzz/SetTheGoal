@@ -42,6 +42,7 @@ import java.util.concurrent.TimeUnit
 const val TAG_GOALS_FRAGMENT = "TAG_GOALS_FRAGMENT"
 const val TAG_CREATE_GOAL_FRAGMENT = "TAG_CREATE_GOAL_FRAGMENT"
 const val TAG_PERIODIC_SEND_NOTIFICATION_WORKER = "TAG_PERIODIC_SEND_NOTIFICATION_WORKER"
+const val TAG_SEND_NOTIFICATION_UNIQUE_NAME = "TAG_SEND_NOTIFICATION_UNIQUE_NAME"
 
 const val REMINDER_AT_HOUR_AM = 8
 
@@ -83,58 +84,6 @@ class ForeverAloneActivity :
         if (isFromNotification) openWordByWordScreen(goals)
     }
 
-    private fun openWordByWordScreen(goals: List<GoalUI>) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.flMain, WordByWordFragment.getInstance(goals))
-            .commit()
-    }
-
-    override fun closeWordByWordScreen() {
-        openMainScreen()
-    }
-
-    private fun scheduleEverydayWorker() {
-        val delayMinutes = if (DateTime.now().hourOfDay > REMINDER_AT_HOUR_AM)
-            Duration(
-                DateTime.now(),
-                DateTime.now().withTimeAtStartOfDay().plusHours(REMINDER_AT_HOUR_AM)
-            ).standardMinutes
-        else
-            Duration(
-                DateTime.now(),
-                DateTime.now().withTimeAtStartOfDay().plusDays(1).plusHours(REMINDER_AT_HOUR_AM)
-            ).standardMinutes
-
-        val periodicRequest = PeriodicWorkRequestBuilder<SendNotificationWorker>(
-            repeatInterval = 24,
-            repeatIntervalTimeUnit = TimeUnit.HOURS,
-            flexTimeInterval = PeriodicWorkRequest.MIN_PERIODIC_FLEX_MILLIS,
-            flexTimeIntervalUnit = TimeUnit.MILLISECONDS
-        )
-            .setInitialDelay(delayMinutes, TimeUnit.MINUTES)
-            .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
-            .build()
-
-        WorkManager.getInstance(this)
-            .enqueueUniquePeriodicWork(
-                TAG_PERIODIC_SEND_NOTIFICATION_WORKER,
-                ExistingPeriodicWorkPolicy.KEEP,
-                periodicRequest
-            )
-
-//        val oneTimeRequest = OneTimeWorkRequestBuilder<SendNotificationWorker>()
-//            .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
-////            .setInitialDelay(20, TimeUnit.SECONDS)
-//            .build()
-//        WorkManager.getInstance(this)
-//            .enqueueUniqueWork(
-//                TAG_PERIODIC_SEND_NOTIFICATION_WORKER,
-//                ExistingWorkPolicy.REPLACE,
-//                oneTimeRequest
-//            )
-    }
-
     override fun onResume() {
         super.onResume()
         val (connectionReceiver, filter) = createConnectionReceiver()
@@ -145,6 +94,17 @@ class ForeverAloneActivity :
     override fun onPause() {
         unregisterReceiver(connectionBroReceiver)
         super.onPause()
+    }
+
+    private fun openWordByWordScreen(goals: List<GoalUI>) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.flMain, WordByWordFragment.getInstance(goals))
+            .commit()
+    }
+
+    override fun closeWordByWordScreen() {
+        openMainScreen()
     }
 
     override fun onSignedOutFromProfile() {
@@ -225,5 +185,48 @@ class ForeverAloneActivity :
             .apply { addCategory(Intent.CATEGORY_DEFAULT) }
 
         return Pair(receiver, connectionFilter)
+    }
+
+    private fun scheduleEverydayWorker() {
+        println("GETTTZZZ.ForeverAloneActivity.scheduleEverydayWorker ---> DateTime.now().hourOfDay=${DateTime.now().hourOfDay}")
+
+        val duration = if (DateTime.now().hourOfDay > REMINDER_AT_HOUR_AM)
+            Duration(
+                DateTime.now(),
+                DateTime.now().withTimeAtStartOfDay().plusHours(REMINDER_AT_HOUR_AM)
+            )
+        else
+            Duration(
+                DateTime.now(),
+                DateTime.now().withTimeAtStartOfDay().plusDays(1).plusHours(REMINDER_AT_HOUR_AM)
+            )
+
+        println("GETTTZZZ.ForeverAloneActivity.scheduleEverydayWorker ---> delayHours=${duration.standardHours} delayMinutes=${duration.standardMinutes}")
+
+        val periodicRequest = PeriodicWorkRequestBuilder<SendNotificationWorker>(
+            repeatInterval = 24,
+            repeatIntervalTimeUnit = TimeUnit.HOURS,
+            flexTimeInterval = PeriodicWorkRequest.MIN_PERIODIC_FLEX_MILLIS,
+            flexTimeIntervalUnit = TimeUnit.MILLISECONDS
+        )
+            .setInitialDelay(duration.standardMinutes, TimeUnit.MINUTES)
+            .addTag(TAG_PERIODIC_SEND_NOTIFICATION_WORKER)
+            .build()
+
+        WorkManager.getInstance(this)
+            .enqueueUniquePeriodicWork(
+                TAG_SEND_NOTIFICATION_UNIQUE_NAME,
+                ExistingPeriodicWorkPolicy.REPLACE,
+                periodicRequest
+            )
+
+//        WorkManager.getInstance(this)
+//            .getWorkInfoByIdLiveData(periodicRequest.id)
+//            .observe(this, Observer { workInfo ->
+//                workInfo?.let { info ->
+//                    println("GETTTZZZ.ForeverAloneActivity.scheduleEverydayWorker ---> info.tags=${info.tags}")
+//                    println("GETTTZZZ.ForeverAloneActivity.scheduleEverydayWorker ---> info.state=${info.state}")
+//                }
+//            })
     }
 }
