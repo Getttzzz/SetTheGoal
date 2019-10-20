@@ -167,7 +167,10 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
                     vpCreateGoal.swipeRight(position)
                     bridge.scrollToAppropriateTab(vm.who)
                 }
-                btnPrevious.setSingleClickListener { vpCreateGoal.swipeLeft(position) }
+                btnPrevious.setSingleClickListener {
+                    vm.selectedWorry = ""
+                    vpCreateGoal.swipeLeft(position)
+                }
             }
             CreateGoalPagerAdapter.APPLY_FINISH_TAB_POSITION -> {
                 btnNext.text = getString(R.string.done)
@@ -267,38 +270,32 @@ class CreateGoalVM(
     }
 
     fun validateDeadline() {
-        println("GETTTZZZ.CreateGoalVM.validateDeadline ---> ")
         val isValid = selectedDeadline.isNotEmpty()
         nextButtonLD.value = isValid
         if (isValid) shakeNextButtonLD.value = Unit
     }
 
     fun validateWorry() {
-        println("GETTTZZZ.CreateGoalVM.validateWorry ---> ")
         val isValid = selectedWorry.isNotEmpty()
         nextButtonLD.value = isValid
         if (isValid) shakeNextButtonLD.value = Unit
     }
 
     fun validateSubGoal() {
-        println("GETTTZZZ.CreateGoalVM.validateSubGoal ---> ")
         nextButtonLD.value = true
     }
 
     fun validatePhoto() {
-        println("GETTTZZZ.CreateGoalVM.validatePhoto ---> ")
         nextButtonLD.value = true
     }
 
     fun validateWho() {
-        println("GETTTZZZ.CreateGoalVM.validateWho ---> ")
         val isValid = who.isNotEmpty()
         nextButtonLD.value = isValid
         if (isValid) shakeNextButtonLD.value = Unit
     }
 
     fun validateText(): Boolean {
-        println("GETTTZZZ.CreateGoalVM.validateText ---> ")
         val possibleWords = writtenGoalText.trim().split(" ")
         val isValid = possibleWords.size >= 2
         nextButtonLD.value = isValid
