@@ -117,6 +117,12 @@
     <string name="got_it">Got it</string>
     <string name="see_next_goal">See next goal</string>
     <string name="these_goals_are_for_today">These goals are for today</string>
+    <string name="welcome_to">Welcome to </string>
+    <string name="set_the">Set the</string>
+    <string name="stop_flying_aimlessly">Stop flying aimlessly.</string>
+    <string name="get_a_conscious_life">Get a conscious life.</string>
+    <string name="let_s_go">let\'s go</string>
+    <string name="goal">goal</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one">Don\'t forget about your goal</item>
         <item quantity="other">Don\'t forget about your goals</item>

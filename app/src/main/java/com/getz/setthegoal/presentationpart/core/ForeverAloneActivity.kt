@@ -19,6 +19,8 @@ import com.getz.setthegoal.presentationpart.feature.auth.AuthBridge
 import com.getz.setthegoal.presentationpart.feature.auth.AuthFragment
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalBridge
 import com.getz.setthegoal.presentationpart.feature.creategoal.CreateGoalFragment
+import com.getz.setthegoal.presentationpart.feature.prewelcome.PreWelcomeBridge
+import com.getz.setthegoal.presentationpart.feature.prewelcome.PreWelcomeFragment
 import com.getz.setthegoal.presentationpart.feature.profile.ProfileBridge
 import com.getz.setthegoal.presentationpart.feature.profile.ProfileFragment
 import com.getz.setthegoal.presentationpart.feature.viewgoaldetails.ViewGoalBridge
@@ -49,7 +51,7 @@ const val REMINDER_AT_HOUR_AM = 8
 class ForeverAloneActivity :
     AppCompatActivity(R.layout.activity_forever_alone),
     GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge, ViewAllGoalsBridge,
-    ViewGoalBridge, WordByWordBridge {
+    ViewGoalBridge, WordByWordBridge, PreWelcomeBridge {
 
     private lateinit var connectionBroReceiver: BroadcastReceiver
 
@@ -167,10 +169,17 @@ class ForeverAloneActivity :
             .commit()
     }
 
-    private fun openWelcomeScreen() {
+    override fun closePreWelcomeScreen() {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.flMain, WelcomeFragment())
+            .commit()
+    }
+
+    private fun openWelcomeScreen() {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.flMain, PreWelcomeFragment())
             .commit()
     }
 

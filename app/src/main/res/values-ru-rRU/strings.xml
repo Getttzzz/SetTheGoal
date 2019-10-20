@@ -117,6 +117,12 @@
     <string name="got_it">Ага, понял</string>
     <string name="see_next_goal">Просмотреть следующую цель</string>
     <string name="these_goals_are_for_today">Это были все цели на сегодня</string>
+    <string name="welcome_to">Добро пожаловать в </string>
+    <string name="set_the">Set the</string>
+    <string name="stop_flying_aimlessly">Перестань бесцельно летать </string>
+    <string name="get_a_conscious_life">Начни осознанную жизнь </string>
+    <string name="let_s_go">Погнали</string>
+    <string name="goal">goal</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one" tools:ignore="ImpliedQuantity">Не забудьте про свою цель на сегодня</item>
         <item quantity="few">Не забудьте про свои цели на сегодня</item>
