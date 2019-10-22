@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SetTheGoal</string>
     <string name="for_family">For family</string>
     <string name="for_myself">For myself</string>
@@ -134,6 +134,20 @@
     <string name="of_course">Of course</string>
     <string name="the">the&#160;</string>
     <string name="start">Start</string>
+    <string name="opportunities">Here\'s opportunities of the app.</string>
+    <string name="endeavor">It is crucial to figure out for whom you will be endeavor.</string>
+    <string name="for_family_or_for_yourself">Therefore, I\'ve made two categories: for Yourself and for your Family.</string>
+    <string name="app_sends_smart_notification">App sends smart notification about each goal.</string>
+    <string name="interval_notification">While creating a goal you choose appropriate interval between getting a notification.</string>
+    <string name="works_offline">Moreover, the app works offline.</string>
+    <string name="anywhere">Create. See. Remember. All your goals. Anywhere.</string>
+    <string name="opportunities_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/opportunities.jpg?alt=media&token=ee83a362-9002-4b32-a955-2f1cf9db1c00]]></string>
+    <string name="endeavor_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/endeavor.jpg?alt=media&token=131ab1f9-d438-46bc-913e-05fc8021cc7e]]></string>
+    <string name="for_family_or_for_yourself_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/family.jpg?alt=media&token=56dea43a-44ff-4ea3-8651-9dfbfa969ff4]]></string>
+    <string name="app_sends_smart_notification_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/notification.jpg?alt=media&token=030017aa-95ff-470e-962e-a551ffe5f302]]></string>
+    <string name="interval_notification_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/interval.jpg?alt=media&token=6db24280-bd4c-4fcd-891e-fe609cf8e182]]></string>
+    <string name="works_offline_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/moreover.jpg?alt=media&token=8e13b706-549a-422d-85ee-d034809b43de]]></string>
+    <string name="anywhere_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/anywhere.jpg?alt=media&token=34ac89a9-90e4-4df7-ac97-873cd86e621b]]></string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one">Don\'t forget about your goal</item>
         <item quantity="other">Don\'t forget about your goals</item>

@@ -74,7 +74,7 @@
     <string name="goals_for_my_family">Для семьи</string>
     <string name="auth_as">Авторизоваться используя</string>
     <string name="google">гугле</string>
-    <string name="or_be">или будьте</string>
+    <string name="or_be">ну или будь</string>
     <string name="incognito">Инкогнито</string>
     <string name="auth_failed">Аутентификация есть неудачный. Сорри.</string>
     <string name="auth_wasnt_successful">Аутентификация не была успех.</string>
@@ -112,14 +112,14 @@
     <string name="once_every_two_months">2 месяца</string>
     <string name="once_every">Раз в:</string>
     <string name="once_every_without_colon">Раз в</string>
-    <string name="you_will_be_notified">вы будете уведомлены о целе</string>
+    <string name="you_will_be_notified">вы будете уведомлены о цели</string>
     <string name="and_others">и другие…</string>
     <string name="got_it">Ага, понял</string>
     <string name="see_next_goal">Просмотреть следующую цель</string>
     <string name="these_goals_are_for_today">Это были все цели на сегодня</string>
     <string name="welcome_to">Добро пожаловать в </string>
     <string name="set">Set&#160;</string>
-    <string name="stop_flying_aimlessly">Перестань бесцельно летать </string>
+    <string name="stop_flying_aimlessly">Перестань бесцельно летать.</string>
     <string name="start_moving">Начни движение к цели.</string>
     <string name="let_s_go">Погнали</string>
     <string name="goal">goal&#160;</string>
@@ -134,6 +134,20 @@
     <string name="of_course">Разумеется</string>
     <string name="the">the&#160;</string>
     <string name="start">Начать</string>
+    <string name="opportunities">Кратко о возможностях приложения.</string>
+    <string name="endeavor">Критически важно выяснить ради кого ты будешь стараться.</string>
+    <string name="for_family_or_for_yourself">Поэтому я сделал две категории: для себя или для семьи.</string>
+    <string name="app_sends_smart_notification">Приложение в нужный момент присылает уведомление о цели.</string>
+    <string name="interval_notification">Ты можешь выбрать подходящий интервал между получением уведомлений во время создания цели.</string>
+    <string name="works_offline">Более того, приложение может работать без интернета.</string>
+    <string name="anywhere">Создавай. Просматривай. Вспоминай. О всех твоих целях. Где бы ты не находился.</string>
+    <string name="opportunities_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/opportinities_ru.jpg?alt=media&token=281a0a0a-7962-4256-a008-96ccfe19b17c]]></string>
+    <string name="endeavor_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/endeavor_ru.jpg?alt=media&token=398fe6d1-0cb5-4996-95d1-404c58e09330]]></string>
+    <string name="for_family_or_for_yourself_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/family_ru.jpg?alt=media&token=a711cf62-dcd0-4535-82ca-df6e32723531]]></string>
+    <string name="app_sends_smart_notification_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/notification_ru.jpg?alt=media&token=ad6c8c5f-e49a-4e20-b174-4506f365e8fb]]></string>
+    <string name="interval_notification_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/interval_ru.jpg?alt=media&token=ac9b78d2-a82b-402a-afe2-e916c300d128]]></string>
+    <string name="works_offline_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/moreover_ru.jpg?alt=media&token=8b8904b7-4aa1-49c2-a8bf-d0f41f440581]]></string>
+    <string name="anywhere_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/anywhere_ru.jpg?alt=media&token=77478f10-7e64-4e4d-8691-810d38c2b8c8]]></string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one" tools:ignore="ImpliedQuantity">Не забудьте про свою цель на сегодня</item>
         <item quantity="few">Не забудьте про свои цели на сегодня</item>
