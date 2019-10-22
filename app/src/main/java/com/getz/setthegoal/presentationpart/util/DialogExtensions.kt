@@ -1,13 +1,21 @@
 package com.getz.setthegoal.presentationpart.util
 
 import android.content.Context
+import androidx.annotation.StringRes
 import com.getz.setthegoal.R
+import com.getz.setthegoal.presentationpart.feature.welcome.OkayEnum
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-fun showDeleteDialog(context: Context, positiveAction: () -> Unit) {
+fun showOkOrCancelDialog(
+    @StringRes title: Int,
+    @StringRes description: Int? = null,
+    context: Context,
+    positiveAction: () -> Unit
+) {
     MaterialAlertDialogBuilder(context, R.style.AlertDialogThemeCut)
-        .setTitle(context.getString(R.string.do_you_want_to_delete))
-        .setPositiveButton(context.getString(R.string.ok)) { dialog, _ ->
+        .setTitle(context.getString(title))
+        .also { if (description != null) it.setMessage(description) }
+        .setPositiveButton(OkayEnum.getRandomAgreement().strRes) { dialog, _ ->
             positiveAction()
             dialog.cancel()
         }

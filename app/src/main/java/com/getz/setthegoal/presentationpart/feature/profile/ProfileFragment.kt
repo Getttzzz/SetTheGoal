@@ -13,6 +13,7 @@ import com.getz.setthegoal.presentationpart.core.GlideApp
 import com.getz.setthegoal.presentationpart.feature.creategoal.applyfinish.MotivationAnimationEnum
 import com.getz.setthegoal.presentationpart.util.gone
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
+import com.getz.setthegoal.presentationpart.util.showOkOrCancelDialog
 import com.getz.setthegoal.presentationpart.util.visible
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -44,9 +45,16 @@ class ProfileFragment : BaseAuthFragment(R.layout.fragment_profile) {
             }
         }
         btnSignOut.setSingleClickListener {
-            WorkManager.getInstance(context!!).cancelAllWork()
-            makeSignOutFromFirebase()
-            bridge.onSignedOutFromProfile()
+            val isAnon = getUser()?.isAnonymous ?: false
+            showOkOrCancelDialog(
+                title = R.string.do_you_want_to_sign_out,
+                description = if (isAnon) R.string.do_you_want_to_sign_out_incognito else null,
+                context = requireContext()
+            ) {
+                WorkManager.getInstance(context!!).cancelAllWork()
+                makeSignOutFromFirebase()
+                bridge.onSignedOutFromProfile()
+            }
         }
         btnBecomeRealUser.setSingleClickListener { requestGoogleSignInWhenIncognito() }
         setupLottie()

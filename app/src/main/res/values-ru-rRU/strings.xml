@@ -130,7 +130,7 @@
     <string name="all_right">Все верно</string>
     <string name="exactly">Точно</string>
     <string name="yep">Угу</string>
-    <string name="sure">Понятно</string>
+    <string name="sure">Естественно</string>
     <string name="of_course">Разумеется</string>
     <string name="the">the&#160;</string>
     <string name="start">Начать</string>
@@ -148,6 +148,8 @@
     <string name="interval_notification_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/interval_ru.jpg?alt=media&token=ac9b78d2-a82b-402a-afe2-e916c300d128]]></string>
     <string name="works_offline_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/moreover_ru.jpg?alt=media&token=8b8904b7-4aa1-49c2-a8bf-d0f41f440581]]></string>
     <string name="anywhere_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/anywhere_ru.jpg?alt=media&token=77478f10-7e64-4e4d-8691-810d38c2b8c8]]></string>
+    <string name="do_you_want_to_sign_out_incognito">Вы вошли как инкогнито. Таким образом, если вы выйдите, вся ваша информация будет утеряна!!!</string>
+    <string name="do_you_want_to_sign_out">Вы хотите выйти?</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one" tools:ignore="ImpliedQuantity">Не забудьте про свою цель на сегодня</item>
         <item quantity="few">Не забудьте про свои цели на сегодня</item>

@@ -31,8 +31,9 @@ import com.getz.setthegoal.presentationpart.entitylayer.SubGoalUI
 import com.getz.setthegoal.presentationpart.entitylayer.WorryEnum
 import com.getz.setthegoal.presentationpart.util.getDaysIn
 import com.getz.setthegoal.presentationpart.util.getHideableListener
+import com.getz.setthegoal.presentationpart.util.say
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
-import com.getz.setthegoal.presentationpart.util.showDeleteDialog
+import com.getz.setthegoal.presentationpart.util.showOkOrCancelDialog
 import kotlinx.android.synthetic.main.fragment_view_goal.*
 import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
@@ -99,11 +100,18 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
             vm.markGoalAsDone(goal, isGoalDone)
         }
         mcvMore.setSingleClickListener {
+            this.say("in development...")
             //todo show custom spinner (don't use standard awful spinner) with options:
             //todo 1.Share 2.Generate pdf with the goal and send it to social network.
         }
+        mcvEdit.setSingleClickListener {
+            this.say("in development...")
+        }
         mcvDelete.setSingleClickListener {
-            showDeleteDialog(context!!) {
+            showOkOrCancelDialog(
+                title = R.string.do_you_want_to_delete,
+                context = requireContext()
+            ) {
                 vm.deleteGoal(goal.goalId)
                 bridge.closeViewGoalScreen()
             }

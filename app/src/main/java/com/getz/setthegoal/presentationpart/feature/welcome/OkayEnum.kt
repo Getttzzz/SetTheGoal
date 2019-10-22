@@ -12,7 +12,7 @@ enum class OkayEnum(@StringRes val strRes: Int) {
     ALL_RIGHT(R.string.all_right),      //Все верно
     EXACTLY(R.string.exactly),          //Точно
     YEP(R.string.yep),                  //Угу
-    SURE(R.string.sure),                //Понятно
+    SURE(R.string.sure),                //Естественно
     OF_COURSE(R.string.of_course);      //Разумеется
 
     companion object {

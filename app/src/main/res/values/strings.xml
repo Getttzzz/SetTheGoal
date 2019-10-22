@@ -148,6 +148,8 @@
     <string name="interval_notification_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/interval.jpg?alt=media&token=6db24280-bd4c-4fcd-891e-fe609cf8e182]]></string>
     <string name="works_offline_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/moreover.jpg?alt=media&token=8e13b706-549a-422d-85ee-d034809b43de]]></string>
     <string name="anywhere_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/anywhere.jpg?alt=media&token=34ac89a9-90e4-4df7-ac97-873cd86e621b]]></string>
+    <string name="do_you_want_to_sign_out_incognito">You are incognito. Therefore, if you sign out, all your data will be lost!!!</string>
+    <string name="do_you_want_to_sign_out">Do you want to sign out?</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one">Don\'t forget about your goal</item>
         <item quantity="other">Don\'t forget about your goals</item>
