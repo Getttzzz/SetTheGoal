@@ -118,11 +118,22 @@
     <string name="see_next_goal">Просмотреть следующую цель</string>
     <string name="these_goals_are_for_today">Это были все цели на сегодня</string>
     <string name="welcome_to">Добро пожаловать в </string>
-    <string name="set_the">Set the</string>
+    <string name="set">Set&#160;</string>
     <string name="stop_flying_aimlessly">Перестань бесцельно летать </string>
-    <string name="get_a_conscious_life">Начни осознанную жизнь </string>
+    <string name="start_moving">Начни движение к цели.</string>
     <string name="let_s_go">Погнали</string>
-    <string name="goal">goal</string>
+    <string name="goal">goal&#160;</string>
+    <string name="yeah">Ага</string>
+    <string name="good">Хорошо</string>
+    <string name="absolutely">Безусловно</string>
+    <string name="agreed">Согласен</string>
+    <string name="all_right">Все верно</string>
+    <string name="exactly">Точно</string>
+    <string name="yep">Угу</string>
+    <string name="sure">Понятно</string>
+    <string name="of_course">Разумеется</string>
+    <string name="the">the&#160;</string>
+    <string name="start">Начать</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one" tools:ignore="ImpliedQuantity">Не забудьте про свою цель на сегодня</item>
         <item quantity="few">Не забудьте про свои цели на сегодня</item>

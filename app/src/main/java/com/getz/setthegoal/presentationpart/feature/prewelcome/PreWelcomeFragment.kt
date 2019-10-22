@@ -3,9 +3,6 @@ package com.getz.setthegoal.presentationpart.feature.prewelcome
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.core.text.buildSpannedString
-import androidx.core.text.color
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
@@ -23,13 +20,6 @@ class PreWelcomeFragment : BaseFragment(R.layout.fragment_pre_welcome) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        tvSetTheGoal.text = buildSpannedString {
-            append(getString(R.string.set_the))
-            append(" ")
-            color(ContextCompat.getColor(tvSetTheGoal.context, R.color.colorAccent))
-            { append(getString(R.string.goal)) }
-        }
         lottieBirds.speed = 0.6f
         lottieBirds.repeatCount = 3
         btnSkip.setSingleClickListener { bridge.closePreWelcomeScreen() }

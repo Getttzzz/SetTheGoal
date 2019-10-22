@@ -6,75 +6,100 @@
     android:paddingTop="18dp">
 
     <TextView
-        android:id="@+id/tvWelcomeTo"
+        android:id="@+id/tvSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:fontFamily="@font/caveat_regular"
-        android:text="@string/welcome_to"
+        android:rotation="-20"
+        android:text="@string/set"
+        android:textAllCaps="true"
         android:textColor="@color/colorText"
-        android:textSize="22sp"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvThe"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/tvSetTheGoal"
+        android:id="@+id/tvThe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/caveat_regular"
-        android:text="@string/set_the"
+        android:rotation="-20"
+        android:text="@string/the"
         android:textAllCaps="true"
         android:textColor="@color/colorText"
-        android:textSize="36sp"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvGoal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWelcomeTo" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSet" />
+
+    <TextView
+        android:id="@+id/tvGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/caveat_regular"
+        android:rotation="-20"
+        android:text="@string/goal"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvStopFlyingAimlessly"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvThe" />
 
 
     <TextView
         android:id="@+id/tvStopFlyingAimlessly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/caveat_regular"
         android:text="@string/stop_flying_aimlessly"
+        android:textAllCaps="false"
         android:textColor="@color/colorText"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvGetAConsciousLife"
+        app:layout_constraintBottom_toTopOf="@+id/tvMoving"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tvGetAConsciousLife"
+        android:id="@+id/tvMoving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/caveat_regular"
-        android:text="@string/get_a_conscious_life"
+        android:text="@string/start_moving"
+        android:textAllCaps="false"
         android:textColor="@color/colorText"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/btnSkip"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvStopFlyingAimlessly" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="70dp"
+        android:fontFamily="@font/caveat_regular"
+        android:letterSpacing="0.04"
         android:minWidth="160dp"
-        android:text="@string/let_s_go"
+        android:text="@string/start"
+        android:textAllCaps="false"
+        android:textSize="30sp"
         android:theme="@style/AppTheme.Yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGetAConsciousLife"
         app:shapeAppearance="@style/StyleCornerOutlinedButton" />
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieBirds"
@@ -83,6 +108,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_rawRes="@raw/birds" />
 
