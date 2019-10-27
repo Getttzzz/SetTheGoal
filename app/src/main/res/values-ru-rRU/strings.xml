@@ -150,6 +150,8 @@
     <string name="anywhere_img" tools:ignore="TypographyDashes"><![CDATA[https://firebasestorage.googleapis.com/v0/b/setthegoal-e51b7.appspot.com/o/anywhere_ru.jpg?alt=media&token=77478f10-7e64-4e4d-8691-810d38c2b8c8]]></string>
     <string name="do_you_want_to_sign_out_incognito">Вы вошли как инкогнито. Таким образом, если вы выйдите, вся ваша информация будет утеряна!!!</string>
     <string name="do_you_want_to_sign_out">Вы хотите выйти?</string>
+    <string name="close_it">Закрыть?</string>
+    <string name="if_you_close">Если вы закроете, то вся заполненная информация будет утеряна.</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one" tools:ignore="ImpliedQuantity">Не забудьте про свою цель на сегодня</item>
         <item quantity="few">Не забудьте про свои цели на сегодня</item>

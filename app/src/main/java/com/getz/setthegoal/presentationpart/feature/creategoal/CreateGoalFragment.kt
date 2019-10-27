@@ -31,6 +31,7 @@ import com.getz.setthegoal.presentationpart.entitylayer.WordUI
 import com.getz.setthegoal.presentationpart.util.addOnPageSelectedListener
 import com.getz.setthegoal.presentationpart.util.say
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
+import com.getz.setthegoal.presentationpart.util.showOkOrCancelDialog
 import com.getz.setthegoal.presentationpart.util.swipeLeft
 import com.getz.setthegoal.presentationpart.util.swipeRight
 import kotlinx.android.synthetic.main.fragment_create_goal.*
@@ -80,6 +81,12 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         setupViewPager()
         setupLD()
         shakeAnim = AnimationUtils.loadAnimation(context!!, R.anim.shake_it)
+        clRootCreateGoal.setSingleClickListener {
+            showOkOrCancelDialog(R.string.close_it, R.string.if_you_close, requireContext()) {
+                bridge.closeCreateFragment()
+            }
+        }
+        mcvCreateGoalRoot.setSingleClickListener { /*should intercept click*/ }
     }
 
 //    override fun onResume() {
@@ -177,6 +184,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
                 btnPrevious.text = getString(R.string.close)
                 btnNext.setSingleClickListener { bridge.closeCreateFragment() }
                 btnPrevious.setSingleClickListener { bridge.closeCreateFragment() }
+                clRootCreateGoal.setSingleClickListener { /*should intercept click*/ }
             }
         }
     }
