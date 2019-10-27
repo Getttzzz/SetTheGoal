@@ -74,7 +74,7 @@
     <string name="goals_for_my_family">Для семьи</string>
     <string name="auth_as">Авторизоваться используя</string>
     <string name="google">гугле</string>
-    <string name="or_be">ну или будь</string>
+    <string name="or_be">или будь</string>
     <string name="incognito">Инкогнито</string>
     <string name="auth_failed">Аутентификация есть неудачный. Сорри.</string>
     <string name="auth_wasnt_successful">Аутентификация не была успех.</string>

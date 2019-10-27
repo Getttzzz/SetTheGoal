@@ -1,4 +1,4 @@
-package com.getz.setthegoal.presentationpart.feature.welcome
+package com.getz.setthegoal.presentationpart.util
 
 import androidx.annotation.StringRes
 import com.getz.setthegoal.R

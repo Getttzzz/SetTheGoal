@@ -3,7 +3,6 @@ package com.getz.setthegoal.presentationpart.util
 import android.content.Context
 import androidx.annotation.StringRes
 import com.getz.setthegoal.R
-import com.getz.setthegoal.presentationpart.feature.welcome.OkayEnum
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 fun showOkOrCancelDialog(

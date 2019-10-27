@@ -16,6 +16,7 @@ import com.getz.setthegoal.di.AndroidScope
 import com.getz.setthegoal.presentationpart.core.BaseFragment
 import com.getz.setthegoal.presentationpart.core.BaseVm
 import com.getz.setthegoal.presentationpart.core.GlideApp
+import com.getz.setthegoal.presentationpart.util.OkayEnum
 import com.getz.setthegoal.presentationpart.util.setSingleClickListener
 import kotlinx.android.synthetic.main.fragment_welcome.*
 import kotlinx.coroutines.delay
@@ -38,7 +39,7 @@ fun getWelcomeModule() = Kodein.Module(WELCOME_VM_MODULE) {
     }
 }
 
-
+//Todo change start guide, current guide is boring.
 class WelcomeFragment : BaseFragment(R.layout.fragment_welcome) {
 
     val vm: WelcomeVM by kodein.on(context = this).instance()

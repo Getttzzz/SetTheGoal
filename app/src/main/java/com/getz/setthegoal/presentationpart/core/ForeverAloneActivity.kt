@@ -29,7 +29,6 @@ import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsBridge
 import com.getz.setthegoal.presentationpart.feature.viewgoals.GoalsFragment
 import com.getz.setthegoal.presentationpart.feature.viewgoals.ViewAllGoalsBridge
 import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeBridge
-import com.getz.setthegoal.presentationpart.feature.welcome.WelcomeFragment
 import com.getz.setthegoal.presentationpart.feature.wordbyword.WordByWordBridge
 import com.getz.setthegoal.presentationpart.feature.wordbyword.WordByWordFragment
 import com.getz.setthegoal.presentationpart.workmanager.EXTRA_GOALS_FOR_TODAY
@@ -170,10 +169,11 @@ class ForeverAloneActivity :
     }
 
     override fun closePreWelcomeScreen() {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.flMain, WelcomeFragment())
-            .commit()
+        openAuthScreen()
+//        supportFragmentManager
+//            .beginTransaction()
+//            .replace(R.id.flMain, WelcomeFragment())
+//            .commit()
     }
 
     private fun openWelcomeScreen() {
@@ -225,7 +225,7 @@ class ForeverAloneActivity :
         WorkManager.getInstance(this)
             .enqueueUniquePeriodicWork(
                 TAG_SEND_NOTIFICATION_UNIQUE_NAME,
-                ExistingPeriodicWorkPolicy.REPLACE,
+                ExistingPeriodicWorkPolicy.REPLACE, //todo change to KEEP before release
                 periodicRequest
             )
 
