@@ -16,8 +16,8 @@
         <!--Flag adjustPan is needed for keyboard opened listener. -->
         <activity
             android:name="com.getz.setthegoal.presentationpart.core.ForeverAloneActivity"
-            android:launchMode="singleInstance"
             android:configChanges="orientation|screenSize"
+            android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="${crashlyticsEnabled}" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

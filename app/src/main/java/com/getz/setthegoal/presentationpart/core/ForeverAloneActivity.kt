@@ -11,6 +11,8 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.crashlytics.android.Crashlytics
+import com.getz.setthegoal.BuildConfig
 import com.getz.setthegoal.R
 import com.getz.setthegoal.di.EXTRA_ONLINE_STATUS
 import com.getz.setthegoal.di.GET_CONNECTION_STATUS_ACTION
@@ -35,6 +37,7 @@ import com.getz.setthegoal.presentationpart.workmanager.EXTRA_GOALS_FOR_TODAY
 import com.getz.setthegoal.presentationpart.workmanager.EXTRA_IS_FROM_NOTIFICATION
 import com.getz.setthegoal.presentationpart.workmanager.SendNotificationWorker
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_forever_alone.*
 import org.joda.time.DateTime
 import org.joda.time.Duration
@@ -59,6 +62,7 @@ class ForeverAloneActivity :
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
+            initCrashlytics(currentUser)
             val isFromNotification = intent.getBooleanExtra(EXTRA_IS_FROM_NOTIFICATION, false)
             if (isFromNotification) {
                 val goals = intent?.getParcelableArrayListExtra(EXTRA_GOALS_FOR_TODAY)
@@ -70,6 +74,14 @@ class ForeverAloneActivity :
             }
         } else {
             openWelcomeScreen()
+        }
+    }
+
+    private fun initCrashlytics(currentUser: FirebaseUser) {
+        if (!BuildConfig.DEBUG) {
+            Crashlytics.getInstance().core.setUserIdentifier(currentUser.uid)
+            Crashlytics.getInstance().core.setUserEmail(currentUser.email)
+            Crashlytics.getInstance().core.setUserName(currentUser.displayName)
         }
     }
 

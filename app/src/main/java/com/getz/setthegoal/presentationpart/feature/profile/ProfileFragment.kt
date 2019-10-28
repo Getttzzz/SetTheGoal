@@ -7,6 +7,7 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.work.WorkManager
 import com.bumptech.glide.request.RequestOptions
+import com.getz.setthegoal.BuildConfig
 import com.getz.setthegoal.R
 import com.getz.setthegoal.presentationpart.core.BaseAuthFragment
 import com.getz.setthegoal.presentationpart.core.GlideApp
@@ -36,6 +37,14 @@ class ProfileFragment : BaseAuthFragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUser()
+        setupSignOutBtn()
+        btnBecomeRealUser.setSingleClickListener { requestGoogleSignInWhenIncognito() }
+        setupVersion()
+        setupLottie()
+    }
+
+    private fun setupUser() {
         getUser()?.let { user ->
             println("GETTTZZZ.ProfileFragment.onViewCreated ---> user.photoUrl=${user.photoUrl}")
             if (user.isAnonymous) {
@@ -44,6 +53,9 @@ class ProfileFragment : BaseAuthFragment(R.layout.fragment_profile) {
                 setupForGoogleUser(user)
             }
         }
+    }
+
+    private fun setupSignOutBtn() {
         btnSignOut.setSingleClickListener {
             val isAnon = getUser()?.isAnonymous ?: false
             showOkOrCancelDialog(
@@ -56,8 +68,11 @@ class ProfileFragment : BaseAuthFragment(R.layout.fragment_profile) {
                 bridge.onSignedOutFromProfile()
             }
         }
-        btnBecomeRealUser.setSingleClickListener { requestGoogleSignInWhenIncognito() }
-        setupLottie()
+    }
+
+    private fun setupVersion() {
+        val version = BuildConfig.APK_VERSION
+        tvAppVersion.text = getString(R.string.made_with_love_by_yuriy_getsko, version)
     }
 
     private fun setupLottie() {
