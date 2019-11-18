@@ -75,7 +75,7 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            goal = it.getParcelable(PARCELABLE_GOAL) as GoalUI
+            goal = it.getParcelable<GoalUI>(PARCELABLE_GOAL) as GoalUI
             isGoalDone = goal.done
         }
     }
