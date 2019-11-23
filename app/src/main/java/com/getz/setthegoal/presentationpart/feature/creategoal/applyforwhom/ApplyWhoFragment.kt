@@ -19,7 +19,7 @@ class ApplyWhoFragment : BaseFragment(R.layout.fragment_apply_who) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter.replace(WhoUI.generateForWhom(context!!))
+        adapter.replace(WhoUI.generateForWhom(requireContext()))
         lottieWaiting.setSingleClickListener { lottieWaiting.playAnimation() }
     }
 

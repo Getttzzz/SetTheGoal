@@ -19,7 +19,7 @@ class ApplyDeadlineFragment : BaseFragment(R.layout.fragment_apply_deadline) {
         super.onViewCreated(view, savedInstanceState)
 
         val deadlineAdapter = setupDeadlineAdapter()
-        val deadlines = DeadlineUI.generateDeadlines(context!!)
+        val deadlines = DeadlineUI.generateDeadlines(requireContext())
         deadlineAdapter.replace(deadlines)
         lottieWaiting.speed = 0.8f
         lottieWaiting.setSingleClickListener {

@@ -27,6 +27,7 @@ class GoalAdapter : BaseAdapter<GoalUI, GoalAdapter.VH>() {
     override fun onBindViewHolder(holder: VH, position: Int) {
         val goal = godList[position]
 
+        //todo if goal doesn't have an image, need to use something like github avatar generator
         GlideApp.with(holder.view)
             .load(goal.photo?.urls?.small ?: "")
             .apply(RequestOptions().centerCrop())

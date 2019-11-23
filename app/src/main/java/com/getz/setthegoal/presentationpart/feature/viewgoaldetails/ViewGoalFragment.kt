@@ -88,6 +88,8 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
         setupSubGoals()
         setupDeadline()
         setupDoneButton(isGoalDone)
+        clRootViewGoal.setSingleClickListener { bridge.closeViewGoalScreen() }
+        mcvViewGoal.setSingleClickListener { /*should intercept click*/ }
         mcvClose.setSingleClickListener { bridge.closeViewGoalScreen() }
         btnDidIt.setSingleClickListener(1000) {
             isGoalDone = if (!isGoalDone) {
@@ -128,6 +130,8 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
             val worryTime = WorryEnum.getEnumByWorryName(goal.worry)
             val daysRemain = goal.createdAt.getDaysIn(timeRange)
 
+            //todo now I have negative value "-4 days remains". Need to think over
+            // Perhaps, would be cool to paint the whole card in light red(orange) color.
             tvDeadlineView.text =
                 resources.getQuantityString(R.plurals.days_plural, daysRemain, daysRemain)
             tvDeadlineDescription.text =
@@ -172,7 +176,8 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
     private fun setupAdapter() = ViewSubGoalAdapter().apply {
         onClick = { vm.updateSubGoals(goal, godList) }
         rvSubGoal.setHasFixedSize(true)
-        rvSubGoal.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvSubGoal.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rvSubGoal.adapter = this
     }
 
@@ -181,8 +186,8 @@ class ViewGoalFragment : BaseFragment(R.layout.fragment_view_goal) {
             clRootViewGoal,
             "backgroundColor",
             ArgbEvaluator(),
-            ContextCompat.getColor(context!!, R.color.colorBlackOpacity15),
-            ContextCompat.getColor(context!!, R.color.colorGreenAccent)
+            ContextCompat.getColor(requireContext(), R.color.colorBlackOpacity15),
+            ContextCompat.getColor(requireContext(), R.color.colorGreenAccent)
         )
         objectAnimator.repeatCount = 1
         objectAnimator.repeatMode = ValueAnimator.REVERSE

@@ -48,7 +48,12 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
             append(getString(R.string.inspiration_source)).append(" ")
             underline { append(getString(R.string.unsplash_com)) }
         }
-        tvUnsplash.setSingleClickListener { openLink(getString(R.string.unsplash_url), context!!) }
+        tvUnsplash.setSingleClickListener {
+            openLink(
+                getString(R.string.unsplash_url),
+                requireContext()
+            )
+        }
     }
 
     private fun setupLD() {
@@ -87,7 +92,7 @@ class ApplyPictureFragment : BaseFragment(R.layout.fragment_apply_picture) {
         }
         onAuthorClick = { position ->
             val photo = this.godList[position]
-            openLink(photo.profileLink, this@ApplyPictureFragment.context!!)
+            openLink(photo.profileLink, requireContext())
         }
         rvPhotos.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

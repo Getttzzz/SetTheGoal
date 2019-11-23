@@ -80,7 +80,7 @@ class CreateGoalFragment : BaseFragment(R.layout.fragment_create_goal) {
         super.onViewCreated(view, savedInstanceState)
         setupViewPager()
         setupLD()
-        shakeAnim = AnimationUtils.loadAnimation(context!!, R.anim.shake_it)
+        shakeAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.shake_it)
         clRootCreateGoal.setSingleClickListener {
             showOkOrCancelDialog(R.string.close_it, R.string.if_you_close, requireContext()) {
                 bridge.closeCreateFragment()

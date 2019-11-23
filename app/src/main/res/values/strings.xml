@@ -151,7 +151,7 @@
     <string name="do_you_want_to_sign_out_incognito">You are incognito. Therefore, if you sign out, all your data will be lost!!!</string>
     <string name="do_you_want_to_sign_out">Do you want to sign out?</string>
     <string name="close_it">Close?</string>
-    <string name="if_you_close">If you close all filled data will be lost.</string>
+    <string name="if_you_close">If you close it, all filled data will be lost.</string>
     <string name="made_with_love_by_yuriy_getsko">Made with love by Yuriy Getsko.\nApp version:%1$s</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one">Don\'t forget about your goal</item>

@@ -39,10 +39,11 @@ abstract class BaseGoalsForSomeone : BaseFragment(R.layout.fragment_goals_for_so
             val goalUI = this.godList[position]
             viewGoalBridge.wantToSeeObjective(goalUI)
         }
+        //todo leave it for better times...
         onOptionsClick = { position ->
             val goalUI = this.godList[position]
             if (goalUI.goalId.isNotEmpty()) {
-                vm.deleteGoal(goalUI.goalId)
+//                vm.deleteGoal(goalUI.goalId)
             }
         }
 

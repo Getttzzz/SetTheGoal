@@ -63,7 +63,7 @@ class ProfileFragment : BaseAuthFragment(R.layout.fragment_profile) {
                 description = if (isAnon) R.string.do_you_want_to_sign_out_incognito else null,
                 context = requireContext()
             ) {
-                WorkManager.getInstance(context!!).cancelAllWork()
+                WorkManager.getInstance(requireContext()).cancelAllWork()
                 makeSignOutFromFirebase()
                 bridge.onSignedOutFromProfile()
             }
