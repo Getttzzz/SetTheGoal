@@ -13,4 +13,6 @@
 .externalNativeBuild
 .cxx
 google-services.json
+
 set_the_goal_keystore.properties
+set_the_goal.keystore

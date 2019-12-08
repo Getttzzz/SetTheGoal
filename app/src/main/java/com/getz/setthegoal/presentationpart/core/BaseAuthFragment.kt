@@ -27,7 +27,7 @@ abstract class BaseAuthFragment(@LayoutRes layoutId: Int) : BaseFragment(layoutI
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        GoogleSignIn.getClient(activity!!, gso)
+        GoogleSignIn.getClient(requireActivity(), gso)
     }
 
     companion object {
@@ -38,21 +38,30 @@ abstract class BaseAuthFragment(@LayoutRes layoutId: Int) : BaseFragment(layoutI
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val lastSignedInAccount = GoogleSignIn.getLastSignedInAccount(activity!!)
+        val lastSignedInAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
         lastSignedInAccount?.email?.let { onLastSignedInUserDetected(it) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                SIGN_IN_PROFILE_REQUEST_CODE -> {
-                    handleSignInResult(GoogleSignIn.getSignedInAccountFromIntent(data), false)
-                }
-                SIGN_IN_PROFILE_WHEN_INCOGNITO_REQUEST_CODE -> {
-                    handleSignInResult(GoogleSignIn.getSignedInAccountFromIntent(data), true)
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                when (requestCode) {
+                    SIGN_IN_PROFILE_REQUEST_CODE -> {
+                        handleSignInResult(GoogleSignIn.getSignedInAccountFromIntent(data), false)
+                    }
+                    SIGN_IN_PROFILE_WHEN_INCOGNITO_REQUEST_CODE -> {
+                        handleSignInResult(GoogleSignIn.getSignedInAccountFromIntent(data), true)
+                    }
                 }
             }
+            /**
+             * If result is cancelled for release build, it needs to find SHA-1 fingerprint
+             * for release keystore and add that fingerprint to Firebase Console.
+             * After that step, generate new google-service.json file and insert into the project.
+             * */
+            Activity.RESULT_CANCELED -> say(getString(R.string.google_sign_in_error))
+            else -> say(getString(R.string.something_went_wrong))
         }
     }
 

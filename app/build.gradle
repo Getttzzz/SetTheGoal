@@ -4,11 +4,21 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: "kotlin-kapt"
 apply plugin: 'io.fabric'
 
-//def keystoreFile = rootProject.file("set_the_goal_keystore.properties")
-//def keystoreProperties = new Properties()
-//keystoreProperties.load(new FileInputStream(keystoreFile))
+def keystoreFile = rootProject.file("set_the_goal_keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystoreFile))
 
 android {
+    //Should be declared before "defaultConfig" section.
+    //Also, need to add line "signingConfig signingConfig.release" in the "defaultConfig" section.
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['pathToKeystoreFile'])
+            storePassword keystoreProperties['storePass']
+            keyAlias = keystoreProperties['alias']
+            keyPassword keystoreProperties['keyPass']
+        }
+    }
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.getz.setthegoal"
@@ -17,6 +27,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
     buildTypes {
         debug {
@@ -41,14 +52,6 @@ android {
             buildConfigField 'String', "UnsplashClientKey", SetTheGoal_UnsplashClientKey
         }
     }
-//    signingConfigs {
-//        release {
-//            storeFile file(keystoreProperties['pathToKeystoreFile'])
-//            keyAlias = keystoreProperties['alias']
-//            storePassword keystoreProperties['storePass']
-//            keyPassword keystoreProperties['keyPass']
-//        }
-//    }
     android.applicationVariants.all { variant ->
         variant.outputs.all {
             String apkVersion = "${variant.buildType.name}-v${variant.versionName}.(${variant.versionCode})"

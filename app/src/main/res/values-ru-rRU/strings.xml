@@ -153,6 +153,8 @@
     <string name="close_it">Закрыть?</string>
     <string name="if_you_close">Если вы закроете это, то вся заполненная информация будет утеряна.</string>
     <string name="made_with_love_by_yuriy_getsko">Made with love by Yuriy Getsko.\nApp version:%1$s</string>
+    <string name="something_went_wrong">Ошибка. Что-то пошло не по плану.</string>
+    <string name="google_sign_in_error">Google Sign In был отклонен. Попробуйте войти через Incognito.</string>
     <plurals name="goals_for_notification_plurals">
         <item quantity="one" tools:ignore="ImpliedQuantity">Не забудьте про свою цель на сегодня</item>
         <item quantity="few">Не забудьте про свои цели на сегодня</item>

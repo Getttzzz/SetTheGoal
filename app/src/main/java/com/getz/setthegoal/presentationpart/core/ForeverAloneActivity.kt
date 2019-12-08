@@ -182,10 +182,6 @@ class ForeverAloneActivity :
 
     override fun closePreWelcomeScreen() {
         openAuthScreen()
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.flMain, WelcomeFragment())
-//            .commit()
     }
 
     private fun openWelcomeScreen() {

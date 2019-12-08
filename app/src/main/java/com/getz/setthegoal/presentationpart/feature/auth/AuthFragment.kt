@@ -15,7 +15,6 @@ class AuthFragment : BaseAuthFragment(R.layout.fragment_auth) {
     private lateinit var bridge: AuthBridge
 
     override val onSignedInSuccessfully: () -> Unit = {
-        println("GETTTZZZ.AuthFragment --->  bridge.openMainScreenAfterAuth()")
         bridge.openMainScreenAfterAuth()
     }
 
@@ -33,12 +32,12 @@ class AuthFragment : BaseAuthFragment(R.layout.fragment_auth) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         btnGoogle.setSingleClickListener {
-            println("GETTTZZZ.AuthFragment.onViewCreated --->  requestGoogleSignIn() ")
             requestGoogleSignIn()
         }
-        btnIncognito.setSingleClickListener { makeSignInIncognito() }
+        btnIncognito.setSingleClickListener {
+            makeSignInIncognito()
+        }
         btnGoogleSignOut.setSingleClickListener {
             makeSignOutFromGoogle { btnGoogleSignOut.gone(); tvGoogleAccountInfo.gone() }
         }
