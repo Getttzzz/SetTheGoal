@@ -31,6 +31,13 @@ class GoalRepository(
         goalDS.deleteGoal(goalId, onResult)
     }
 
+    override suspend fun deleteAllGoals(onResult: suspend (Boolean) -> Unit) {
+        val uid = auth.currentUser?.uid ?: "no_id"
+        goalDS.deleteAllGoals(uid) { success ->
+            onResult(success)
+        }
+    }
+
     override suspend fun getUnfinishedGoals(onResult: suspend (List<Goal>) -> Unit) {
         val uid = auth.currentUser?.uid ?: "no_id"
         goalDS.getUnfinishedGoals(uid) {

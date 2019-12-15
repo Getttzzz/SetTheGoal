@@ -136,6 +136,7 @@ class GoalsFragment : BaseFragment(R.layout.fragment_goals) {
     }
 }
 
+
 class GoalsVM(
     private val getQuoteUC: IGetQuoteUC,
     private val getGoalsUC: IGetGoalsUC,

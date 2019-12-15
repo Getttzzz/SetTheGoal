@@ -93,7 +93,7 @@ abstract class BaseAuthFragment(@LayoutRes layoutId: Int) : BaseFragment(layoutI
 
     fun getUser() = firebaseAuth.currentUser
 
-    fun makeSignOutFromFirebase() {
+    fun signOutFromFirebase() {
         firebaseAuth.signOut()
     }
 

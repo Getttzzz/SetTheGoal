@@ -1,6 +1,7 @@
 package com.getz.setthegoal.di
 
 import com.getz.setthegoal.datapart.interactorlayer.CreateGoalUC
+import com.getz.setthegoal.datapart.interactorlayer.DeleteAllGoalsUC
 import com.getz.setthegoal.datapart.interactorlayer.DeleteGoalUC
 import com.getz.setthegoal.datapart.interactorlayer.GetPartsOfSpeechUC
 import com.getz.setthegoal.datapart.interactorlayer.GetPhotoUC
@@ -9,6 +10,7 @@ import com.getz.setthegoal.datapart.interactorlayer.GetUnfinishedGoalsUC
 import com.getz.setthegoal.datapart.interactorlayer.SubscribeOnGoalsUC
 import com.getz.setthegoal.datapart.interactorlayer.UpdateGoalUC
 import com.getz.setthegoal.domainpart.interactorlayer.ICreateGoalUC
+import com.getz.setthegoal.domainpart.interactorlayer.IDeleteAllGoalsUC
 import com.getz.setthegoal.domainpart.interactorlayer.IDeleteGoalUC
 import com.getz.setthegoal.domainpart.interactorlayer.IGetGoalsUC
 import com.getz.setthegoal.domainpart.interactorlayer.IGetPartsOfSpeechUC
@@ -29,5 +31,6 @@ val useCaseModule = Kodein.Module(ModulesNames.USE_CASE_MODULE) {
     bind<IUpdateGoalUC>() with singleton { UpdateGoalUC(instance()) }
     bind<IGetGoalsUC>() with singleton { SubscribeOnGoalsUC(instance()) }
     bind<IDeleteGoalUC>() with singleton { DeleteGoalUC(instance()) }
+    bind<IDeleteAllGoalsUC>() with singleton { DeleteAllGoalsUC(instance()) }
     bind<IGetUnfinishedGoalsUC>() with singleton { GetUnfinishedGoalsUC(instance()) }
 }

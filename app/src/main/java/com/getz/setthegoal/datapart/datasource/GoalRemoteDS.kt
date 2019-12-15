@@ -42,6 +42,19 @@ class GoalRemoteDS(
         onResult(task.isSuccessful)
     }
 
+    override suspend fun deleteAllGoals(uid: String, onResult: suspend (Boolean) -> Unit) {
+        val task = firestore.collection(COLLECTION_GOALS)
+            .whereEqualTo(FIELD_OWNER_ID, uid)
+            .get()
+        Tasks.await(task)
+        task.result?.let { querySnapshot ->
+            querySnapshot.documents.forEach {
+                it.reference.delete()
+            }
+        }
+        onResult(true)
+    }
+
     override suspend fun getUnfinishedGoals(
         uid: String,
         onResult: suspend (List<GoalDto>) -> Unit
