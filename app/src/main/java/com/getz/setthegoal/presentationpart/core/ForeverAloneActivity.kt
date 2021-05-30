@@ -1,21 +1,13 @@
 package com.getz.setthegoal.presentationpart.core
 
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.crashlytics.android.Crashlytics
-import com.getz.setthegoal.BuildConfig
 import com.getz.setthegoal.R
-import com.getz.setthegoal.di.EXTRA_ONLINE_STATUS
-import com.getz.setthegoal.di.GET_CONNECTION_STATUS_ACTION
 import com.getz.setthegoal.presentationpart.entitylayer.GoalUI
 import com.getz.setthegoal.presentationpart.feature.auth.AuthBridge
 import com.getz.setthegoal.presentationpart.feature.auth.AuthFragment
@@ -38,7 +30,6 @@ import com.getz.setthegoal.presentationpart.workmanager.EXTRA_IS_FROM_NOTIFICATI
 import com.getz.setthegoal.presentationpart.workmanager.SendNotificationWorker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_forever_alone.*
 import org.joda.time.DateTime
 import org.joda.time.Duration
 import java.util.concurrent.TimeUnit
@@ -55,14 +46,14 @@ class ForeverAloneActivity :
     GoalsBridge, WelcomeBridge, AuthBridge, ProfileBridge, CreateGoalBridge, ViewAllGoalsBridge,
     ViewGoalBridge, WordByWordBridge, PreWelcomeBridge {
 
-    private lateinit var connectionBroReceiver: BroadcastReceiver
+//    private lateinit var connectionBroReceiver: BroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            initCrashlytics(currentUser)
+//            initCrashlytics(currentUser)
             val isFromNotification = intent.getBooleanExtra(EXTRA_IS_FROM_NOTIFICATION, false)
             if (isFromNotification) {
                 val goals = intent?.getParcelableArrayListExtra(EXTRA_GOALS_FOR_TODAY)
@@ -78,11 +69,11 @@ class ForeverAloneActivity :
     }
 
     private fun initCrashlytics(currentUser: FirebaseUser) {
-        if (!BuildConfig.DEBUG) {
-            Crashlytics.getInstance().core.setUserIdentifier(currentUser.uid)
-            Crashlytics.getInstance().core.setUserEmail(currentUser.email)
-            Crashlytics.getInstance().core.setUserName(currentUser.displayName)
-        }
+//        if (!BuildConfig.DEBUG) {
+//            Crashlytics.getInstance().core.setUserIdentifier(currentUser.uid)
+//            Crashlytics.getInstance().core.setUserEmail(currentUser.email)
+//            Crashlytics.getInstance().core.setUserName(currentUser.displayName)
+//        }
     }
 
     /**
@@ -99,13 +90,13 @@ class ForeverAloneActivity :
 
     override fun onResume() {
         super.onResume()
-        val (connectionReceiver, filter) = createConnectionReceiver()
-        connectionBroReceiver = connectionReceiver
-        registerReceiver(connectionReceiver, filter)
+//        val (connectionReceiver, filter) = createConnectionReceiver()
+//        connectionBroReceiver = connectionReceiver
+//        registerReceiver(connectionReceiver, filter)
     }
 
     override fun onPause() {
-        unregisterReceiver(connectionBroReceiver)
+//        unregisterReceiver(connectionBroReceiver)
         super.onPause()
     }
 
@@ -191,18 +182,18 @@ class ForeverAloneActivity :
             .commit()
     }
 
-    private fun createConnectionReceiver(): Pair<BroadcastReceiver, IntentFilter> {
-        val receiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent?) {
-                val isOnline = intent?.getBooleanExtra(EXTRA_ONLINE_STATUS, false) ?: false
-                tvConnectionStatus?.let { tv -> tv.isVisible = !isOnline }
-            }
-        }
-        val connectionFilter = IntentFilter(GET_CONNECTION_STATUS_ACTION)
-            .apply { addCategory(Intent.CATEGORY_DEFAULT) }
-
-        return Pair(receiver, connectionFilter)
-    }
+//    private fun createConnectionReceiver(): Pair<BroadcastReceiver, IntentFilter> {
+//        val receiver = object : BroadcastReceiver() {
+//            override fun onReceive(context: Context, intent: Intent?) {
+//                val isOnline = intent?.getBooleanExtra(EXTRA_ONLINE_STATUS, false) ?: false
+//                tvConnectionStatus?.let { tv -> tv.isVisible = !isOnline }
+//            }
+//        }
+//        val connectionFilter = IntentFilter(GET_CONNECTION_STATUS_ACTION)
+//            .apply { addCategory(Intent.CATEGORY_DEFAULT) }
+//
+//        return Pair(receiver, connectionFilter)
+//    }
 
     private fun scheduleEverydayWorker() {
         println("GETTTZZZ.ForeverAloneActivity.scheduleEverydayWorker ---> DateTime.now().hourOfDay=${DateTime.now().hourOfDay}")

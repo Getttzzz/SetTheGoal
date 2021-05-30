@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.getz.setthegoal">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".GoalApp"
         android:allowBackup="true"
@@ -30,7 +33,4 @@
             android:name="firebase_crashlytics_collection_enabled"
             android:value="${crashlyticsEnabled}" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
 </manifest>

@@ -1,7 +1,6 @@
 package com.getz.setthegoal
 
 import android.app.Application
-import com.getz.setthegoal.di.connectionModule
 import com.getz.setthegoal.di.dataSourceModule
 import com.getz.setthegoal.di.firestoreModule
 import com.getz.setthegoal.di.mapperModule
@@ -31,6 +30,6 @@ class GoalApp() : Application(), KodeinAware {
         import(useCaseModule)
         import(translatorModule)
         import(firestoreModule) //eagerSingleton (load after onCreate)
-        import(connectionModule) //eagerSingleton (load after onCreate)
+//        import(connectionModule) //eagerSingleton (load after onCreate)
     }
 }
